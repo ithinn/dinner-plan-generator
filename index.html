@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Middagsukeplangenerator</title>
+    <link rel="stylesheet" href="index.css">
+    
+    <script src="middager.js" defer></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Hva skal vi ha til middag?</h1>
+    </header>
+
+    <main>
+        <!--Knapper - call to action-->
+        <section id="valg">
+            <button id="genererBtn" class="mainBtn">Generer ukesplan</button>
+            
+            <input type="checkbox" id="filterBtn" class="subBtn"></input>
+            <label id="filterLabel" for="filterBtn">Filter</label>
+        </section>
+
+        <!--Filter-->
+        <section id="filter">
+            <div id="velgType">
+                <h2>Jeg vil ha:</h2>
+                <label for="kjott">Kjøtt</label>
+                <input type="checkbox" id="kjott" title="Velg kjøtt">
+                <label for="fisk">Fisk</label>
+                <input type="checkbox" id="fisk" title="Velg fisk">
+                <label for="vegetar">Vegetar</label>
+                <input type="checkbox" id="vegetar" title="Velg vegetar">
+            </div>
+
+            <div id="velgPris">
+                <h2>Jeg vil betale:</h2>
+                <label for="billigst">Minst mulig</label>
+                <input type="checkbox" id="billigst" title="Velg billigste alternativ">
+                <label for="billig">Middels</label>
+                <input type="checkbox" id="billig" title="Velg nest billigste alternativ">
+                <label for="dyrt">Det er ikke så viktig</label>
+                <input type="checkbox" id="dyrt" title="Velg dyreste alternativ">
+            </div>
+
+            <div id="velgTid">
+                <h2>Jeg har det ekstra travelt:</h2>
+                <label for="mandag">Mandag</label>
+                <input type="checkbox" id="mandag" title="Marker mandag som 'travel'">
+                <label for="tirsdag">Tirsdag</label>
+                <input type="checkbox" id="tirsdag" title="Marker tirsdag som 'travel'">
+                <label for="onsdag">Onsdag</label>
+                <input type="checkbox" id="onsdag" title="Marker onsdag som 'travel'">
+                <label for="torsdag">Torsdag</label>
+                <input type="checkbox" id="torsdag" title="Marker torsdag som 'travel'">
+                <label for="fredag">Fredag</label>
+                <input type="checkbox" id="fredag" title="Marker fredag som 'travel'">
+                <label for="lørdag">Lørdag</label>
+                <input type="checkbox" id="lørdag" title="Marker lørdag som 'travel'">
+                <label for="søndag">Søndag</label>
+                <input type="checkbox" id="søndag" title="Marker søndag som 'travel'">
+            </div> 
+
+
+            <section id="etterFilter">
+                <button id="genererFiltrertBtn" class="mainBtn">Generer ukesplan</button>
+                <button id="lukkfilterBtn" class="subBtn">Lukk filter</button>
+            </section>
+
+        </section>
+
+        <!--Selve ukesplanen, legges inn med Javascript-->
+        <section id="ukesplan">
+        </section>
+        
+        <section id="handling">
+            <button id="print">Skriv ut ukeplan</button>
+            <div id="mail_wrap">
+                <button type="submit" id="btnMail">Send til:</button>
+                <input type="email" title="Skriv inn epostadresse" id="inpMail">
+            </div>
+        </section>
+    </main>
+    
+</body>
+</html>

@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+   
+}
+
+html {
+    font-size: 62,5%;
+}
+/*
+1. max-width: 1340px 
+2. max-width: 1148px 
+3. max-width: 950px
+4. max-width: 882px
+5. max-width: 699px*/
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 300vh;
+}
+
+button {
+    margin: 1em;
+    padding: 1em;
+    font-family: "Exo 2";
+    border-radius: 20px;
+
+}
+
+.main.btn {
+    font-size: 7rem;
+}
+
+header {
+    width: 100%;
+    background-color: #333333;
+    height: 20vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    text-align: center;
+    font-family: "Exo 2";
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+h3 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+}
+
+body {
+    transition: .3s;
+}
+
+#ukesplan {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 70vh;
+    margin-top: 5em;
+    text-align: center;
+    position: relative;
+}
+
+#handling {
+position: relative;
+top: 40em;
+}
+
+#filterBtn {
+    width: 15px;
+    height: 15px;
+}
+
+label {
+    font-size: 2rem;
+    padding-right: 1em;
+    padding-left: .5em;
+}
+#filterLabel {
+    font-size: 2rem;
+    border: 4px solid black;
+    padding: .5em;
+    background-color: #f9f9f8;
+}
+
+#filterLabel:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+
+#filter {
+    position: absolute;
+    left: 200vw;
+    width: 80%;
+    background-color: red;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+
+}
+
+#filterBtn:checked ~ #filter {
+    left: 0vw;
+    background-color: blue;
+}
+
+/*
+@media (max-width: 1900px) {
+    body {
+        background-color: brown;
+    }
+    h1 {
+       font-size: 7rem;
+    }
+}
+
+@media (max-width: 1340px) {
+    body {
+        background-color: yellow;
+    }
+    h1 {
+       font-size: 5rem;
+    }
+}
+@media (max-width: 1148px) {
+    body {
+        background-color: blue;
+    }
+}
+
+@media (max-width: 882px) {
+    body {
+        background-color: peru;
+    }
+    header {
+        height: 25vh;
+    }
+ 
+}
+@media (max-width: 699px) {
+    body {
+        background-color: purple;
+    }
+    h1 {
+        font-size: 4rem;
+    }
+   
+}*/
