@@ -18,56 +18,68 @@
         <!--Knapper - call to action-->
         <section id="valg">
             <button id="genererBtn" class="mainBtn">Generer ukesplan</button>
+            <div id="filtWrapper">
+                <input type="checkbox" id="cb" class="subBtn"></input>
+                <label id="filterLabel" for="cb">Filter</label>
             
-            <input type="checkbox" id="filterBtn" class="subBtn"></input>
-            <label id="filterLabel" for="filterBtn">Filter</label>
-        </section>
 
         <!--Filter-->
-        <section id="filter">
-            <div id="velgType">
-                <h2>Jeg vil ha:</h2>
-                <label for="kjott">Kjøtt</label>
-                <input type="checkbox" id="kjott" title="Velg kjøtt">
-                <label for="fisk">Fisk</label>
-                <input type="checkbox" id="fisk" title="Velg fisk">
-                <label for="vegetar">Vegetar</label>
-                <input type="checkbox" id="vegetar" title="Velg vegetar">
+            <article id="filter">
+                <h2 class="overskrift">Erru kresen? Eller gjerrig?</h2>
+                <div id="velgType">
+                    
+                    <h3>Jeg vil ha:</h3>
+                    <div class="labelWrap">
+                        <label class="cbLabel" for="kjott">Kjøtt</label>
+                        <input type="checkbox" id="kjott" class="inpFilter" title="Velg kjøtt">
+                        <label class="cbLabel" for="fisk">Fisk</label>
+                        <input type="checkbox" id="fisk" class="inpFilter" title="Velg fisk">
+                        <label class="cbLabel" for="vegetar">Vegetar</label>
+                        <input type="checkbox" id="vegetar" class="inpFilter" title="Velg vegetar">
+                    </div>
+                </div>
+
+                <div id="velgPris">
+                    <h3>Jeg vil betale:</h3>
+                    <div class="labelWrap">
+                        <label class="cbLabel" for="billigst">Minst mulig</label>
+                        <input type="checkbox" id="billigst" class="inpFilter" title="Velg billigste alternativ">
+                        <label class="cbLabel" for="billig">Middels</label>
+                        <input type="checkbox" id="billig" class="inpFilter" title="Velg nest billigste alternativ">
+                        <label class="cbLabel" for="dyrt">Det er ikke så viktig</label>
+                        <input type="checkbox" id="dyrt" class="inpFilter" title="Velg dyreste alternativ">
+                    </div>
+                </div>
+
+                <div id="velgTid">
+                    <h3>Jeg har det ekstra travelt:</h3>
+                    <div class="labelWrap">
+                        <label class="cbLabel" for="mandag">Mandag</label>
+                        <input class="inpFilter" type="checkbox" id="mandag" title="Marker mandag som 'travel'">
+                        <label class="cbLabel" for="tirsdag">Tirsdag</label>
+                        <input class="inpFilter" type="checkbox" id="tirsdag" title="Marker tirsdag som 'travel'">
+                        <label class="cbLabel" for="onsdag">Onsdag</label>
+                        <input class="inpFilter" type="checkbox" id="onsdag" title="Marker onsdag som 'travel'">
+                        <label class="cbLabel" for="torsdag">Torsdag</label>
+                        <input class="inpFilter" type="checkbox" id="torsdag" title="Marker torsdag som 'travel'">
+                        <label class="cbLabel" for="fredag">Fredag</label>
+                        <input class="inpFilter" type="checkbox" id="fredag" title="Marker fredag som 'travel'">
+                        <label class="cbLabel" for="lørdag">Lørdag</label>
+                        <input class="inpFilter" type="checkbox" id="lørdag" title="Marker lørdag som 'travel'">
+                        <label class="cbLabel" for="søndag">Søndag</label>
+                        <input class="inpFilter" type="checkbox" id="søndag" title="Marker søndag som 'travel'">
+                    </div>
+                </div> 
+                <article id="etterFilter">
+                    <button id="genererFiltrertBtn" class="filterBtn">Generer ukesplan</button>
+                    <button id="lukkfilterBtn" class="subBtn">Lukk filter</button>
+                </article>
+            </article>
+            
             </div>
+        </section>
 
-            <div id="velgPris">
-                <h2>Jeg vil betale:</h2>
-                <label for="billigst">Minst mulig</label>
-                <input type="checkbox" id="billigst" title="Velg billigste alternativ">
-                <label for="billig">Middels</label>
-                <input type="checkbox" id="billig" title="Velg nest billigste alternativ">
-                <label for="dyrt">Det er ikke så viktig</label>
-                <input type="checkbox" id="dyrt" title="Velg dyreste alternativ">
-            </div>
-
-            <div id="velgTid">
-                <h2>Jeg har det ekstra travelt:</h2>
-                <label for="mandag">Mandag</label>
-                <input type="checkbox" id="mandag" title="Marker mandag som 'travel'">
-                <label for="tirsdag">Tirsdag</label>
-                <input type="checkbox" id="tirsdag" title="Marker tirsdag som 'travel'">
-                <label for="onsdag">Onsdag</label>
-                <input type="checkbox" id="onsdag" title="Marker onsdag som 'travel'">
-                <label for="torsdag">Torsdag</label>
-                <input type="checkbox" id="torsdag" title="Marker torsdag som 'travel'">
-                <label for="fredag">Fredag</label>
-                <input type="checkbox" id="fredag" title="Marker fredag som 'travel'">
-                <label for="lørdag">Lørdag</label>
-                <input type="checkbox" id="lørdag" title="Marker lørdag som 'travel'">
-                <label for="søndag">Søndag</label>
-                <input type="checkbox" id="søndag" title="Marker søndag som 'travel'">
-            </div> 
-
-
-            <section id="etterFilter">
-                <button id="genererFiltrertBtn" class="mainBtn">Generer ukesplan</button>
-                <button id="lukkfilterBtn" class="subBtn">Lukk filter</button>
-            </section>
+            
 
         </section>
 
@@ -75,13 +87,7 @@
         <section id="ukesplan">
         </section>
         
-        <section id="handling">
-            <button id="print">Skriv ut ukeplan</button>
-            <div id="mail_wrap">
-                <button type="submit" id="btnMail">Send til:</button>
-                <input type="email" title="Skriv inn epostadresse" id="inpMail">
-            </div>
-        </section>
+        
     </main>
     
 </body>

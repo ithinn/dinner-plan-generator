@@ -22,20 +22,29 @@ const generateRandom = () => {
 
     html += `
     
-    <h3>Mandag</h3>
-    <h2>${resultArray[0].navn}</h2>
-    <h3>Tirsdag</h3>
-    <h2>${resultArray[1].navn}</h2>
-    <h3>Onsdag</h3>
-    <h2>${resultArray[2].navn}</h2>
-    <h3>Torsdag</h3>
-    <h2>${resultArray[3].navn}</h2>
-    <h3>Fredag</h3>
-    <h2>${resultArray[4].navn}</h2>
-    <h3>Lørdag</h3>
-    <h2>${resultArray[5].navn}</h2>
-    <h3>Søndag</h3>
-    <h2>${resultArray[6].navn}</h2>
+    <h3 class="dag">Mandag</h3>
+    <h2 class="rett">${resultArray[0].navn}</h2>
+    <h3 class="dag">Tirsdag</h3>
+    <h2 class="rett">${resultArray[1].navn}</h2>
+    <h3 class="dag">Onsdag</h3>
+    <h2 class="rett">${resultArray[2].navn}</h2>
+    <h3 class="dag">Torsdag</h3>
+    <h2 class="rett">${resultArray[3].navn}</h2>
+    <h3 class="dag">Fredag</h3>
+    <h2 class="rett">${resultArray[4].navn}</h2>
+    <h3 class="dag">Lørdag</h3>
+    <h2 class="rett">${resultArray[5].navn}</h2>
+    <h3 class="dag">Søndag</h3>
+    <h2 class="rett">${resultArray[6].navn}</h2>
+    
+    <section id="handling">
+            <button id="print">Skriv ut ukeplan</button>
+            <div id="mail_wrap">
+                <button type="submit" id="btnMail">Send til:</button>
+                <input type="email" title="Skriv inn epostadresse" id="inpMail">
+            </div>
+    </section>
+    
     `
 
     ukesplan.innerHTML = html;
