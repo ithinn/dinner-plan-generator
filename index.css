@@ -112,7 +112,7 @@ main, #valg, #filtWrapper {
 }
 
 #cb:checked ~ #filter {
-    top: 55vh;
+    top: 48vh;
     opacity: 1;
 }
 
@@ -135,8 +135,8 @@ main, #valg, #filtWrapper {
 
 }
 
-.inpFilter:checked .cbLabel {
-    background-color: red;
+.inpFilter:checked + label {
+    background-color:peru;
 }
 
 .cbLabel {
@@ -150,6 +150,8 @@ main, #valg, #filtWrapper {
 .cbLabel:hover {
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+
 
 
 .labelWrap {
@@ -263,7 +265,7 @@ button:hover {
 
 #ukesplan {
     position: relative;
-    top: 17vh;
+    top: 25vh;
 }
 
 .clock, .price {
