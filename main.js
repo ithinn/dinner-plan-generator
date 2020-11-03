@@ -34,8 +34,18 @@ const generateRandom = (array) => {
         testArr.splice(index, 1);
     }
     console.log(resultArray);
-    
 
+    resultArray.forEach(el => {
+        if(el.kjottRodt === true) {
+            seFilter.innerHTML = `<input type="checkbox" checked id="kjott" class="showFilter" title="Velg kjøtt">
+        <label class="cbLabel type" for="kjott">Kjøtt</label>`
+        } else if (el.fisk === true) {
+            seFilter.innerHTML = `<input type="checkbox" checked id="fisk" class="showFilter" title="Velg kjøtt">
+            <label class="cbLabel type" for="fisk">Fisk</label>`
+
+        }
+    })
+    
     html += `
     <article class="dagWrap">
     <h3 class="dag">Mandag</h3>
@@ -170,6 +180,7 @@ const applyFilter = (evt) => {
     
 }
 
+const seFilter = document.getElementById("filterlabler");
 
 //SELVESTE FILTERFUNKSJONEN
 const mainFilter = () => {
@@ -206,10 +217,12 @@ const mainFilter = () => {
         if (tempArray[i].id === "kjott") {
             const meat = item => item.kjottRodt === true;
             meatArray = filter(meat, middager);
+            
 
         } else if (tempArray[i].id ==="fisk") {
             const fish = item => item.fisk === true;
             fishArray = filter(fish, middager);
+            
 
         } else if (tempArray[i].id === "vegetar") {
             const veg = item => item.vegetar === true;
@@ -236,11 +249,36 @@ const mainFilter = () => {
             exArray = filter(dyrt, middager);
         } 
         
+        
 
 //Legg til ny fishArray = filter(fish, meat, middager); - ikke fastsatt antall parametre - må kunne ta både ett og flere. 
 
         //Slår sammen alle arrayene og lagrer dem i resultArray
         filteredArray = [].concat(fishArray, meatArray, vegArray, cheapArray, cheaperArray, exArray, glutArr, lakArr);
-        console.log(filteredArray);   
+        
+        console.log(filteredArray);
+        
     }
 }
+
+const labelSection = document.getElementById("filterlabler")
+labelSection.addEventListener("click", (e) => {
+if (e.target.nodeName === "INPUT") {
+    removeFilters();
+}
+})
+
+//Fjern filtre / nullstill søk
+const removeFilters = (e) => {
+    if (!seFilter.innerHTML) {
+        generateRandom(middager);
+        e.target.style.display="none";
+        console.log("første alternativ");
+    } else {
+        generateRandom(filteredArray);
+        console.log("andre alternativ");
+        e.target.style.display="none";
+    }
+}
+
+

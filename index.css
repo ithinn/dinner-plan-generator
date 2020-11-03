@@ -48,11 +48,12 @@ header {
 
 h1 {
     
-    font-size: 5rem;
+    font-size: 10vw;
+   
     text-align: center;   
     font-family: "Special Elite";
     letter-spacing: 2px;
-    line-height: 60px;
+    line-height: 10vh;
     margin: 1em;
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
     z-index: 3;
@@ -109,6 +110,13 @@ main, #valg, #filtWrapper {
     z-index: 1;
     background-color: white;
 
+}
+
+#filterlabler {
+    z-index: 10;
+    position: relative;
+    top: 50vh;
+    right: 30vw;
 }
 
 #cb:checked ~ #filter {
