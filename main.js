@@ -1,14 +1,17 @@
 
 const hverdager = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Lørdag'];
 const festdager = ['Fredag', 'Søndag']
-const resultArray = [];
-const tempArray = middager;
 
-const generateRandom = () => {
+let filteredArray = [];
+const ukesplan = document.getElementById("ukesplan");
 
+const generateRandom = (array) => {
+    const tempArray = array;
     let middag="";
     let html = "";
-    const ukesplan = document.getElementById("ukesplan");
+    const resultArray = [];
+    
+    console.log(tempArray);
 
     ukesplan.innerHTML = "";
 
@@ -18,30 +21,16 @@ const generateRandom = () => {
         index = Math.floor(Math.random()*tempArray.length);
         middag= tempArray[index];
 
+        resultArray.push(middag);
+        tempArray.splice(index, 1);
         
 
-        //if(middag.fredag === false && middag.søndag===false) {
-        resultArray.push(middag);
-        tempArray.splice(index, 1);  
-        //}
-
-        console.log(tempArray);
-        console.log(resultArray);
-
-        //if (resultArray.length < 5) {
-        //     resultArray.push(middag);
-        //     tempArray.splice(index, 1);  
-        // }
-
-        console.log(tempArray);
-        console.log(resultArray);
-    
+        //let id = tempArray[index].tid;
+        //console.log(id);
+        
     }
-
-
-    
-    //console.log(resultArray);
-
+    console.log(resultArray);
+    console.log(tempArray);
 
     html += `
     <article class="dagWrap">
@@ -119,10 +108,37 @@ const generateRandom = () => {
     genButton.style.display= "none";
 }
 
-
+//Lytter til generelt filter
 const genButton = document.getElementById("genererBtn");
-genButton.addEventListener("click", generateRandom);
+genButton.addEventListener("click", function() {
+    generateRandom(middager);
+});
 
+
+
+
+//Legg til lyttere på alle labels/input på filterseksjonen
+const filterLabels = document.getElementById("filter");
+filterLabels.addEventListener("click", (e) => {
+    if(e.target.nodeName === "INPUT") {
+        applyFilter(e);
+        }
+})
+
+
+//Lytter til generer filter
+const filtrertBtn = document.getElementById("genererFiltrertBtn");
+const filt = document.getElementById("filter");
+const overlay = document.getElementById("overlay");
+const filtLab = document.getElementById("filterLabel");
+const filtCB = document.getElementById("cb");
+
+filtrertBtn.addEventListener("click", (e) => {
+    applyFilter(e);
+    
+    console.log("Hei");
+    
+})
 
 //Generell filterfunksjon
 const filter = (condition, collection) => {
@@ -136,107 +152,91 @@ const filter = (condition, collection) => {
     return result;
 }
 
-const filterLabels = document.getElementById("filter");
 
-//Legg til lyttere på alle buttons på filterseksjonen
-filterLabels.addEventListener("click", (e) => {
-    if(e.target.nodeName === "INPUT") {
-        applyFilter(e);
-        }
-})
 
-let mainCatChoosen = false,underCatChoosen = false, sizeCatSelected = false;
-let mainHolderArray = [], subHolderArray = [], sizeHolderArray = [];
 
 const applyFilter = (evt) => {
+    ukesplan.innerHTML = "";
+    filteredArray = [];
     
-    console.log(evt.target.checked);
-    //Endrer value til en checkbox basert på om den er checked eller ikke, og endrer style hvis den er det. 
-    // if (!evt.target.checked){
-    //     evt.target.checked = true;
-    //     console.log(evt.target.checked);
-        
-        
-    // } else if (evt.target.checked) {
-    //     evt.target.checked = false;
-        
-    //     console.log(evt.target.checked);
-        
-    // }
-
     //Kaller selveste filterfunksjonen
-    mainFilter(evt);
+
+    mainFilter();
+    generateRandom(filteredArray);
+    
 }
 
 
-
-
 //SELVESTE FILTERFUNKSJONEN
-const mainFilter = (evt) => {
+const mainFilter = () => {
     let tempArray = [];
-    //Setter verdien til resultArray til products-arrayet, slik at det slår inn når ingen andre filtre er i kraft
-    let resultArray = middager;
+    //Setter verdien til resultArray til middags-arrayet, slik at det slår inn når ingen andre filtre er i kraft
+    filteredArray = middager;
+    let meatArray = [];
+    let fishArray = [];
+    let vegArray = [];
+    let cheapArray = [];
+    let cheaperArray = [];
+    let exArray = [];
+    let glutArr = [];
+    let lakArr = [];
     let tag = document.querySelectorAll(".inpFilter");
+    
 
     //Går gjennom alle tagene og sjekker om de er checked eller ikke. Hvis de er det pushes tagen inn i tempArray.
     for (let i = 0; i < tag.length; i++) {
         if (tag[i].checked) {
             tempArray.push(tag[i]);
         }
+       
     }
     
 
-    console.log(tempArray);
+
     // //Går gjennom tempArray, og avgjør hva produktene skal filtreres på ut fra klassenavnet på tagen (som er element i tempArray)
      for (let i = 0; i < tempArray.length; i++) {
         
+        console.log(tempArray[i]);
+
+        //Lagrer resultatet av filtreringen i egne arrayer
         if (tempArray[i].id === "kjott") {
             const meat = item => item.kjottRodt === true;
-            resultArray = filter(meat, middager);
-            
+            meatArray = filter(meat, middager);
+
         } else if (tempArray[i].id ==="fisk") {
             const fish = item => item.fisk === true;
-            resultArray = filter(fish, resultArray);
-            
-        }
+            fishArray = filter(fish, middager);
 
-        console.log(resultArray);
+        } else if (tempArray[i].id === "vegetar") {
+            const veg = item => item.vegetar === true;
+            vegArray = filter(veg, middager);
+        
+        } else if (tempArray[i].id === "gluten") {
+            const glu = item => item.glutenfri === true;
+            glutArr = filter(glu, middager);
+        
+        } else if (tempArray[i].id === "laktose") {
+            const lak = item => item.laktosefri === true;
+            lakArr = filter(lak, middager);
+        
+        } else if (tempArray[i].id === "billigst") {
+            const billigst = item => item.pris === 1;
+            cheapArray = filter(billigst, middager);
+        
+        } else if (tempArray[i].id === "billig") {
+            const billig = item => item.pris === 2 || item.pris === 1;
+            cheaperArray = filter(billig, middager);
+        
+        } else if (tempArray[i].id === "dyrt") {
+            const dyrt = item => item.pris === 3;
+            exArray = filter(dyrt, middager);
+        } 
+        
 
+//Legg til ny fishArray = filter(fish, meat, middager); - ikke fastsatt antall parametre - må kunne ta både ett og flere. 
 
-
+        //Slår sammen alle arrayene og lagrer dem i resultArray
+        filteredArray = [].concat(fishArray, meatArray, vegArray, cheapArray, cheaperArray, exArray, glutArr, lakArr);
+        console.log(filteredArray);   
     }
-    //     if (tempArray[i].className == "cbLabel type") {
-           
-    //        //Lager betingelsen som filterfunksjonen skal bruke, kaller filter() med den betingelsen, og lagrer resultatet i resultArray.  
-    //        const mainCat = item => item. == tempArray[i].id
-    //        resultArray = filter(mainCat, products); 
-           
-
-    //     } else if (tempArray[i].className == "tag cat_tag") {
-    //         const subCat = item => item.cathegory_under == tempArray[i].id;
-    //         resultArray = filter(subCat, resultArray);
-            
-
-    //     } else if (tempArray[i].className == "tag cat_size") {
-    //         //Lagrer elementets id som et nummmer, bruker det som et parameter i filterSizes() og kaller filterSizes(), og lagrer resultatet i resultArray
-    //         let val = Number(tempArray[i].id);
-    //         resultArray = filterSizes(val, resultArray);
-            
-
-    //     } else if(tempArray[i].className == "tag att_tag") {
-    //         resultArray = filterAtt(tempArray[i].id, resultArray);
-            
-
-    //     } else if (tempArray[i].className == "tag clr_large radio_clr") {
-    //         resultArray = filterClr(tempArray[i].id, resultArray);
-
-    //     }  
-
-    //     if (resultArray.length === 0) {
-    //         alert("Ingen produkter matcher søket ditt");   
-    //     }
-    // }
-
-    // addObjects(resultArray);
-    // addEventButton();
-    }
+}
