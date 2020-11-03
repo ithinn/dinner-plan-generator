@@ -6,31 +6,35 @@ let filteredArray = [];
 const ukesplan = document.getElementById("ukesplan");
 
 const generateRandom = (array) => {
-    const tempArray = array;
+    //let tempArray = array;
     let middag="";
     let html = "";
     const resultArray = [];
-    
-    console.log(tempArray);
-
+    let testArr = [];
     ukesplan.innerHTML = "";
+
+
+    //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
+    const t = item => item.tid === 1 || item.tid === 2;
+    testArr = filter(t, array);
+    console.log(testArr);
+   
+
+    
 
     //Pusher syv tilfeldige retter inn i tempArray
     for (let i=0; i < hverdager.length; i++) {
         
-        index = Math.floor(Math.random()*tempArray.length);
-        middag= tempArray[index];
+        index = Math.floor(Math.random()*testArr.length);
+        middag= testArr[index];
+        //console.log(middag.tid);
 
         resultArray.push(middag);
-        tempArray.splice(index, 1);
-        
-
-        //let id = tempArray[index].tid;
-        //console.log(id);
-        
+        console.log(resultArray[i].tid);
+        testArr.splice(index, 1);
     }
     console.log(resultArray);
-    console.log(tempArray);
+    
 
     html += `
     <article class="dagWrap">
