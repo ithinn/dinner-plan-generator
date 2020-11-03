@@ -1,50 +1,86 @@
 
-const hverdager = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Lørdag'];
+const dager = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Lørdag'];
+let fredagsmiddag = []
+let søndagsmiddag = []
 const festdager = ['Fredag', 'Søndag']
 
 let filteredArray = [];
 const ukesplan = document.getElementById("ukesplan");
 
+
+const fancyMat = (fredag, søndag) => {
+for (const key in middager) {
+    let f = middager[key].fredag;
+    let s = middager[key].søndag;
+    
+    
+    //console.log(m);
+    if (f === true) {
+        fredag.push(middager[key]);
+    } else if (s===true) {
+        søndag.push(middager[key]);
+    } 
+
+    
+}
+console.log(fredagsmiddag);
+console.log(søndagsmiddag);
+}
+
+fancyMat(fredagsmiddag, søndagsmiddag);
+
 const generateRandom = (array) => {
     //let tempArray = array;
-    let middag="";
+    let hverdagsmiddag="";
+    let fre = "";
     let html = "";
     const resultArray = [];
     let testArr = [];
     ukesplan.innerHTML = "";
+    
+
 
 
     //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
-    const t = item => item.tid === 1 || item.tid === 2;
+    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false; 
     testArr = filter(t, array);
     console.log(testArr);
    
-
-    
+    //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
+    // const ingenKoseMat = item => item.fredag === true || item.søndag === true;
+    // testArr = filter(ingenKoseMat, array);
 
     //Pusher syv tilfeldige retter inn i tempArray
-    for (let i=0; i < hverdager.length; i++) {
+    for (let i=0; i < dager.length; i++) {
         
-        index = Math.floor(Math.random()*testArr.length);
-        middag= testArr[index];
-        //console.log(middag.tid);
+        indexHverdag = Math.floor(Math.random()*testArr.length);
+        hverdagsmiddag= testArr[indexHverdag];
+        
+        
+        indexFredag = Math.floor(Math.random()*fredagsmiddag.length);
+        //console.log(indexFredag);
 
-        resultArray.push(middag);
-        console.log(resultArray[i].tid);
-        testArr.splice(index, 1);
+        fre = fredagsmiddag[indexFredag];
+        //console.log(middag.tid);
+        
+        resultArray.push(hverdagsmiddag);
+
+       // console.log(resultArray);
+        testArr.splice(indexHverdag, 1);
     }
     console.log(resultArray);
+    console.log(fre);
 
-    resultArray.forEach(el => {
-        if(el.kjottRodt === true) {
-            seFilter.innerHTML = `<input type="checkbox" checked id="kjott" class="showFilter" title="Velg kjøtt">
-        <label class="cbLabel type" for="kjott">Kjøtt</label>`
-        } else if (el.fisk === true) {
-            seFilter.innerHTML = `<input type="checkbox" checked id="fisk" class="showFilter" title="Velg kjøtt">
-            <label class="cbLabel type" for="fisk">Fisk</label>`
+    // resultArray.forEach(el => {
+    //     if(el.kjottRodt === true) {
+    //         seFilter.innerHTML = `<input type="checkbox" checked id="kjott" class="showFilter" title="Velg kjøtt">
+    //     <label class="cbLabel type" for="kjott">Kjøtt</label>`
+    //     } else if (el.fisk === true) {
+    //         seFilter.innerHTML = `<input type="checkbox" checked id="fisk" class="showFilter" title="Velg kjøtt">
+    //         <label class="cbLabel type" for="fisk">Fisk</label>`
 
-        }
-    })
+    //     }
+    // })
     
     html += `
     <article class="dagWrap">
@@ -89,7 +125,11 @@ const generateRandom = (array) => {
 
     <article class="dagWrap">
     <h3 class="dag">Fredag</h3>
-    <h2 class="rett">"Fredag"</h2>
+    <h2 class="rett">${fre.navn}</h2>
+    <div class="icon_wrap">
+        <div class="clock">${fre.tid}</div>
+        <div class="price">${fre.pris}</div>
+    </div>
     <button class="bytt">Bytt rett</button>
     </article>
 
@@ -218,11 +258,9 @@ const mainFilter = () => {
             const meat = item => item.kjottRodt === true;
             meatArray = filter(meat, middager);
             
-
         } else if (tempArray[i].id ==="fisk") {
             const fish = item => item.fisk === true;
             fishArray = filter(fish, middager);
-            
 
         } else if (tempArray[i].id === "vegetar") {
             const veg = item => item.vegetar === true;
@@ -249,7 +287,11 @@ const mainFilter = () => {
             exArray = filter(dyrt, middager);
         } 
         
-        
+        //Øverst OG, ikke eller
+
+        //Neste //Fjern ting fra første bolken
+
+        //Ny prosess: Fjern alle som har to og tre i tid
 
 //Legg til ny fishArray = filter(fish, meat, middager); - ikke fastsatt antall parametre - må kunne ta både ett og flere. 
 
