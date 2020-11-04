@@ -14,7 +14,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Sashimisalat med mango, vårløk og koriander",
@@ -29,7 +30,8 @@ let middager = [
         fredag: true,
         søndag: true,
         glutenfri: true,
-        laktosefri: true
+        laktosefri: true,
+        type: "fisk"
     },
     {
         navn: "Fiskepinner og potetterninger med råkostsalat",
@@ -44,7 +46,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "fisk"
     },
     {
         navn: "Pokebowl",
@@ -59,7 +62,8 @@ let middager = [
         fredag: true,
         søndag: true,
         glutenfri: true,
-        laktosefri: true
+        laktosefri: true,
+        type: "fisk"
     },
     {
         navn: "Fiskegrateng med potet og grønnsaksblanding",
@@ -74,7 +78,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Panert torsk med potetmos og råkostsalat",
@@ -89,7 +94,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Tandoorilaks med ris, yoghurt og mango",
@@ -104,7 +110,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Laks med pesto, grønnsaker og pasta",
@@ -119,7 +126,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "fisk"
     },
     {
         navn: "Laks med pasta og aspargesbønner",
@@ -134,7 +142,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Fiskekaker, potet og gulrot",
@@ -149,7 +158,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Fiskeburger med salat",
@@ -164,7 +174,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Laks med crème fraiche og soyasaus med potet og gulrot",
@@ -179,7 +190,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Rød karri thai fiskesuppe",
@@ -194,7 +206,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "fisk"
     },
     {
         navn: "Bulgursalat med mango, avokado og røkelaks",
@@ -209,7 +222,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "fisk"
     },
   
 

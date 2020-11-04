@@ -122,8 +122,8 @@ const generateRandom = (array) => {
         
     }
     console.log(resultArray);
-    console.log(fre);
-    console.log(son);
+    //console.log(fre);
+    //console.log(son);
 
     
     
@@ -189,13 +189,13 @@ const applyFilter = (evt) => {
     mainFilter();
     generateRandom(filteredArray);
     //addTag();
-    
+    checkIfChecked();
 }
 
 const seFilter = document.getElementById("filterlabler");
 
 const kjottduplikat = document.getElementById("k");
-console.log(kjottduplikat);
+//console.log(kjottduplikat);
 
 //SELVESTE FILTERFUNKSJONEN
 const mainFilter = () => {
@@ -234,7 +234,6 @@ const mainFilter = () => {
             meatArray = filter(meat, middager);
             
             
-            kjottduplikat.style.display = "block";
 
             //tagSek.innerHTML += `<label class="cbLabel type" for="kjott">Kjøtt</label>`
             
@@ -294,7 +293,7 @@ const mainFilter = () => {
         //     tagSek.innerHTML = `<label class="cbLabel type" for="fisk">Kjøtt</label>`;
         // }
         console.log(filteredArray);
-        console.log(filteredArray.includes("Blomkålsuppe"))
+        //console.log(filteredArray.includes("Blomkålsuppe"))
        
     }
 }
@@ -315,12 +314,7 @@ const tagSek = document.getElementById("filterlabler");
 
 // }
 
-const labelSection = document.getElementById("filterlabler")
-labelSection.addEventListener("click", (e) => {
-if (e.target.nodeName === "INPUT") {
-    removeFilters();
-}
-})
+
 
 //Fjern filtre / nullstill søk
 const removeFilters = (e) => {

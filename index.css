@@ -147,7 +147,7 @@ main, #valg, #filtWrapper {
     background-color:peru;
 }
 
-.cbLabel {
+.cbLabel, .filt-tag {
     font-size: 2rem;
     border: 1px solid black;
     width: fit-content;
@@ -308,3 +308,4 @@ button:hover {
     display: flex;
     justify-content: center;
 }
+

@@ -4,11 +4,11 @@ ukesplan.addEventListener("click", (e) => {
             endreRett(e, filteredArray);
         } else {
             endreRett(e, middager);
-        }   
+        }
     }
 })
 
-document.getElementById
+
 
 const endreRett = (e, arr) => {
     let html = "";
@@ -23,7 +23,7 @@ const endreRett = (e, arr) => {
     const fre = fredagsmiddag[ifre];
     const isun = Math.floor(Math.random()* sondagsmiddag.length);
     const sun = sondagsmiddag[isun];
-    
+
        if (i === btnId) {
 
         if (dager[i].type === "hverdag") {
@@ -55,16 +55,82 @@ const endreRett = (e, arr) => {
                 <div class="clock">${sun.tid}</div>
                 <div class="price">${sun.pris}</div>`;
         }
-        
        }
-
    }
+}
+
+
+
+
+tagSek.addEventListener("click", (e) => {
+    if(e.target.nodeName === "LABEL") {
+        removeFilter(e);
+        }
+})
+
+
+
+const inpFilList = document.querySelectorAll(".inpFilter")
+
+const checkIfChecked = () => {
+    for (let i = 0; i<inpFilList.length; i++) {
+
+        if (inpFilList[i].checked) {
+            tagSek.innerHTML += `<label id="filt-tab${i}" for="fisk" class="filt-tag">${inpFilList[i].id}</label>`
+        }
+    }
+}
+
+
+
+const removeFilter = (e) => {
+    //console.log(filteredArray);
+
+
+    let text = e.target.innerText;
+
+    const d = document.getElementById(text);
+    console.log(d);
+
+
+if (d.checked) {
+    console.log(d.checked);
+    d.checked = false;
+} else if ( !d.checked) {
+    console.log("hå");
+
+}
+console.log(d.checked);
+
+
+    applyFilter();
+//    for (i = 0; i < filteredArray.length; i++) {
+
+
+//        if(filteredArray[i].type === text) {
+
+
+//             //filteredArray.pop();
+//             filteredArray.splice(filteredArray[i], 1);
+
+//            //console.log(filteredArray);
+
+//        }
+
+//    }
 
 }
 
 
 
 
+// const labelSection = document.getElementById("filterlabler")
+// labelSection.addEventListener("click", (e) => {
+
+// if (e.target.nodeName === "LABEL") {
+//     removeFilter();
+// }
+// })
 // const generateOne = arr => {
 
 //     console.log(index);
