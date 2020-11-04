@@ -160,7 +160,9 @@ main, #valg, #filtWrapper {
 }
 
 
-
+.duplikat {
+    display: none;
+}
 
 .labelWrap {
     width: 90%;

@@ -839,4 +839,4 @@ let middager = [
     
 ]
 
-//IDEER: Søndagsmiddagfunksjon - marker søndagsmiddag på søndager
+//IDEER: sondagsmiddagfunksjon - marker sondagsmiddag på søndager

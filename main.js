@@ -1,166 +1,137 @@
 
-const dager = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Lørdag'];
+const dager = [
+    {dag: 'Mandag', type: "hverdag"}, 
+    {dag: 'Tirsdag', type: "hverdag"}, 
+    {dag: 'Onsdag', type: "hverdag"}, 
+    {dag: 'Torsdag', type: "hverdag"}, 
+    {dag: 'Fredag', type: "fredag"},
+    {dag: 'Lørdag', type: "hverdag"},
+    {dag: 'Søndag', type: "søndag"},
+    ];
 let fredagsmiddag = []
-let søndagsmiddag = []
-const festdager = ['Fredag', 'Søndag']
+let sondagsmiddag = []
 
 let filteredArray = [];
 const ukesplan = document.getElementById("ukesplan");
 
-
-const fancyMat = (fredag, søndag) => {
-for (const key in middager) {
-    let f = middager[key].fredag;
-    let s = middager[key].søndag;
+const fancyMat = (fArray, sArray, array) => {
+    for (const key in middager) {
+        let f = array[key].fredag;
+        let x = array[key].fisk;
+        let s = array[key].søndag;
+        
+        if (f === true) {
+            fArray.push(array[key]);
+        } else if (s===true) {
+            sArray.push(array[key]);
+        } 
+    }
+  
+    }
     
-    
-    //console.log(m);
-    if (f === true) {
-        fredag.push(middager[key]);
-    } else if (s===true) {
-        søndag.push(middager[key]);
-    } 
 
+const unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+    }
     
-}
-console.log(fredagsmiddag);
-console.log(søndagsmiddag);
-}
-
-fancyMat(fredagsmiddag, søndagsmiddag);
 
 const generateRandom = (array) => {
     //let tempArray = array;
     let hverdagsmiddag="";
     let fre = "";
+    let son = "";
     let html = "";
     const resultArray = [];
     let testArr = [];
+    let festArr = [];
     ukesplan.innerHTML = "";
     
-
-
+    fancyMat(fredagsmiddag, sondagsmiddag, middager);
+    //fancyMat(fredagsmiddag, sondagsmiddag, filteredArray);
 
     //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
     const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false; 
     testArr = filter(t, array);
     console.log(testArr);
-   
-    //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
-    // const ingenKoseMat = item => item.fredag === true || item.søndag === true;
-    // testArr = filter(ingenKoseMat, array);
 
-    //Pusher syv tilfeldige retter inn i tempArray
+    //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
+    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+    testArr = filter(ingenKoseMat, testArr);
+    console.log(testArr);
+
+    
+   
+    //Går gjennom dagene i uka, henter random rett fra hhv testArray, fredagsmiddag og sondagsmiddag, og pusher test-array inn på hverdagene.
     for (let i=0; i < dager.length; i++) {
         
+        //Hverdagsmiddager
         indexHverdag = Math.floor(Math.random()*testArr.length);
         hverdagsmiddag= testArr[indexHverdag];
         
-        
+        //Fredagsmiddag
         indexFredag = Math.floor(Math.random()*fredagsmiddag.length);
-        //console.log(indexFredag);
-
         fre = fredagsmiddag[indexFredag];
-        //console.log(middag.tid);
         
+        //sondagsmiddag
+        indexSon = Math.floor(Math.random()*sondagsmiddag.length);
+        son = sondagsmiddag[indexSon];
+
         resultArray.push(hverdagsmiddag);
 
        // console.log(resultArray);
         testArr.splice(indexHverdag, 1);
+
+        if (dager[i].type === "hverdag") {
+            html += `
+        <article id=${i} class="dagWrap">
+        <h3 class="dag">${dager[i].dag}</h3>
+        <h2 id="rett${i}" class="rett">${resultArray[i].navn}</h2>
+        <div id="i_wrap${i}" class="icon_wrap">
+            <div class="clock">${resultArray[i].tid}</div>
+            <div class="price">${resultArray[i].pris}</div>
+        </div>
+        <button id="btn${i}" class="bytt">Bytt rett</button>
+        </article>
+        `
+
+        } else if (dager[i].type === "fredag") {
+            html += `
+            <article id=${i} class="dagWrap">
+            <h3 class="dag">${dager[i].dag}</h3>
+            <h2  id="rett${i}" class="rett">${fre.navn}</h2>
+            <div id="i_wrap${i}" class="icon_wrap">
+                <div class="clock">${fre.tid}</div>
+                <div class="price">${fre.pris}</div>
+            </div>
+            <button id="btn${i}" class="bytt">Bytt rett</button>
+            </article>
+            ` 
+        } else {
+            html += `
+            <article id=${i} class="dagWrap">
+            <h3 class="dag">${dager[i].dag}</h3>
+            <h2 id="rett${i}" class="rett">${son.navn}</h2>
+            <div id="i_wrap${i}" class="icon_wrap">
+                <div class="clock">${son.tid}</div>
+                <div class="price">${son.pris}</div>
+            </div>
+            <button id="btn${i}" class="bytt">Bytt rett</button>
+            </article>
+            ` 
+        }
+        
     }
     console.log(resultArray);
     console.log(fre);
+    console.log(son);
 
-    // resultArray.forEach(el => {
-    //     if(el.kjottRodt === true) {
-    //         seFilter.innerHTML = `<input type="checkbox" checked id="kjott" class="showFilter" title="Velg kjøtt">
-    //     <label class="cbLabel type" for="kjott">Kjøtt</label>`
-    //     } else if (el.fisk === true) {
-    //         seFilter.innerHTML = `<input type="checkbox" checked id="fisk" class="showFilter" title="Velg kjøtt">
-    //         <label class="cbLabel type" for="fisk">Fisk</label>`
-
-    //     }
-    // })
     
-    html += `
-    <article class="dagWrap">
-    <h3 class="dag">Mandag</h3>
-    <h2 class="rett">${resultArray[0].navn}</h2>
-    <div class="icon_wrap">
-        <div class="clock">${resultArray[0].tid}</div>
-        <div class="price">${resultArray[0].pris}</div>
-    </div>
-    <button class="bytt">Bytt rett</button>
-    </article>
     
-    <article class="dagWrap">
-    <h3 class="dag">Tirsdag</h3>
-    <h2 class="rett">${resultArray[1].navn}</h2>
-    <div class="icon_wrap">
-        <div class="clock">${resultArray[1].tid}</div>
-        <div class="price">${resultArray[1].pris}</div>
-    </div>
-    <button class="bytt">Bytt rett</button>
-    </article>
-
-    <article class="dagWrap">
-    <h3 class="dag">Onsdag</h3>
-    <h2 class="rett">${resultArray[2].navn}</h2>
-    <div class="icon_wrap">
-        <div class="clock">${resultArray[2].tid}</div>
-        <div class="price">${resultArray[2].pris}</div>
-    </div>
-    <button class="bytt">Bytt rett</button>
-    </article>
-
-    <article class="dagWrap">
-    <h3 class="dag">Torsdag</h3>
-    <h2 class="rett">${resultArray[3].navn}</h2>
-    <div class="icon_wrap">
-        <div class="clock">${resultArray[3].tid}</div>
-        <div class="price">${resultArray[3].pris}</div>
-    </div>
-    <button class="bytt">Bytt rett</button>
-    </article>
-
-    <article class="dagWrap">
-    <h3 class="dag">Fredag</h3>
-    <h2 class="rett">${fre.navn}</h2>
-    <div class="icon_wrap">
-        <div class="clock">${fre.tid}</div>
-        <div class="price">${fre.pris}</div>
-    </div>
-    <button class="bytt">Bytt rett</button>
-    </article>
-
-    <article class="dagWrap">
-    <h3 class="dag">Lørdag</h3>
-    <h2 class="rett">${resultArray[4].navn}</h2>
-    <div class="icon_wrap">
-        <div class="clock">${resultArray[4].tid}</div>
-        <div class="price">${resultArray[4].pris}</div>
-    </div>
-    <button class="bytt">Bytt rett</button>
-    </article>
-
-    <article class="dagWrap">
-    <h3 class="dag">Søndag</h3>
-    <h2 class="rett">"søndag"</h2>
-    <button class="bytt">Bytt rett</button>
-    </article>
-    
-    <section id="handling">
-            <button id="print">Skriv ut ukeplan</button>
-            <div id="mail_wrap">
-                <button type="submit" id="btnMail">Send til:</button>
-                <input type="email" title="Skriv inn epostadresse" id="inpMail">
-            </div>
-    </section>
-    
-    `
     ukesplan.innerHTML = html;
     genButton.style.display= "none";
 }
+
+
 
 //Lytter til generelt filter
 const genButton = document.getElementById("genererBtn");
@@ -217,10 +188,14 @@ const applyFilter = (evt) => {
 
     mainFilter();
     generateRandom(filteredArray);
+    //addTag();
     
 }
 
 const seFilter = document.getElementById("filterlabler");
+
+const kjottduplikat = document.getElementById("k");
+console.log(kjottduplikat);
 
 //SELVESTE FILTERFUNKSJONEN
 const mainFilter = () => {
@@ -250,7 +225,7 @@ const mainFilter = () => {
 
     // //Går gjennom tempArray, og avgjør hva produktene skal filtreres på ut fra klassenavnet på tagen (som er element i tempArray)
      for (let i = 0; i < tempArray.length; i++) {
-        
+        tagSek.innerHTML = "";
         console.log(tempArray[i]);
 
         //Lagrer resultatet av filtreringen i egne arrayer
@@ -258,9 +233,17 @@ const mainFilter = () => {
             const meat = item => item.kjottRodt === true;
             meatArray = filter(meat, middager);
             
+            
+            kjottduplikat.style.display = "block";
+
+            //tagSek.innerHTML += `<label class="cbLabel type" for="kjott">Kjøtt</label>`
+            
         } else if (tempArray[i].id ==="fisk") {
             const fish = item => item.fisk === true;
             fishArray = filter(fish, middager);
+
+            //tagSek.innerHTML += `<label class="cbLabel type" for="kjott">Fisk</label>`
+            
 
         } else if (tempArray[i].id === "vegetar") {
             const veg = item => item.vegetar === true;
@@ -287,6 +270,8 @@ const mainFilter = () => {
             exArray = filter(dyrt, middager);
         } 
         
+        
+      
         //Øverst OG, ikke eller
 
         //Neste //Fjern ting fra første bolken
@@ -298,10 +283,37 @@ const mainFilter = () => {
         //Slår sammen alle arrayene og lagrer dem i resultArray
         filteredArray = [].concat(fishArray, meatArray, vegArray, cheapArray, cheaperArray, exArray, glutArr, lakArr);
         
+
+
+
+
+        //BAARGH, prøver å opprette tags
+        // if (fishArray) {
+        //     tagSek.innerHTML += `<label class="cbLabel type" for="fisk">Fisk</label>`;
+        // } else if (meatArray) {
+        //     tagSek.innerHTML = `<label class="cbLabel type" for="fisk">Kjøtt</label>`;
+        // }
         console.log(filteredArray);
-        
+        console.log(filteredArray.includes("Blomkålsuppe"))
+       
     }
 }
+
+
+
+const tagSek = document.getElementById("filterlabler");
+
+// const addTag = (va) => {
+    
+//     //tagSek.innerHTML = "<h1>Hei</h1>"
+    
+//     // filteredArray.forEach(el => {
+//     //     if (el.vegetar) {
+//     //         tagSek.innerHTML = "vegetar"
+//     //     }
+//     // })
+
+// }
 
 const labelSection = document.getElementById("filterlabler")
 labelSection.addEventListener("click", (e) => {
