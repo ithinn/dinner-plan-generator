@@ -69,7 +69,7 @@ header {
 
 #ukesplan {
     position: relative;
-    top: -10vh;
+    top: -8vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -149,8 +149,12 @@ main, #valg, #filtWrapper {
 #filterlabler {
     z-index: 10;
     position: relative;
-    top: 50vh;
-    right: 30vw;
+    top: 2vh;
+    height: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 #cb:checked ~ #filter {
