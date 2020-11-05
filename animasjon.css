@@ -3,6 +3,7 @@
     animation-name: tekst-inn;
     animation-duration: 3s;
     animation-delay: .2s;
+    color: #333333;
 
 }
 #h1_2 {
@@ -10,7 +11,7 @@
     animation-name: tekst-inn;
     animation-duration: 3s;
     animation-delay: 3.2s;
-
+    color: #333333;
 }
 #h1_3 {
     opacity: 0;
@@ -31,10 +32,10 @@
 
 
 .mainBtn {
-    animation: shake, raise;
-    animation-duration:  0.52s, 1s;
-    animation-delay: 3.6s, 5.2s;
-    animation-iteration-count: 3, 1;
+    animation: shake, rainbow;
+    animation-duration:  0.52s, 2s;
+    animation-delay: 3.6s, 0s;
+    animation-iteration-count: 3, infinite;
     animation-fill-mode: forwards;
     animation-timing-function: linear, ease-in;
     /*transform: translate3d(0, 0, 0);
@@ -45,13 +46,13 @@
 .mainBtn:focus {
     animation-play-state: paused;
 }
-
+/*
 header {
     animation: appear;
     animation-delay: 5.2s;
     animation-duration: 3s;
     animation-fill-mode: forwards; 
-}
+}*/
 
 #filterLabel {
     animation-name: raise;
@@ -60,12 +61,12 @@ header {
     animation-fill-mode: forwards;
     animation-delay: 5.2s;
 }
-
+/*
 @keyframes raise {
     to {
         transform: translateY(-9em);
     }
-}
+}*/
 
 @keyframes appear{
     to {

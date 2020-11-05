@@ -8,14 +8,20 @@ ukesplan.addEventListener("click", (e) => {
     }
 })
 
-
-
 const endreRett = (e, arr) => {
-    let html = "";
+    
     let tempArr = arr;
     btnId = Number(e.target.id.slice(-1));
-    console.log(btnId);
-    console.log(tempArr);
+    
+    //Velg mat som tar under 30 minutter å lage på hverdager
+    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
+    tempArr = filter(t, arr);
+    
+
+    // //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat på hverdager
+    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+    tempArr = filter(ingenKoseMat, tempArr);
+    
 
    for (let i=0; i<dager.length; i++) {
     const index = Math.floor(Math.random()* tempArr.length);

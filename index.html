@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Middagsukeplangenerator</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="animasjon.css">
+    <!--<link rel="stylesheet" href="index.css">
+    <<link rel="stylesheet" href="animasjon.css">-->
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
   
     <script src="middager.js" defer></script>
@@ -22,14 +23,14 @@
 
     <main>
 
-        <section id="headings">
-            <h1 id="h1_1">Er du lei av å komme på middagsideer?</h1>
-        <h1 id="h1_2">Trykk på knappen, så ordner vi det</h1>
-        </section>
-        
         <section id="filterlabler" title="Her dukker filtrerte ">
             <label id="k" class="cbLabel type duplikat">Kjøtt</label>
         </section>
+
+        
+        <button id="genererBtn" class="mainBtn">Generer ukesplan</button>
+            
+
         <!--Knapper - call to action-->
         <section id="valg">
             
@@ -122,8 +123,6 @@
                 </article>-->
             </article>
 
-            <button id="genererBtn" class="mainBtn">Generer ukesplan</button>
-            
             </div>
         </section>
 
@@ -131,6 +130,10 @@
 
         </section>
 
+        <section id="headings">
+            <h2 id="h1_1">Er du lei av å komme på middagsideer?</h2>
+            <h2 id="h1_2">Trykk på knappen, så ordner vi det</h2>
+        </section>
         <!--Selve ukesplanen, legges inn med Javascript-->
         <section id="ukesplan">
         </section>

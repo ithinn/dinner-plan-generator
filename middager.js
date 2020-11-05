@@ -853,4 +853,14 @@ let middager = [
     
 ]
 
+const dager = [
+    {dag: 'Mandag', type: "hverdag"}, 
+    {dag: 'Tirsdag', type: "hverdag"}, 
+    {dag: 'Onsdag', type: "hverdag"}, 
+    {dag: 'Torsdag', type: "hverdag"}, 
+    {dag: 'Fredag', type: "fredag"},
+    {dag: 'Lørdag', type: "hverdag"},
+    {dag: 'Søndag', type: "søndag"},
+    ];
+
 //IDEER: sondagsmiddagfunksjon - marker sondagsmiddag på søndager

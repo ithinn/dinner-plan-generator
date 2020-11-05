@@ -1,23 +1,13 @@
 
-const dager = [
-    {dag: 'Mandag', type: "hverdag"}, 
-    {dag: 'Tirsdag', type: "hverdag"}, 
-    {dag: 'Onsdag', type: "hverdag"}, 
-    {dag: 'Torsdag', type: "hverdag"}, 
-    {dag: 'Fredag', type: "fredag"},
-    {dag: 'Lørdag', type: "hverdag"},
-    {dag: 'Søndag', type: "søndag"},
-    ];
+
 let fredagsmiddag = []
 let sondagsmiddag = []
-
 let filteredArray = [];
 const ukesplan = document.getElementById("ukesplan");
 
 const fancyMat = (fArray, sArray, array) => {
     for (const key in middager) {
         let f = array[key].fredag;
-        let x = array[key].fisk;
         let s = array[key].søndag;
         
         if (f === true) {
@@ -26,13 +16,18 @@ const fancyMat = (fArray, sArray, array) => {
             sArray.push(array[key]);
         } 
     }
-  
-    }
-    
+}
 
-const unique = (value, index, self) => {
-    return self.indexOf(value) === index;
-    }
+const algoritme = (arr) => {
+    //Velg mat som tar under 30 minutter å lage på hverdager
+    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
+    tempArr = filter(t, arr);
+
+
+// //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat på hverdager
+    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+    tempArr = filter(ingenKoseMat, tempArr);
+}
     
 
 const generateRandom = (array) => {
@@ -42,35 +37,40 @@ const generateRandom = (array) => {
     let son = "";
     let html = "";
     const resultArray = [];
-    let testArr = [];
-    let festArr = [];
+    let tempArr = [];
+
+    //Tømmer ukesplanen 
     ukesplan.innerHTML = "";
+
+    //Stanser animasjonen hvis en trykker på knappen
     let label = document.getElementById("filterLabel");
     let header = document.getElementById("header");
     
     label.style.animationDelay = "0s";
     header.style.animationDelay = "0s";
+
+
     fancyMat(fredagsmiddag, sondagsmiddag, middager);
-    //fancyMat(fredagsmiddag, sondagsmiddag, filteredArray);
 
     //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
     const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false; 
-    testArr = filter(t, array);
+    tempArr = filter(t, array);
     //console.log(testArr);
 
     //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
     const ingenKoseMat = item => item.fredag === false || item.søndag === false;
-    testArr = filter(ingenKoseMat, testArr);
+    tempArr = filter(ingenKoseMat, tempArr);
     //console.log(testArr);
 
     
-   
+
+
     //Går gjennom dagene i uka, henter random rett fra hhv testArray, fredagsmiddag og sondagsmiddag, og pusher test-array inn på hverdagene.
     for (let i=0; i < dager.length; i++) {
         
         //Hverdagsmiddager
-        indexHverdag = Math.floor(Math.random()*testArr.length);
-        hverdagsmiddag= testArr[indexHverdag];
+        indexHverdag = Math.floor(Math.random()*tempArr.length);
+        hverdagsmiddag= tempArr[indexHverdag];
         
         //Fredagsmiddag
         indexFredag = Math.floor(Math.random()*fredagsmiddag.length);
@@ -83,7 +83,7 @@ const generateRandom = (array) => {
         resultArray.push(hverdagsmiddag);
 
        // console.log(resultArray);
-        testArr.splice(indexHverdag, 1);
+        tempArr.splice(indexHverdag, 1);
 
         if (dager[i].type === "hverdag") {
             html += `
@@ -125,26 +125,17 @@ const generateRandom = (array) => {
         }
         
     }
-    //console.log(resultArray);
-    //console.log(fre);
-    //console.log(son);
-
-    
-    
     ukesplan.innerHTML = html;
     genButton.style.display= "none";
 }
 
-
+//------------------------------------------------------------------------
 
 //Lytter til generelt filter
 const genButton = document.getElementById("genererBtn");
 genButton.addEventListener("click", function() {
     generateRandom(middager);
 });
-
-
-
 
 //Legg til lyttere på alle labels/input på filterseksjonen
 const filterLabels = document.getElementById("filter");
@@ -154,7 +145,6 @@ filterLabels.addEventListener("click", (e) => {
         }
 })
 
-
 //Lytter til generer filter
 const filtrertBtn = document.getElementById("genererFiltrertBtn");
 const filt = document.getElementById("filter");
@@ -162,9 +152,9 @@ const overlay = document.getElementById("overlay");
 const filtLab = document.getElementById("filterLabel");
 const filtCB = document.getElementById("cb");
 
-// filtrertBtn.addEventListener("click", (e) => {
-//     applyFilter(e);  
-// })
+
+//----------------------------------------------------------------------
+
 
 //Generell filterfunksjon
 const filter = (condition, collection) => {
@@ -184,17 +174,12 @@ const filter = (condition, collection) => {
 const applyFilter = (evt) => {
     ukesplan.innerHTML = "";
     filteredArray = [];
-    
-    //Kaller selveste filterfunksjonen
-
     mainFilter();
     generateRandom(filteredArray);
     checkIfChecked();
 }
 
-const seFilter = document.getElementById("filterlabler");
-
-
+//---------------------------------------------------------------------------
 
 //SELVESTE FILTERFUNKSJONEN
 const mainFilter = () => {
@@ -218,11 +203,8 @@ const mainFilter = () => {
         if (tag[i].checked) {
             tempArray.push(tag[i]);
         }
-       
     }
     
-
-
     // //Går gjennom tempArray, og avgjør hva produktene skal filtreres på ut fra klassenavnet på tagen (som er element i tempArray)
      for (let i = 0; i < tempArray.length; i++) {
         tagSek.innerHTML = "";
@@ -233,15 +215,9 @@ const mainFilter = () => {
             const meat = item => item.kjottRodt === true;
             meatArray = filter(meat, middager);
             
-            
-
-            //tagSek.innerHTML += `<label class="cbLabel type" for="kjott">Kjøtt</label>`
-            
         } else if (tempArray[i].id ==="fisk") {
             const fish = item => item.fisk === true;
             fishArray = filter(fish, middager);
-
-            //tagSek.innerHTML += `<label class="cbLabel type" for="kjott">Fisk</label>`
 
         } else if (tempArray[i].id === "vegetar") {
             const veg = item => item.vegetar === true;
@@ -268,64 +244,20 @@ const mainFilter = () => {
             exArray = filter(dyrt, middager);
         } 
         
-        
-      
+
+        //Slår sammen alle arrayene og lagrer dem i resultArray
+        filteredArray = [].concat(fishArray, meatArray, vegArray, cheapArray, cheaperArray, exArray, glutArr, lakArr);
+    }
+}
+
+
         //Øverst OG, ikke eller
 
         //Neste //Fjern ting fra første bolken
 
         //Ny prosess: Fjern alle som har to og tre i tid
 
-//Legg til ny fishArray = filter(fish, meat, middager); - ikke fastsatt antall parametre - må kunne ta både ett og flere. 
-
-        //Slår sammen alle arrayene og lagrer dem i resultArray
-        filteredArray = [].concat(fishArray, meatArray, vegArray, cheapArray, cheaperArray, exArray, glutArr, lakArr);
-        
-
-
-
-
-        //BAARGH, prøver å opprette tags
-        // if (fishArray) {
-        //     tagSek.innerHTML += `<label class="cbLabel type" for="fisk">Fisk</label>`;
-        // } else if (meatArray) {
-        //     tagSek.innerHTML = `<label class="cbLabel type" for="fisk">Kjøtt</label>`;
-        // }
-        console.log(filteredArray);
-        //console.log(filteredArray.includes("Blomkålsuppe"))
-       
-    }
-}
-
-
-
 const tagSek = document.getElementById("filterlabler");
 
-// const addTag = (va) => {
-    
-//     //tagSek.innerHTML = "<h1>Hei</h1>"
-    
-//     // filteredArray.forEach(el => {
-//     //     if (el.vegetar) {
-//     //         tagSek.innerHTML = "vegetar"
-//     //     }
-//     // })
-
-// }
-
-
-
-//Fjern filtre / nullstill søk
-const removeFilters = (e) => {
-    if (!seFilter.innerHTML) {
-        generateRandom(middager);
-        e.target.style.display="none";
-        console.log("første alternativ");
-    } else {
-        generateRandom(filteredArray);
-        console.log("andre alternativ");
-        e.target.style.display="none";
-    }
-}
 
 
