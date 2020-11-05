@@ -45,7 +45,11 @@ const generateRandom = (array) => {
     let testArr = [];
     let festArr = [];
     ukesplan.innerHTML = "";
+    let label = document.getElementById("filterLabel");
+    let header = document.getElementById("header");
     
+    label.style.animationDelay = "0s";
+    header.style.animationDelay = "0s";
     fancyMat(fredagsmiddag, sondagsmiddag, middager);
     //fancyMat(fredagsmiddag, sondagsmiddag, filteredArray);
 
@@ -158,9 +162,9 @@ const overlay = document.getElementById("overlay");
 const filtLab = document.getElementById("filterLabel");
 const filtCB = document.getElementById("cb");
 
-filtrertBtn.addEventListener("click", (e) => {
-    applyFilter(e);  
-})
+// filtrertBtn.addEventListener("click", (e) => {
+//     applyFilter(e);  
+// })
 
 //Generell filterfunksjon
 const filter = (condition, collection) => {
@@ -195,7 +199,7 @@ const seFilter = document.getElementById("filterlabler");
 //SELVESTE FILTERFUNKSJONEN
 const mainFilter = () => {
     let tempArray = [];
-    
+
     //Setter verdien til resultArray til middags-arrayet, slik at det slår inn når ingen andre filtre er i kraft
     filteredArray = middager;
     let meatArray = [];

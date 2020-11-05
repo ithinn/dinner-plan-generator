@@ -1,0 +1,127 @@
+#h1_1 {
+    opacity: 0;
+    animation-name: tekst-inn;
+    animation-duration: 3s;
+    animation-delay: .2s;
+
+}
+#h1_2 {
+    opacity: 0;
+    animation-name: tekst-inn;
+    animation-duration: 3s;
+    animation-delay: 3.2s;
+
+}
+#h1_3 {
+    opacity: 0;
+    animation-name: tekst-inn;
+    animation-duration: 3s;
+    animation-delay: 6.2s;
+    animation-fill-mode: forwards;
+    top: 80vh;
+    color: #333333;
+}
+/*#h1_4 {
+    opacity: 0;
+    animation-name: tekst-inn;
+    animation-duration: 3s;
+    animation-delay: 9.2s;
+    
+}*/
+
+
+.mainBtn {
+    animation: shake, raise;
+    animation-duration:  0.52s, 1s;
+    animation-delay: 3.6s, 5.2s;
+    animation-iteration-count: 3, 1;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear, ease-in;
+    /*transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;*/
+}
+
+.mainBtn:focus {
+    animation-play-state: paused;
+}
+
+header {
+    animation: appear;
+    animation-delay: 5.2s;
+    animation-duration: 3s;
+    animation-fill-mode: forwards; 
+}
+
+#filterLabel {
+    animation-name: raise;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+    animation-delay: 5.2s;
+}
+
+@keyframes raise {
+    to {
+        transform: translateY(-9em);
+    }
+}
+
+@keyframes appear{
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes tekst-inn {
+    0% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform:  translate(0px, 0px);
+    }
+    30% {
+        transform:  translate(0px, 10px);
+    }
+    75% {
+        transform:  translate(0px, -25px);
+    }
+    100% {
+        transform: scale(1.1) translate(0px, 0px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(.5);
+    }
+    100% {
+        transform: scale(0.6);
+    }
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+      
+      20%, 80% {
+        transform: translate3d(2px, 0, 0);
+      }
+    
+      30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+      }
+    
+      40%, 60% {
+        transform: translate3d(4px, 0, 0);
+      }
+
+}

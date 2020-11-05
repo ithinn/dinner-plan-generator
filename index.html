@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Middagsukeplangenerator</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="animasjon.css">
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
   
     <script src="middager.js" defer></script>
@@ -12,21 +13,28 @@
     <script src="endre-rett.js" defer></script>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div id="overlay-header"></div>
-        <h1>Hva skal vi ha til middag?</h1>
+        <h1 id="head">Hva skal vi ha til middag?</h1>
+        <a>About</a>
+        
     </header>
 
     <main>
+
+        <section id="headings">
+            <h1 id="h1_1">Er du lei av å komme på middagsideer?</h1>
+        <h1 id="h1_2">Trykk på knappen, så ordner vi det</h1>
+        </section>
         
-        <section id="filterlabler">
+        <section id="filterlabler" title="Her dukker filtrerte ">
             <label id="k" class="cbLabel type duplikat">Kjøtt</label>
         </section>
         <!--Knapper - call to action-->
         <section id="valg">
             
             <div id="filtWrapper">
-                <input unchecked type="checkbox" id="cb" class="subBtn"></input>
+                <input type="checkbox" unchecked id="cb" class="subBtn"></input>
                 <label id="filterLabel" for="cb">Filter</label>
             
 
@@ -108,10 +116,10 @@
                         <label class="cbLabel" for="søndag">Søndag</label>
                     </div>
                 </div> 
-                <article id="etterFilter">
+             <!--<article id="etterFilter">
                     <button id="genererFiltrertBtn" class="filterBtn">Generer ukesplan</button>
                     <button id="lukkfilterBtn" class="subBtn">Lukk filter</button>
-                </article>
+                </article>-->
             </article>
 
             <button id="genererBtn" class="mainBtn">Generer ukesplan</button>
@@ -129,6 +137,8 @@
         
         
     </main>
+
+    <footer></footer>
     
 </body>
 </html>
