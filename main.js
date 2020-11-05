@@ -52,12 +52,12 @@ const generateRandom = (array) => {
     //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
     const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false; 
     testArr = filter(t, array);
-    console.log(testArr);
+    //console.log(testArr);
 
     //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
     const ingenKoseMat = item => item.fredag === false || item.søndag === false;
     testArr = filter(ingenKoseMat, testArr);
-    console.log(testArr);
+    //console.log(testArr);
 
     
    
@@ -121,7 +121,7 @@ const generateRandom = (array) => {
         }
         
     }
-    console.log(resultArray);
+    //console.log(resultArray);
     //console.log(fre);
     //console.log(son);
 
@@ -159,10 +159,7 @@ const filtLab = document.getElementById("filterLabel");
 const filtCB = document.getElementById("cb");
 
 filtrertBtn.addEventListener("click", (e) => {
-    applyFilter(e);
-    
-    console.log("Hei");
-    
+    applyFilter(e);  
 })
 
 //Generell filterfunksjon
@@ -188,18 +185,17 @@ const applyFilter = (evt) => {
 
     mainFilter();
     generateRandom(filteredArray);
-    //addTag();
     checkIfChecked();
 }
 
 const seFilter = document.getElementById("filterlabler");
 
-const kjottduplikat = document.getElementById("k");
-//console.log(kjottduplikat);
+
 
 //SELVESTE FILTERFUNKSJONEN
 const mainFilter = () => {
     let tempArray = [];
+    
     //Setter verdien til resultArray til middags-arrayet, slik at det slår inn når ingen andre filtre er i kraft
     filteredArray = middager;
     let meatArray = [];
@@ -242,7 +238,6 @@ const mainFilter = () => {
             fishArray = filter(fish, middager);
 
             //tagSek.innerHTML += `<label class="cbLabel type" for="kjott">Fisk</label>`
-            
 
         } else if (tempArray[i].id === "vegetar") {
             const veg = item => item.vegetar === true;

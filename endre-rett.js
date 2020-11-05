@@ -76,7 +76,7 @@ const checkIfChecked = () => {
     for (let i = 0; i<inpFilList.length; i++) {
 
         if (inpFilList[i].checked) {
-            tagSek.innerHTML += `<label id="filt-tab${i}" for="fisk" class="filt-tag">${inpFilList[i].id}</label>`
+            tagSek.innerHTML += `<label id="filt-tab${i}" class="filt-tag">${inpFilList[i].id}</label>`
         }
     }
 }
@@ -84,41 +84,20 @@ const checkIfChecked = () => {
 
 
 const removeFilter = (e) => {
-    //console.log(filteredArray);
 
-
+    //Finner html-elementet som har samme id som teksten i tagen vi har klikka på. 
     let text = e.target.innerText;
-
     const d = document.getElementById(text);
-    console.log(d);
-
-
-if (d.checked) {
-    console.log(d.checked);
-    d.checked = false;
-} else if ( !d.checked) {
-    console.log("hå");
-
-}
-console.log(d.checked);
-
+    
+    //Hvis det elementet er sjekka, blir det satt til ikke-sjekka, og tagen forsvinner. 
+    if (d.checked) {
+        d.checked = false;
+        tagSek.innerHTML = "";
+    
+    } else if ( !d.checked) {    
+    }
 
     applyFilter();
-//    for (i = 0; i < filteredArray.length; i++) {
-
-
-//        if(filteredArray[i].type === text) {
-
-
-//             //filteredArray.pop();
-//             filteredArray.splice(filteredArray[i], 1);
-
-//            //console.log(filteredArray);
-
-//        }
-
-//    }
-
 }
 
 

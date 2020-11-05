@@ -155,6 +155,9 @@ main, #valg, #filtWrapper {
     margin: .2em;
 }
 
+.filt-tag {
+    background-color: peru;
+}
 .cbLabel:hover {
     background-color: rgba(0, 0, 0, 0.5);
 }
@@ -218,7 +221,37 @@ main, #valg, #filtWrapper {
     width: 80%;
     position: absolute;
     top: 60vh;
+   /* animation: rainbow 20s infinite ease-in-out;*/
 }
+
+
+@keyframes rainbow {
+    0% {
+        background-color: #ff0000;
+    }
+    16% {
+        background-color: #ff7f00;
+    }
+    32% {
+        background-color: #ffff00;
+    }
+    48% {
+        background-color: #00ff00;
+    }
+    64% {
+        background-color: #0000ff;
+    }
+    80% {
+        background-color: #2e2b5f;
+    }
+    100% {
+        background-color: #8b00ff;
+    }
+
+}
+
+
+
 #etterFilter {
     width: 100%;
 }
