@@ -17,23 +17,23 @@
     <header id="header">
         <div id="overlay-header"></div>
         <h1 id="head">Hva skal vi ha til middag?</h1>
-        <a>About</a>
+        
         
     </header>
 
     <main>
 
         <section id="filterlabler" title="Her dukker filtrerte ">
-            <label id="k" class="cbLabel type duplikat">Kjøtt</label>
         </section>
 
-        
-        <button id="genererBtn" class="mainBtn">Generer ukesplan</button>
             
 
         <!--Knapper - call to action-->
         <section id="valg">
             
+            <button id="genererBtn" class="mainBtn">Generer ukesplan</button>
+        
+
             <div id="filtWrapper">
                 <input type="checkbox" unchecked id="cb" class="subBtn"></input>
                 <label id="filterLabel" for="cb">Filter</label>
@@ -41,14 +41,15 @@
 
         <!--Filter-->
             <section id="overlay"></section>
+            <a id="filterTop">#</a>
             <article id="filter">
-                <h2 class="overskrift">Erru kresen? Eller gjerrig?</h2>
+                <!--<h2 class="overskrift">Erru kresen? Eller gjerrig?</h2>-->
                 <div id="velgType">
                     
                     <h3>Jeg vil ha:</h3>
                     <div class="labelWrap">
                         
-                        <input type="checkbox" unchecked id="kjott" class="inpFilter" title="Velg kjøtt" value="Kjøtt">
+                        <input unchecked type="checkbox" id="kjott" class="inpFilter" title="Velg kjøtt" value="Kjøtt">
                         <label class="cbLabel type" for="kjott">Kjøtt</label>
                         
                         <input type="checkbox" unchecked id="fisk" class="inpFilter" title="Velg fisk">
@@ -124,19 +125,23 @@
             </article>
 
             </div>
-        </section>
 
+            
+        
+        </section>
+        <section id="ukesplan">
+        </section>
             
 
         </section>
 
+        <!--
         <section id="headings">
             <h2 id="h1_1">Er du lei av å komme på middagsideer?</h2>
             <h2 id="h1_2">Trykk på knappen, så ordner vi det</h2>
-        </section>
+        </section>-->
         <!--Selve ukesplanen, legges inn med Javascript-->
-        <section id="ukesplan">
-        </section>
+        
         
         
     </main>

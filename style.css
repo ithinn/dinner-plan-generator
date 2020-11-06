@@ -5,41 +5,66 @@
 
 html {
     font-size: 62.5%;
-    font-family: "Roboto"
+    font-family: "Roboto";
+   
 }
 
 body {
     background: rgb(53,92,125);
     background: linear-gradient(90deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 50%, rgba(192,108,132,1) 100%);
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100vw;
+    max-width: 100%;
+    max-height: 1000vh;
+    min-height: 100vh;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 header {
-    height: 30vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
+    background-image: url("./img/headerbackground1-02.png");
+    background-size: cover;
+    background-position: bottom;
+    
+
+}
+
+#overlay {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    left: -155vw;
+    top: 0;
 }
 
 h1 {
     color: white;
-    font-size: 3rem;
+    font-size: 4rem;
     padding: 2em;
     text-align: center;
     font-weight: 900;
     letter-spacing: 3px;
     text-transform: uppercase;
+    margin-top: 1em;
+    
 }
 
 h2 {
     font-size: 2rem;
-    margin: .5em auto;
+    margin: .2em auto 0.1em auto;
     color: #355c7d;
 }
 
@@ -65,44 +90,55 @@ main, #valg, #filtWrapper {
     margin: 2em auto;
 }
 
+#ukesplan {
+    position: relative;
+    top: 3em;
+    height: 400vh;
+}
+
 /*-------------FILTER-------------------*/
 
 #filter {
-    width: 80%;
+    width: 90%;
     height: auto;
     margin: 0 auto;
     border-radius: 3px;
     padding: 2em;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color:  white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position: absolute;
     transition: 0.2s;
-    z-index: 5;
-    top: 50vh;
+    z-index: 2;
+    top: -200vh;
+    
     opacity: 0;
 }
 
 #filterlabler {
     z-index: 6;
     position: relative;
-    top: 15vh;
+    top: 25vh;
     width: 80%;
     height: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+
 }
 
 #filterLabel {
-    font-size: 2.5rem;
-    margin: .5em;
+    font-size: 2rem;
+    margin: 2vem;
     color: white;
     text-transform: uppercase;
     letter-spacing: 5px;
     border: 2px solid white;
     padding: 1em;
     font-weight: 700;
+    z-index: 12;
+    position: relative;
 }
 
 #filterLabel:hover {
@@ -113,9 +149,180 @@ main, #valg, #filtWrapper {
 #cb:checked ~ #filter {
     top: 50vh;
     opacity: 1;
+    z-index: 11;
+    
 }
 
 #cb:checked ~ label {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #c06c84;
+    background-color: #c06c84;
+    color: #355c7d;
+    text-shadow: 5px #333333;
+    border: 2px solid #355c7d;
+    top: -15.5em;
+    
+    font-size: 1.5em;
+
+}
+
+#cb:checked ~ #overlay {
+    opacity: 1;
+    left: 0;
+}
+
+
+
+
+
+/*tager i filterseksjonen*/
+.inpFilter, #cb {
+    width: 1px;
+    height: 1px;
+}
+
+.cbLabel {
+    margin: .2em;
+}
+
+.inpFilter:checked + label {
+    background-color: #355c7d;
+    color:white;
+    font-weight: 600;
+}
+
+
+.cbLabel, .filt-tag {
+    font-size: 2rem;
+    border: 2px solid #355c7d;
+    color: #355c7d;
+    padding: .5em;
+    border-radius: 20em;
+}
+
+.filt-tag {
+    background-color: #355c7d;
+    color: white;
+    font-weight: 600;
+    border: 2px solid white;
+}
+
+.filt-tag:hover {
+    background-color: rgba(192, 108, 132, 0.5)
+}
+
+.cbLabel:hover {
+    background-color: rgba(53, 92, 125, 0.5);
+}
+
+/*Wraps i filterseksjonen*/
+.labelWrap {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*----------------BUTTONS-------------*/
+.mainBtn {
+    font-size: 2.7rem;
+    padding: 1em;
+    border-radius: 20em;
+    border: 4px solid white;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+    width: 80vw;
+    margin-top: 3em;
+    background: radial-gradient(#355c7d, #5c4b7b);
+    z-index: 10;
+    position: relative;
+    top: -2em;
+}
+
+.mainBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#cb:checked ~ .mainBtn {
+    display: none;
+}
+
+/*-------------MIDDAGER--------------------------*/
+.dag {
+    text-transform: uppercase;
+    color: gray;
+}
+
+.rett {
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+.dagWrap {
+    width: 30em;
+    border: none;
+    margin: 3em 2em;
+    height: 30em;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50%;
+    padding: 1.5em;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 2px solid white;
+}
+
+.ukeplan {
+    z-index: 20;
+}
+
+.bytt {
+    font-size: 2rem;
+    padding: .5em;
+    border: none;
+    width: 17em;
+    height: 6em;
+    position: relative;
+    bottom: -1em;
+    background-color: #6c5b7b;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.bytt:hover {
+    background-color: #c06c84;
+}
+
+.clock, .price {
+    width: 3em;
+    height: 3em;
+    border: 2px solid #335555;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+}
+
+.clock {
+    background-color: #c06c84;
+}
+
+.price {
+    background-color: #355c7d;
+}
+
+.icon_wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 0;
+    position: relative;
+    
 }
