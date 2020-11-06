@@ -147,14 +147,14 @@ main, #valg, #filtWrapper {
 }
 
 #cb:checked ~ #filter {
-    top: 50vh;
+    top: 47vh;
     opacity: 1;
     z-index: 11;
     
 }
 
 #cb:checked ~ label {
-    background-color: #c06c84;
+    background-color: white;
     color: #355c7d;
     text-shadow: 5px #333333;
     border: 2px solid #355c7d;
@@ -163,7 +163,7 @@ main, #valg, #filtWrapper {
     font-size: 1.5em;
 
 }
-
+/*
 #cb:checked ~ #overlay {
     opacity: 1;
     left: 0;
@@ -172,7 +172,7 @@ main, #valg, #filtWrapper {
 
 
 
-
+*/
 /*tager i filterseksjonen*/
 .inpFilter, #cb {
     width: 1px;

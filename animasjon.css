@@ -1,46 +1,12 @@
-#h1_1 {
-    opacity: 0;
-    animation-name: tekst-inn;
-    animation-duration: 3s;
-    animation-delay: .2s;
-    color: #333333;
-
-}
-#h1_2 {
-    opacity: 0;
-    animation-name: tekst-inn;
-    animation-duration: 3s;
-    animation-delay: 3.2s;
-    color: #333333;
-}
-#h1_3 {
-    opacity: 0;
-    animation-name: tekst-inn;
-    animation-duration: 3s;
-    animation-delay: 6.2s;
-    animation-fill-mode: forwards;
-    top: 80vh;
-    color: #333333;
-}
-/*#h1_4 {
-    opacity: 0;
-    animation-name: tekst-inn;
-    animation-duration: 3s;
-    animation-delay: 9.2s;
-    
-}*/
 
 
 .mainBtn {
-    animation: shake, rainbow;
-    animation-duration:  0.52s, 2s;
-    animation-delay: 3.6s, 0s;
-    animation-iteration-count: 3, infinite;
-    animation-fill-mode: forwards;
-    animation-timing-function: linear, ease-in;
-    /*transform: translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective: 1000px;*/
+    animation: shake;
+    animation-duration:  0.52s;
+    animation-delay: 1s;
+    animation-iteration-count: 3;
+    animation-timing-function: linear;
+  
 }
 
 .mainBtn:focus {
@@ -61,52 +27,7 @@ header {
     animation-fill-mode: forwards;
     animation-delay: 5.2s;
 }
-/*
-@keyframes raise {
-    to {
-        transform: translateY(-9em);
-    }
-}*/
 
-@keyframes appear{
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes tekst-inn {
-    0% {
-        opacity: 0
-    }
-
-    100% {
-        opacity: 1
-    }
-}
-
-@keyframes bounce {
-    0% {
-        transform:  translate(0px, 0px);
-    }
-    30% {
-        transform:  translate(0px, 10px);
-    }
-    75% {
-        transform:  translate(0px, -25px);
-    }
-    100% {
-        transform: scale(1.1) translate(0px, 0px);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(.5);
-    }
-    100% {
-        transform: scale(0.6);
-    }
-}
 
 @keyframes shake {
     10%, 90% {
