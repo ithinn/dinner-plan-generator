@@ -128,8 +128,8 @@ const generateRandom = (array) => {
              
     }
     ukesplan.innerHTML = html; 
-    genButton.style.top = "112em";
-    filtLab.style.top = "15em";
+    genButton.style.display = "none";
+    filtLab.style.top = "11em";
     filtLab.style.opacity = "1";
     kursiv.style.display = "none";
     ukesplan.style.top = "50vh";

@@ -118,8 +118,8 @@ const clickFilterLabel = (evt) => {
 if (evt.target.checked) {
     console.log("virker, sjekka");
     genButton.style.top = "112em"
-    filtLab.style.top = "45vh"
-    filt.style.top = "55vh";
+    filtLab.style.top = "77vh"
+    filt.style.top = "40vh";
     filt.style.opacity = "1";
     filtLab.innerText = "Velg"
     
