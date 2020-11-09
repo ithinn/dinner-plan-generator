@@ -131,7 +131,7 @@ const generateRandom = (array) => {
     genButton.style.display = "none";
     filtLab.style.top = "11em";
     filtLab.style.opacity = "1";
-    kursiv.style.display = "none";
+    kursiv.innerText = "Ingen oppskrift - bare ideer"
     ukesplan.style.top = "50vh";
 }
 const kursiv = document.getElementById("kursiv");

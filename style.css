@@ -53,11 +53,11 @@ header {
 
 h1 {
     color: white;
-    font-size: 3rem;
+    font-size: 4rem;
     padding: 2em;
     text-align: center;
     font-weight: 900;
-    letter-spacing: 3px;
+    letter-spacing: 5px;
     text-transform: uppercase;
     margin-bottom: .8em;
     line-height: 1em;
@@ -76,12 +76,13 @@ h2 {
 
 #kursiv {
     color: white;
-    font-family: "Pacifico";
+    /*font-family: "Pacifico";*/
     position: relative;
-    top: -.5em;
+    top: -7.2em;
     letter-spacing: 3px;
     text-align: center;
     font-size: 1.7rem;
+    
 }
 
 #sub1, #sub2, #sub3, #sub4 {
@@ -107,6 +108,24 @@ h3 {
     font-size: 1.7rem;
     margin: 2em auto .7em auto;
     text-align: center;
+    color: white;
+}
+
+ul {
+    width: 80%;
+    margin: 0 auto;
+    list-style-type: none;
+    position: relative;
+    left: -1em;
+    
+}
+
+li {
+    color: white;
+    font-size: 1.7rem;
+    padding: .5em;
+    
+    
 }
 
 main, #valg, #filtWrapper {
