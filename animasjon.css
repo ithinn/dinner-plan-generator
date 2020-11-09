@@ -3,7 +3,7 @@
 .mainBtn {
     animation: shake;
     animation-duration:  0.52s;
-    animation-delay: 1s;
+    animation-delay: 1.2s;
     animation-iteration-count: 3;
     animation-timing-function: linear;
   
@@ -17,8 +17,11 @@ header {
     animation: appear;
     animation-delay: 5.2s;
     animation-duration: 3s;
-    animation-fill-mode: forwards; 
+    animation-fill-mode: forwards;
+    , blink .75s step-end infinite; 
 }*/
+
+
 
 #filterLabel {
     animation-name: raise;
@@ -27,6 +30,70 @@ header {
     animation-fill-mode: forwards;
     animation-delay: 5.2s;
 }
+
+
+
+#sub1 {
+  /*animation-name: show;
+  animation-duration: 1.5s;*/
+
+  animation: typing 5s steps(30, end);
+  animation-duration: 1.5s;
+}
+
+#sub2 {
+  /*animation-name: show;
+  animation-duration: 1.5s;
+  animation-delay: 1.3s;*/
+
+  animation: typing 5s steps(30, end);
+  animation-duration: 1.5s;
+  animation-delay: 1.4s;
+
+}
+
+#sub3 {
+  /*animation-name: show;
+  animation-duration: 2s;
+  animation-delay: 2.4s;*/
+
+  animation: typing 5s steps(30, end);
+  animation-duration: 2s;
+  animation-delay: 2.4s;
+
+}
+#sub4 {
+  animation-name: show;
+  animation-duration: 2s;
+  animation-delay: 4s;
+  animation-fill-mode: forwards;
+
+}
+
+
+
+    @keyframes typing {
+      0% { 
+          width: 0%; 
+          opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% { 
+          width: 100% 
+      }
+  }
+  
+  @keyframes blink {
+      from, to { 
+          border-color: transparent 
+      }
+      50% { 
+          border-color: #D94B8E; 
+      }
+  }
+
 
 
 @keyframes shake {
@@ -46,4 +113,13 @@ header {
         transform: translate3d(4px, 0, 0);
       }
 
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

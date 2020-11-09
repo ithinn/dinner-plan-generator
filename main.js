@@ -96,6 +96,7 @@ const generateRandom = (array) => {
         </div>
         <button id="btn${i}" class="bytt">Bytt rett</button>
         </article>
+
         `
 
         } else if (dager[i].type === "fredag") {
@@ -123,11 +124,17 @@ const generateRandom = (array) => {
             </article>
             ` 
         }
-        
+
+             
     }
-    ukesplan.innerHTML = html;
-    genButton.style.display= "none";
+    ukesplan.innerHTML = html; 
+    genButton.style.top = "112em";
+    filtLab.style.top = "15em";
+    filtLab.style.opacity = "1";
+    kursiv.style.display = "none";
+    ukesplan.style.top = "50vh";
 }
+const kursiv = document.getElementById("kursiv");
 
 //------------------------------------------------------------------------
 
@@ -151,7 +158,7 @@ const filt = document.getElementById("filter");
 const overlay = document.getElementById("overlay");
 const filtLab = document.getElementById("filterLabel");
 const filtCB = document.getElementById("cb");
-
+const labelSection = document.getElementById("filterlabler");
 
 //----------------------------------------------------------------------
 
@@ -173,6 +180,7 @@ const filter = (condition, collection) => {
 
 const applyFilter = (evt) => {
     ukesplan.innerHTML = "";
+    
     filteredArray = [];
     mainFilter();
     generateRandom(filteredArray);

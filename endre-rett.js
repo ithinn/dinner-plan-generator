@@ -83,6 +83,11 @@ const checkIfChecked = () => {
 
         if (inpFilList[i].checked) {
             tagSek.innerHTML += `<label id="filt-tab${i}" class="filt-tag">${inpFilList[i].id}</label>`
+            filt.style.top = "70vh";
+            
+            labelSection.style.top = "7em";
+            ukesplan.style.top = "8em";
+            filtLab.style.top = "-30em;"
         }
     }
 }
@@ -99,6 +104,8 @@ const removeFilter = (e) => {
     if (d.checked) {
         d.checked = false;
         tagSek.innerHTML = "";
+        //filtLab.style.top = "2em";
+        //filt.style.top = "-4em";
     
     } else if ( !d.checked) {    
     }
@@ -106,8 +113,31 @@ const removeFilter = (e) => {
     applyFilter();
 }
 
+const clickFilterLabel = (evt) => {
+
+if (evt.target.checked) {
+    console.log("virker, sjekka");
+    genButton.style.top = "112em"
+    filtLab.style.top = "45vh"
+    filt.style.top = "55vh";
+    filt.style.opacity = "1";
+    filtLab.innerText = "Velg"
+    
+} else if (!evt.target.checked){
+    console.log("her var alt tomt");
+    filt.style.top = "-200vh";
+    filtLab.innerText = "Filter"
+    filtLab.style.top = "30vh";
+}
+}
 
 
+filtCB.addEventListener("click", clickFilterLabel)
+
+
+const clickGenerateButton = (e) => {
+
+}
 
 // const labelSection = document.getElementById("filterlabler")
 // labelSection.addEventListener("click", (e) => {

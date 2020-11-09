@@ -164,7 +164,7 @@ main, #valg, #filtWrapper {
 }
 
 #cb:checked ~ #filter {
-    top: 40vh;
+    top: 70vh;
     opacity: 1;
 }
 
