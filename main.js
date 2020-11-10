@@ -4,7 +4,7 @@ let fredagsmiddag = []
 let sondagsmiddag = []
 let filteredArray = [];
 const ukesplan = document.getElementById("ukesplan");
-
+const videre = document.getElementById("videre");
 const fancyMat = (fArray, sArray, array) => {
     for (const key in middager) {
         let f = array[key].fredag;
@@ -49,7 +49,7 @@ const generateRandom = (array) => {
     label.style.animationDelay = "0s";
     header.style.animationDelay = "0s";
 
-
+    let tomtArray = [];
     fancyMat(fredagsmiddag, sondagsmiddag, middager);
 
     //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
@@ -63,7 +63,6 @@ const generateRandom = (array) => {
     //console.log(testArr);
 
     
-
 
     //Går gjennom dagene i uka, henter random rett fra hhv testArray, fredagsmiddag og sondagsmiddag, og pusher test-array inn på hverdagene.
     for (let i=0; i < dager.length; i++) {
@@ -98,6 +97,7 @@ const generateRandom = (array) => {
         </article>
 
         `
+            tomtArray.push(resultArray[i]);
 
         } else if (dager[i].type === "fredag") {
             html += `
@@ -110,7 +110,8 @@ const generateRandom = (array) => {
             </div>
             <button id="btn${i}" class="bytt">Bytt rett</button>
             </article>
-            ` 
+            `
+            tomtArray.push(fre); 
         } else {
             html += `
             <article id=${i} class="dagWrap">
@@ -123,9 +124,12 @@ const generateRandom = (array) => {
             <button id="btn${i}" class="bytt">Bytt rett</button>
             </article>
             ` 
+            tomtArray.push(son);
         }
 
-             
+             console.log(tomtArray);
+             const arrayString = JSON.stringify(tomtArray);
+            localStorage.setItem("Meny", arrayString);
     }
     ukesplan.innerHTML = html; 
     genButton.style.display = "none";
@@ -133,10 +137,21 @@ const generateRandom = (array) => {
     filtLab.style.opacity = "1";
     //kursiv.innerText = "Ingen oppskrift - bare ideer"
     //ukesplan.style.top = "60vh";
-}
-const kursiv = document.getElementById("kursiv");
+    videre.innerHTML = `
+    
+    <input type="email" id="mail" placeholder="Skriv din epost-adresse">
+    <button id="sendmail">Send ukesplan</button>
+    `
 
-//------------------------------------------------------------------------
+    const send = document.getElementById("sendmail");
+    send.addEventListener("click", alertMail);
+
+}
+
+const alertMail = () => {
+    alert("Ukesplanen er sendt til din epostadresse");
+}
+
 
 //Lytter til generelt filter
 const genButton = document.getElementById("genererBtn");
