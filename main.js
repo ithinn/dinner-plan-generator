@@ -129,10 +129,10 @@ const generateRandom = (array) => {
     }
     ukesplan.innerHTML = html; 
     genButton.style.display = "none";
-    filtLab.style.top = "11em";
+    //filtLab.style.opacity = "1";
     filtLab.style.opacity = "1";
-    kursiv.innerText = "Ingen oppskrift - bare ideer"
-    ukesplan.style.top = "50vh";
+    //kursiv.innerText = "Ingen oppskrift - bare ideer"
+    //ukesplan.style.top = "60vh";
 }
 const kursiv = document.getElementById("kursiv");
 

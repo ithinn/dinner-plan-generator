@@ -83,11 +83,11 @@ const checkIfChecked = () => {
 
         if (inpFilList[i].checked) {
             tagSek.innerHTML += `<label id="filt-tab${i}" class="filt-tag">${inpFilList[i].id}</label>`
-            filt.style.top = "70vh";
-            
-            labelSection.style.top = "7em";
-            ukesplan.style.top = "8em";
-            filtLab.style.top = "-30em;"
+            //filt.style.top = "70vh";
+            tagSek.style.display = "flex";
+            //labelSection.style.top = "7em";
+            ukesplan.style.marginTop = "8em";
+            //filtLab.style.top = "-30em;"
         }
     }
 }
@@ -104,11 +104,14 @@ const removeFilter = (e) => {
     if (d.checked) {
         d.checked = false;
         tagSek.innerHTML = "";
+        tagSek.style.display = "none";
+        ukesplan.style.marginTop = "9em";
         //filtLab.style.top = "2em";
         //filt.style.top = "-4em";
     
-    } else if ( !d.checked) {    
-    }
+    } else if ( !d.checked) {   
+        //tagSek.style.display = "none"; 
+    } 
 
     applyFilter();
 }
@@ -117,17 +120,25 @@ const clickFilterLabel = (evt) => {
 
 if (evt.target.checked) {
     console.log("virker, sjekka");
-    genButton.style.top = "112em"
-    filtLab.style.top = "77vh"
+    //genButton.style.top = "112em"
+    filtLab.style.top = "70em";
+   // tagSek.style.display = "none";
     filt.style.top = "40vh";
     filt.style.opacity = "1";
     filtLab.innerText = "Velg"
+    overlay.style.opacity = "1";
+    overlay.style.left = "0";
     
 } else if (!evt.target.checked){
     console.log("her var alt tomt");
     filt.style.top = "-200vh";
     filtLab.innerText = "Filter"
-    filtLab.style.top = "30vh";
+    filtLab.style.top = "12.17em"
+    //filtLab.style.top = "30vh";
+    overlay.style.opacity = "0";
+    overlay.style.left = "-155vh";
+    tagSek.style.marginTop = "15em"
+    ukesplan.style.marginTop = "0em";
 }
 }
 
