@@ -4,7 +4,9 @@ let sondagsmiddag = [];
 let filteredArray = [];
 
 
+//const main = document.getElementsByTagName("main");
 
+const minUke = document.getElementById("ukesplan_h2");
 const mainBtn = document.getElementById("genererBtn")
 const ukesplan = document.getElementById("ukesplan");
 const filtLab = document.getElementById("filterLabel");
@@ -18,8 +20,8 @@ const tegnUkesplan = (arr2) => {
     let html = "";
    
     fyllMiddagsliste(arr2)
-   console.log(middagsliste);
-   console.log(arr2);
+    console.log(middagsliste);
+  
     for (let i = 0; i < middagsliste.length; i++) {
             html += `
             <article id=${i} class="dagWrap">
@@ -32,15 +34,17 @@ const tegnUkesplan = (arr2) => {
             <button id="btn${i}" class="bytt">Bytt rett</button>
             </article>
             `
-            console.log("hei");
+           
             
     }
     ukesplan.innerHTML = html;
-    console.log(ukesplan);
+    //console.log(ukesplan);
     mainBtn.style.display = "none";
-    filtLab.style.opacity = 1;
+    filtLab.style.display = "block";
     videre.innerHTML = `
-    <button id="lagre">Lagre middagsplan</button>
+    <button id="lagre">Lagre</button>
+    
+    
     <input type="email" id="mail" placeholder="Skriv din epost-adresse">
     <button id="sendmail">Send ukesplan</button>
     `
@@ -50,10 +54,14 @@ const tegnUkesplan = (arr2) => {
 
     const lagre = document.getElementById("lagre");
     lagre.addEventListener("click", lagreLocal);
+
+    lagretBtn.style.display = "none";
     //finnLocal();
 }
 
 
+
+//-------------------------LOCALSTORAGE
 const lagreLocal = () => {
     const arrStrMiddager = JSON.stringify(middagsliste);
     localStorage.setItem("Ukeplan", arrStrMiddager);
@@ -70,7 +78,7 @@ const finnLocal = () => {
         console.log("Den tror det er noe i localstor")
         let returnertString = localStorage.getItem("Ukeplan");
         let arrayFraString = JSON.parse(returnertString);
-        console.log(arrayFraString);
+        //console.log(arrayFraString);
         lagretBtn.style.display = "block";
         
         lagretBtn.addEventListener("click", () => {
@@ -87,18 +95,37 @@ const finnLocal = () => {
                 <button id="btn${i}" class="bytt">Bytt rett</button>
                 </article>
                 `
-                console.log("hei");
+            
                 
         }
+        //console.log(html);
+        //main.innerHTML = `<h2 id="ukesplan_h2">Min ukesplan</h2>`
+        minUke.style.display = "block";
         ukesplan.innerHTML = html;
+        
+        mainBtn.style.display = "none";
+        lagretBtn.innerText = "Lag en ny ukesplan";
+        lagretBtn.style.border = "4px solid white";
+        lagretBtn.style.padding = "1em";
+        lagretBtn.style.background = "#355c7d";
+        lagretBtn.style.borderRadius = "10em";
+        lagretBtn.addEventListener("click", tilbake);
+        ukesplan.style.marginTop = ".1em";
         })
     }
     
     
 }
 
+const tilbake = () => {
+    
+    window.scrollTo(0, 0);
+    location.reload()
+    
+}
 
 window.onload = finnLocal();
+//-------------------------------------------
 
 mainBtn.addEventListener("click", () => {
     tegnUkesplan(middager);
@@ -136,7 +163,6 @@ const plukkUtRett = (arr) => {
 
     let index = Math.floor(Math.random()*arr.length)
     //arr.splice(index, 1)
-    
     return index;
 }
 
@@ -394,59 +420,112 @@ cb.addEventListener("click", clickFilterLabel);
 //---------------------------------------------------------
 
 
-const endreRett = (e, arr) => {
+// const endreRett = (e, arr) => {
     
+//     let tempArr = arr;
+//     btnId = Number(e.target.id.slice(-1));
+    
+//     //Velg mat som tar under 30 minutter å lage på hverdager
+//     const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
+//     tempArr = filter(t, arr);
+
+//     // //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat på hverdager
+//     const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+//     tempArr = filter(ingenKoseMat, tempArr);
+    
+//    for (let i=0; i<dager.length; i++) {
+//         const index = plukkUtRett(tempArr);
+//         const ifre = plukkUtRett(fredagsmiddag);
+//         const fre = fredagsmiddag[ifre];
+//         const isun = plukkUtRett(sondagsmiddag);
+//         const sun = sondagsmiddag[isun];
+
+//         if (i === btnId) {
+
+//         if (dager[i].type === "hverdag") {
+//             const h2 = document.getElementById(`rett${i}`);
+//             h2.innerHTML = `${tempArr[index].navn}`;
+
+//             const wrap = document.getElementById(`i_wrap${i}`);
+//             console.log(wrap);
+//             wrap.innerHTML = `
+//                 <div class="clock">${tempArr[index].tid}</div>
+//                 <div class="price">${tempArr[index].pris}</div>`;
+
+//         } else if (dager[i].type === "fredag") {
+//             const h2 = document.getElementById(`rett${i}`);
+//             h2.innerHTML = `${fre.navn}`;
+
+//             const wrap = document.getElementById(`i_wrap${i}`);
+//             console.log(wrap);
+//             wrap.innerHTML = `
+//                 <div class="clock">${fre.tid}</div>
+//                 <div class="price">${fre.pris}</div>`;
+//         } else {
+//             const h2 = document.getElementById(`rett${i}`);
+//             h2.innerHTML = `${sun.navn}`;
+
+//             const wrap = document.getElementById(`i_wrap${i}`);
+            
+//             wrap.innerHTML = `
+//                 <div class="clock">${sun.tid}</div>
+//                 <div class="price">${sun.pris}</div>`;
+//         }
+//        }
+//    }
+// }
+
+const endreRett = (e, arr) => {
+    console.log(middagsliste);
+    console.log(e.target);
+    let html;
     let tempArr = arr;
     btnId = Number(e.target.id.slice(-1));
-    
+    console.log(btnId);
+
     //Velg mat som tar under 30 minutter å lage på hverdager
     const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
     tempArr = filter(t, arr);
 
-    // //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat på hverdager
+    //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat på hverdager
     const ingenKoseMat = item => item.fredag === false || item.søndag === false;
     tempArr = filter(ingenKoseMat, tempArr);
     
-   for (let i=0; i<dager.length; i++) {
-        const index = plukkUtRett(tempArr);
-        const ifre = plukkUtRett(fredagsmiddag);
-        const fre = fredagsmiddag[ifre];
-        const isun = plukkUtRett(sondagsmiddag);
-        const sun = sondagsmiddag[isun];
-
-        if (i === btnId) {
-
-        if (dager[i].type === "hverdag") {
-            const h2 = document.getElementById(`rett${i}`);
-            h2.innerHTML = `${tempArr[index].navn}`;
-
-            const wrap = document.getElementById(`i_wrap${i}`);
-            console.log(wrap);
-            wrap.innerHTML = `
-                <div class="clock">${tempArr[index].tid}</div>
-                <div class="price">${tempArr[index].pris}</div>`;
-
-        } else if (dager[i].type === "fredag") {
-            const h2 = document.getElementById(`rett${i}`);
-            h2.innerHTML = `${fre.navn}`;
-
-            const wrap = document.getElementById(`i_wrap${i}`);
-            console.log(wrap);
-            wrap.innerHTML = `
-                <div class="clock">${fre.tid}</div>
-                <div class="price">${fre.pris}</div>`;
-        } else {
-            const h2 = document.getElementById(`rett${i}`);
-            h2.innerHTML = `${sun.navn}`;
-
-            const wrap = document.getElementById(`i_wrap${i}`);
-            
-            wrap.innerHTML = `
-                <div class="clock">${sun.tid}</div>
-                <div class="price">${sun.pris}</div>`;
-        }
-       }
-   }
+    console.log(tempArr);
+    let nyIndex = plukkUtRett(tempArr);
+    let nyRett = tempArr[nyIndex];
+    
+    let nyIndexFre = plukkUtRett(fredagsmiddag);
+    let nyRettFre = fredagsmiddag[nyIndexFre];
+    
+    let nyIndexSon = plukkUtRett(sondagsmiddag);
+    let nyRettSon = sondagsmiddag[nyIndexSon];
+    
+    if (btnId <=3 || btnId === 5) {
+        middagsliste.splice(btnId, 1, nyRett);
+        console.log("hverdag");
+    } else if (btnId === 4) {
+        middagsliste.splice(btnId, 1, nyRettFre);
+        console.log("fredag");
+    } else {
+        middagsliste.splice(btnId, 1, nyRettSon);
+        console.log("Søndag");
+    }
+    
+    for (let i = 0; i < middagsliste.length; i++) {
+        html += `
+        <article id=${i} class="dagWrap">
+        <h3 class="dag">${dager[i].dag}</h3>
+        <h2 id="rett${i}" class="rett">${middagsliste[i].navn}</h2>
+        <div id="i_wrap${i}" class="icon_wrap">
+            <div class="clock">${middagsliste[i].tid}</div>
+            <div class="price">${middagsliste[i].pris}</div>
+        </div>
+        <button id="btn${i}" class="bytt">Bytt rett</button>
+        </article>
+        `   
+}
+ukesplan.innerHTML = html;
 }
 
 ukesplan.addEventListener("click", (e) => {

@@ -72,6 +72,15 @@ h2 {
     color: #355c7d;
 }
 
+#ukesplan_h2 {
+    color: white;
+    display: none;
+    margin-top: 2em;
+    text-transform: uppercase;
+    font-size: 3rem;
+    
+}
+
 #kursiv {
     color: white;
     /*font-family: "Pacifico";*/
@@ -159,6 +168,15 @@ main, #valg, #filtWrapper {
 
 #lagretBtn {
     display: none;
+    border: none;
+    background: none;
+    color: white;
+    font-size: 1.7rem;
+    margin-top: 3em;
+}
+
+#lagre {
+
 }
 
 
@@ -189,7 +207,7 @@ main, #valg, #filtWrapper {
     display: none;
     flex-wrap: wrap;
     justify-content: center;
-    border: 1px solid red;
+    
     
 }
 
@@ -204,8 +222,8 @@ main, #valg, #filtWrapper {
     font-weight: 700;
     z-index: 9;
     position: absolute;
-    opacity: 0;
     
+    display: none;
     top: 12.17em;
 
 }
@@ -223,17 +241,20 @@ main, #valg, #filtWrapper {
 }*/
 
 #cb:checked ~ label {
-    background-color: white;
-    color: #355c7d;
-    text-shadow: 5px #333333;
-    border: 2px solid #355c7d;
     
+    color: white;
+    text-shadow: 5px #333333;
+    border: 2px solid white;
+    background: radial-gradient(#355c7d, #5c4b7b);
     font-size: 1.5em;
+    width: 90%;
+    text-align: center;
     /*position: absolute;
     z-index: 12;
     top: 43vh;*/
-
 }
+
+
 
 /*
 #cb:checked ~ #overlay {
@@ -388,17 +409,37 @@ main, #valg, #filtWrapper {
 }
 
 #mail {
-    font-size: 2rem;
-    margin: 1em;
+    font-size: 1.7rem;
+    margin: 2em auto .2em auto;
     padding: 1em;
-    border: 4px solid #355c7d;
+    border: none;
+    width: 100%;
+    text-align: center;
 }
 
-#sendmail {
+ #lagre {
     border: 4px solid white;
     font-size: 2rem;
     padding: 1em;
     border-radius: 10em;
     background-color: #355c7d;
     color: white;
+    font-weight: 600;
+    width: 100%;
 }
+
+#sendmail {
+    border: 4px solid white;
+    font-size: 2rem;
+    padding: 1em;
+    background-color: #c06c84;
+    color: white;
+    width: 100%;
+}
+
+#sendmail:hover, #lagre:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+
+
