@@ -4,21 +4,96 @@
         border: 6px solid yellow;
         
     }
-    #kursiv, #lagre, #sendmail, #mail {
-        font-size: 2.2rem;
+    #kursiv, #lagre, #sendmail, #mail, #filterLabel, #lukk_filter_Btn {
+        font-size: 2.4rem;
     }
 
-    #lagretBtn {
-        font-size: 2.2rem; 
+    #head_wrap {
+        position: relative;
+        top: -5vh; 
+     }
+    .rett {
+        font-size: 2.1rem;
+    }
+
+   
+    
+}
+
+@media (min-width: 768px) {
+    body {
+        border: 7px solid blue;
+    }
+
+    h1 {
+        font-size: 9rem;
+        position: relative;
+        top: -.2em;
+    }
+    #kursiv{
+        font-size: 4rem;
+        position: relative;
+        top: 2.4em;
+        left: 3.5em;
+        
+    }
+
+    #lagretBtn, #lagre, #sendmail, #mail, #filterLabel, #lukk_filter_Btn {
+        font-size: 3rem;
+    }
+
+    #head_wrap {
+       position: relative;
+       top: -5vh; 
+    }
+
+    .mainBtn {
+        font-size: 5rem;
+    }
+
+    .filt-tag, .cbLabel {
+        font-size: 3rem;
+    }
+
+    h3 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 4.5rem;
+    }
+
+    .dag {
+        font-size: 2rem;
     }
 
     .rett {
         font-size: 2.5rem;
     }
 
-    #filterLabel {
-        top: 18em;
+    #ukesplan {
+        margin-top: 6em;
     }
 
-    
+    header {
+        height: 50vh;
+        background-position: bottom;
+    }
+
+
+
+}
+
+@media (min-width: 1050px) {
+    body {
+        border: 9px solid red;
+    }
+
+    h1 {
+        top: -.4em;
+        left: -1em;
+    }
+    #kursiv {
+        top: 2em;
+    }
 }

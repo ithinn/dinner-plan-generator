@@ -20,8 +20,7 @@ const tegnUkesplan = (arr2) => {
     let html = "";
    
     fyllMiddagsliste(arr2)
-    console.log(middagsliste);
-  
+    
     for (let i = 0; i < middagsliste.length; i++) {
             html += `
             <article id=${i} class="dagWrap">
@@ -34,8 +33,6 @@ const tegnUkesplan = (arr2) => {
             <button id="btn${i}" class="bytt">Bytt rett</button>
             </article>
             `
-           
-            
     }
     ukesplan.innerHTML = html;
     //console.log(ukesplan);
@@ -108,7 +105,7 @@ const finnLocal = () => {
         lagretBtn.style.background = "#355c7d";
         lagretBtn.style.borderRadius = "10em";
         lagretBtn.addEventListener("click", tilbake);
-        ukesplan.style.marginTop = ".1em";
+        //ukesplan.style.marginTop = ".1em";
         })
     }
     
@@ -128,7 +125,6 @@ window.onload = finnLocal();
 mainBtn.addEventListener("click", () => {
     tegnUkesplan(middager);
 })
-
 
 
 //Generell filterfunksjon
@@ -170,18 +166,14 @@ const fancyMat = (fArray, sArray, array) => {
 }
 }
 
-
 const plukkUtRett = (arr) => {
-
     let index = Math.floor(Math.random()*arr.length)
     //arr.splice(index, 1)
     return index;
 }
 
-
 fancyMat(fredagsmiddag, sondagsmiddag, middager);
 
-console.log(fredagsmiddag);
 
 const alertMail = () => {
     alert("Ukesplanen er sendt til din epostadresse");
@@ -231,8 +223,6 @@ const fyllMiddagsliste = (array) => {
     middagsliste.splice(6, 0, sMiddag);
     //console.log(middagsliste);
 }
-
-//fyllMiddagsliste(middager);
 
 const applyFilter = () => {
     ukesplan.innerHTML = "";
@@ -406,34 +396,44 @@ tagSek.addEventListener("click", (e) => {
 const clickFilterLabel = (evt) => {
 
 if (evt.target.checked) {
-    mainBtn.style.display = "none";
+    
+    //mainBtn.style.display = "none";
     console.log("virker, sjekka");
     //genButton.style.top = "112em"
-    filtLab.style.top = "70em";
+    //filtLab.style.top = "70em";
    // tagSek.style.display = "none";
-    filt.style.top = "40vh";
-    filt.style.opacity = "1";
-    filtLab.innerText = "Velg"
-    overlay.style.opacity = "1";
-    overlay.style.left = "0";
+    //filt.style.top = "40vh";
+    //filt.style.opacity = "1";
+    //filtLab.innerText = "Velg"
+    //overlay.style.opacity = "1";
+    //overlay.style.left = "0";
     
 } else if (!evt.target.checked){
     console.log("her var alt tomt");
-    filt.style.top = "-200vh";
-    filtLab.innerText = "Filter"
-    filtLab.style.top = "12.17em"
+    //filt.style.top = "-200vh";
+    //filtLab.innerText = "Filter"
+    //filtLab.style.top = "12.17em"
     //filtLab.style.top = "30vh";
-    overlay.style.opacity = "0";
-    overlay.style.left = "-155vh";
-    tagSek.style.marginTop = "10em"
-    ukesplan.style.marginTop = "0em";
+    //overlay.style.opacity = "0";
+    //overlay.style.left = "-155vh";
+    //tagSek.style.marginTop = "10em"
+    //ukesplan.style.marginTop = "0em";
 }
 }
 
 cb.addEventListener("click", clickFilterLabel);
-
+const lukk_filter_btn = document.getElementById("lukk_filter_Btn")
 //---------------------------------------------------------
+const seFiltrert = () => {
+    console.log("Se filtrert virker")
+    console.log(cb.checked);
+    if (cb.checked) {
+        cb.checked = false;
+        window.scrollTo(0, 0);
+    }
+}
 
+lukk_filter_btn.addEventListener("click", seFiltrert);
 
 // const endreRett = (e, arr) => {
     
