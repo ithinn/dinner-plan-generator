@@ -95,8 +95,6 @@ const finnLocal = () => {
                 <button id="btn${i}" class="bytt">Bytt rett</button>
                 </article>
                 `
-            
-                
         }
         //console.log(html);
         //main.innerHTML = `<h2 id="ukesplan_h2">Min ukesplan</h2>`
@@ -146,6 +144,19 @@ const filter = (condition, collection) => {
 }
 
 const fancyMat = (fArray, sArray, array) => {
+    console.log(filteredArray);
+    if (filteredArray.length > 0) {
+        for (const key in filteredArray) {
+            let f = array[key].fredag;
+            let s = array[key].søndag;
+            
+            if (f === true) {
+                fArray.push(array[key]);
+            } else if (s===true) {
+                sArray.push(array[key]);
+            } 
+        }
+    } else {
     for (const key in middager) {
         let f = array[key].fredag;
         let s = array[key].søndag;
@@ -156,6 +167,7 @@ const fancyMat = (fArray, sArray, array) => {
             sArray.push(array[key]);
         } 
     }
+}
 }
 
 
@@ -168,7 +180,8 @@ const plukkUtRett = (arr) => {
 
 
 fancyMat(fredagsmiddag, sondagsmiddag, middager);
-//console.log(fredagsmiddag);
+
+console.log(fredagsmiddag);
 
 const alertMail = () => {
     alert("Ukesplanen er sendt til din epostadresse");
@@ -227,11 +240,11 @@ const applyFilter = () => {
     filteredArray = [];
     //console.log(filteredArray);
     
-    mainFilter();
+    mainFilter(middager);
     //console.log(filteredArray);
     checkIfChecked();
     //fancyMat(fredagsmiddag, sondagsmiddag, filteredArray);
-    //console.log(fredagsmiddag);
+    console.log(fredagsmiddag);
 
     fyllMiddagsliste(filteredArray)
     //console.log(middagsliste)
@@ -244,11 +257,11 @@ const applyFilter = () => {
 //---------------------------------------------------------------------------
 
 //SELVESTE FILTERFUNKSJONEN
-const mainFilter = () => {
+const mainFilter = (arr) => {
     let tempArray = [];
 
     //Setter verdien til resultArray til middags-arrayet, slik at det slår inn når ingen andre filtre er i kraft
-    filteredArray = middager;
+    filteredArray = arr;
     let meatArray = [];
     let fishArray = [];
     let vegArray = [];
@@ -275,35 +288,35 @@ const mainFilter = () => {
         //Lagrer resultatet av filtreringen i egne arrayer
         if (tempArray[i].id === "kjott") {
             const meat = item => item.kjottRodt === true;
-            meatArray = filter(meat, middager);
+            meatArray = filter(meat, arr);
             
         } else if (tempArray[i].id ==="fisk") {
             const fish = item => item.fisk === true;
-            fishArray = filter(fish, middager);
+            fishArray = filter(fish, arr);
 
         } else if (tempArray[i].id === "vegetar") {
             const veg = item => item.vegetar === true;
-            vegArray = filter(veg, middager);
+            vegArray = filter(veg, arr);
         
         } else if (tempArray[i].id === "gluten") {
             const glu = item => item.glutenfri === true;
-            glutArr = filter(glu, middager);
+            glutArr = filter(glu, arr);
         
         } else if (tempArray[i].id === "laktose") {
             const lak = item => item.laktosefri === true;
-            lakArr = filter(lak, middager);
+            lakArr = filter(lak, arr);
         
         } else if (tempArray[i].id === "billigst") {
             const billigst = item => item.pris === 1;
-            cheapArray = filter(billigst, middager);
+            cheapArray = filter(billigst, arr);
         
         } else if (tempArray[i].id === "billig") {
             const billig = item => item.pris === 2 || item.pris === 1;
-            cheaperArray = filter(billig, middager);
+            cheaperArray = filter(billig, arr);
         
         } else if (tempArray[i].id === "dyrt") {
             const dyrt = item => item.pris === 3;
-            exArray = filter(dyrt, middager);
+            exArray = filter(dyrt, arr);
         } 
         
 
@@ -337,6 +350,8 @@ filt.addEventListener("click", (e) => {
 const inpFilList = document.querySelectorAll(".inpFilter")
 
 const checkIfChecked = () => {
+    tagSek.innerHTML = "";
+
     for (let i = 0; i<inpFilList.length; i++) {
 
         if (inpFilList[i].checked) {
