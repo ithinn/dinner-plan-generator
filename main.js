@@ -1,10 +1,9 @@
 
 
-let fredagsmiddag = []
-let sondagsmiddag = []
-let filteredArray = [];
+
 const ukesplan = document.getElementById("ukesplan");
 const videre = document.getElementById("videre");
+
 const fancyMat = (fArray, sArray, array) => {
     for (const key in middager) {
         let f = array[key].fredag;
