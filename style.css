@@ -29,15 +29,26 @@ body {
 }
 
 header {
-    height: 35vh;
+    height: 40vh;
     display: flex;
     flex-direction: column;
     width: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     background-image: url("./img/headerbackground1-02.png");
     background-size: cover;
     background-position: bottom;
+    
+}
+
+#head_wrap {
+    width: 80%;
+    height: 17vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid red;
 }
 
 #overlay {
@@ -54,15 +65,16 @@ header {
 h1 {
     color: white;
     font-size: 4rem;
-    padding: 2em;
+    /*padding: 2em;*/
     text-align: center;
     font-weight: 900;
     letter-spacing: 5px;
     text-transform: uppercase;
-    margin-bottom: .8em;
-    line-height: 1em;
+    /*margin-bottom: .8em;*/
+    /*line-height: 1em;
     position: relative;
-    top: -.7em;
+    top: -.7em;*/
+    
     
 }
 
@@ -84,11 +96,12 @@ h2 {
 #kursiv {
     color: white;
     /*font-family: "Pacifico";*/
-    position: relative;
-    top: -7.7em;
+    /*position: relative;
+    top: -7.7em;*/
     letter-spacing: 3px;
     text-align: center;
     font-size: 1.7rem;
+
     
 }
 
@@ -201,7 +214,7 @@ main, #valg, #filtWrapper {
 }
 
 #filterlabler {
-    margin-top: 6em;
+    
     width: 80%;
     height: auto;
     display: none;
@@ -224,7 +237,7 @@ main, #valg, #filtWrapper {
     position: absolute;
     
     display: none;
-    top: 12.17em;
+    top: 15.17em;
 
 }
 

@@ -410,7 +410,7 @@ if (evt.target.checked) {
     //filtLab.style.top = "30vh";
     overlay.style.opacity = "0";
     overlay.style.left = "-155vh";
-    tagSek.style.marginTop = "15em"
+    tagSek.style.marginTop = "10em"
     ukesplan.style.marginTop = "0em";
 }
 }

@@ -1,0 +1,24 @@
+
+@media (min-width: 414px) {
+    body {
+        border: 6px solid yellow;
+        
+    }
+    #kursiv, #lagre, #sendmail, #mail {
+        font-size: 2.2rem;
+    }
+
+    #lagretBtn {
+        font-size: 2.2rem; 
+    }
+
+    .rett {
+        font-size: 2.5rem;
+    }
+
+    #filterLabel {
+        top: 18em;
+    }
+
+    
+}
