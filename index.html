@@ -40,15 +40,15 @@
             
             <!--Filterknappen-->
             <div id="btn_wrap">
-                <input type="checkbox" unchecked id="cb" class="subBtn"></input>
-                <label id="filterLabel" for="cb">Filter</label>
+                <input tabindex="-1" type="checkbox" unchecked id="cb" class="subBtn"></input>
+                <label tabindex="0" role="button" id="filterLabel" for="cb">Filter</label>
             
                     
 
                 <section id="overlay"></section>
 
             <!--FILTER-->
-                <section id="filter">
+                <section tabindex="0"   id="filter">
                         
                     
                         <!--Filtervisningen-->
@@ -57,7 +57,7 @@
                                 <h3>Jeg vil ha:</h3>
                                 
                                 <div class="labelWrap">
-                                    <input unchecked type="checkbox" id="kjott" class="inpFilter" title="Velg kjøtt" value="Kjøtt">
+                                    <input  unchecked type="checkbox" id="kjott" class="inpFilter" title="Velg kjøtt" value="Kjøtt">
                                     <label class="cbLabel type" for="kjott">Kjøtt</label>
                                     
                                     <input type="checkbox" unchecked id="fisk" class="inpFilter" title="Velg fisk">

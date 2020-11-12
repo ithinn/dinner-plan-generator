@@ -1,9 +1,9 @@
 
 @media (min-width: 414px) {
-    body {
+    /*body {
         border: 6px solid yellow;
         
-    }
+    }*/
     #kursiv, #lagre, #sendmail, #mail, #filterLabel, #lukk_filter_Btn {
         font-size: 2.4rem;
     }
@@ -21,9 +21,9 @@
 }
 
 @media (min-width: 768px) {
-    body {
+    /*body {
         border: 7px solid blue;
-    }
+    }*/
 
     h1 {
         font-size: 9rem;
@@ -48,7 +48,9 @@
     }
 
     .mainBtn {
-        font-size: 5rem;
+        font-size: 3rem;
+        padding: 1em .1em;
+        width: 60vw;
     }
 
     .filt-tag, .cbLabel {
@@ -85,9 +87,9 @@
 }
 
 @media (min-width: 1050px) {
-    body {
+    /*body {
         border: 9px solid red;
-    }
+    }*/
 
     h1 {
         top: -.4em;
