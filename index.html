@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="responsive.css">
         <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-        <link>
+        
 
         <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
         <script src="middager.js" defer></script>
@@ -31,7 +31,7 @@
             <!--GENERER-UKESPLAN-BUTTON-->
             <button id="genererBtn" class="mainBtn">Generer ukesplan</button>    
             
-            <section id="filterlabler" title="Her ser du hvilke filtre som er aktive" role="filter-content"></section>
+            <section id="filterlabler" title="Her ser du hvilke filtre som er aktive"></section>
             
             <div id="lagret_ukesplan">
                 <button id="lagretBtn">Se lagret ukesplan</button>
@@ -42,14 +42,14 @@
             <!--Filterknappen-->
             <div id="btn_wrap">
                 <input tabindex="-1" type="checkbox" unchecked id="cb" class="subBtn"></input>
-                <label tabindex="0" role="button" id="filterLabel" for="cb">Filter</label>
+                <label tabindex="0" id="filterLabel" for="cb">Filter</label>
             
                     
 
-                <section id="overlay" title="Overlay" role="Overlay"></section>
+                <section id="overlay" title="Overlay"></section>
 
             <!--FILTER-->
-                <section tabindex="0" id="filter" title="filterseksjonen" role="filter">
+                <section tabindex="0" id="filter" title="filterseksjonen">
                         
                     
                         <!--Filtervisningen-->
@@ -154,8 +154,8 @@
                 </section>
             </div>
             <!--UKESPLAN (Genereres med JS)-->
-            <section id="ukesplan" role="generated content"></section>
-            <section id="videre" role="save and proceed"></section>
+            <section title="Her finner du ukesplanen" id="ukesplan"></section>
+            <section title="Her kan du velge om du vil lagre eller sende på epost" id="videre"></section>
         </main>    
     </body>
 
