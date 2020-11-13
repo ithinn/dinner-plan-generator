@@ -36,8 +36,8 @@ const tegnUkesplan = (arr2) => {
     filtLab.style.display = "block";
     videre.innerHTML = `
     <button id="lagre">Lagre</button>
-    <input type="email" id="mail" placeholder="Skriv din epost-adresse">
-    <button id="sendmail">Send ukesplan</button>
+    <input aria-label="Email-adress" type="email" id="mail" placeholder="Skriv din epost-adresse">
+    <button type="submit" id="sendmail">Send ukesplan</button>
     `
 
     const send = document.getElementById("sendmail");
@@ -48,6 +48,7 @@ const tegnUkesplan = (arr2) => {
 
     lagretBtn.style.display = "none";
 
+    tilpassetSkrift();
 }
 
 
@@ -137,7 +138,7 @@ const tilbake = () => {
 }
 
 const fancyMat = (fArray, sArray, array) => {
-        
+
     if (filteredArray.length > 0) {
         for (const key in filteredArray) {
             let f = array[key].fredag;
@@ -489,3 +490,28 @@ ukesplan.addEventListener("click", (e) => {
     }
 })
 
+
+const dagWrap = document.getElementsByClassName("dagWrap");
+//console.log(dagWrap);
+const rettH3 = document.querySelectorAll(".rett"); 
+//console.log(rettH3);
+
+
+//PRØVER Å TILPASSE SKRIFTSTR
+
+// const tilpassetSkrift = () => {
+//     console.log(dagWrap);
+//     if (dagWrap.childNodes === "H2") {
+//         console.log(dagWrap.childNodes);
+
+//     }
+
+//     console.log("Tilpasset blir kallet");
+//     //console.log(dagWrap);
+    
+//     for (let rett of rettH3) {
+//         //console.log(rett);
+//     }
+//     //console.log(rettH3);
+   
+// }

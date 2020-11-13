@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Middagsukeplangenerator</title>
+        <title>Middagsgenerator</title>
         <link rel="stylesheet" href="animasjon.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="responsive.css">
@@ -31,7 +31,7 @@
             <!--GENERER-UKESPLAN-BUTTON-->
             <button id="genererBtn" class="mainBtn">Generer ukesplan</button>    
             
-            <section id="filterlabler" title="Her ser du hvilke filtre som er aktive"></section>
+            <section id="filterlabler" title="Her ser du hvilke filtre som er aktive" role="filter-content"></section>
             
             <div id="lagret_ukesplan">
                 <button id="lagretBtn">Se lagret ukesplan</button>
@@ -46,10 +46,10 @@
             
                     
 
-                <section id="overlay"></section>
+                <section id="overlay" title="Overlay" role="Overlay"></section>
 
             <!--FILTER-->
-                <section tabindex="0" id="filter">
+                <section tabindex="0" id="filter" title="filterseksjonen" role="filter">
                         
                     
                         <!--Filtervisningen-->
@@ -154,8 +154,8 @@
                 </section>
             </div>
             <!--UKESPLAN (Genereres med JS)-->
-            <section id="ukesplan"></section>
-            <section id="videre"></section>
+            <section id="ukesplan" role="generated content"></section>
+            <section id="videre" role="save and proceed"></section>
         </main>    
     </body>
 

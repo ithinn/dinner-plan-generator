@@ -38,8 +38,9 @@
         
     }
 
-    #lagretBtn, #lagre, #sendmail, #mail, #filterLabel, #lukk_filter_Btn {
+    #lagretBtn, #lagre, #sendmail, #mail {
         font-size: 3rem;
+        width: 60vw;
     }
 
     #head_wrap {
@@ -97,5 +98,22 @@
     }
     #kursiv {
         top: 2em;
+    }
+
+    #ukesplan {
+        margin-bottom: 10em;
+    }
+    
+    
+    #lukk_filter_Btn, #lagretBtn, #lagre, #sendmail, #mail{
+        font-size: 3rem;
+        width: 30vw;
+    }
+    
+    
+    .labelWrap {
+        margin-top: 2em;
+        width: 60%;
+        
     }
 }
