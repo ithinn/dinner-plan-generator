@@ -137,7 +137,7 @@ const tilbake = () => {
 }
 
 const fancyMat = (fArray, sArray, array) => {
-    console.log(filteredArray);
+        
     if (filteredArray.length > 0) {
         for (const key in filteredArray) {
             let f = array[key].fredag;
@@ -317,7 +317,7 @@ filt.addEventListener("click", (e) => {
 //----------OPPRETTER TAGS SOM VISER HVILKE FILTRE SOM ER AKTIVE----------------------------------------------------
 
 const inpFilList = document.querySelectorAll(".inpFilter")
-console.log(inpFilList);
+
 const checkIfChecked = () => {
     tagSek.innerHTML = "";
     console.log("Denne har blitt kallet")
@@ -333,27 +333,6 @@ const checkIfChecked = () => {
 }
 
 
-
-filt.addEventListener("keydown", (e) => {
-    if (e.target.nodeName = "INPUT") {
-        
-        if (e.key === "Enter") {
-            console.log(e.target.checked);
-            if (e.target.checked) {
-                console.log(e.target.checked);
-                e.target.checked = false;
-                
-
-            } else if (!e.target.checked) {
-                e.target.checked = true;
-                checkIfChecked();
-                
-            }
-            
-            console.log("noe skjer")
-        }
-}
-})
 
 //-----------FJERNER TAGS OG FILTRERINGEN NÅR MAN TRYKKER PÅ DEM-----------------------------------------------
 
@@ -376,20 +355,6 @@ const removeFilter = (e) => {
 }
 
 
-//HERHOLDERDUPÅ
-
-tagSek.addEventListener("click", (e) => {
-    if(e.target.nodeName === "LABEL") {
-        removeFilter(e);
-        }
-})
-tagSek.addEventListener("keydown", (e) => {
-    if(e.target.nodeName === "LABEL") {
-        if(e.key === "Enter") {
-            removeFilter(e);
-        }
-    }
-})
 
 //-------------DENNE KAN KANSKJE FJERNES ELLER?-------------------------------------
 
@@ -397,11 +362,11 @@ const clickFilterLabel = (evt) => {
 
 if (evt.target.checked) {
 
-    console.log("virker, sjekka");
+    //console.log("virker, sjekka");
 
 
 } else if (!evt.target.checked){
-    console.log("her var alt tomt");
+    //console.log("her var alt tomt");
 
 }
 }
@@ -434,27 +399,27 @@ const riktigFokus = (cName) => {
 
 
 
-lukk_filter_btn.addEventListener("click", (e) => {
-    seFiltrert();
-    riktigFokus("#filterLabel");
-    }
-    );
+// lukk_filter_btn.addEventListener("click", (e) => {
+//     seFiltrert();
+//     riktigFokus("#filterLabel");
+//     }
+//     );
 
 
-filtLab.addEventListener("keydown", (e) => {
-    e.preventDefault();
+// filtLab.addEventListener("keydown", (e) => {
+//     e.preventDefault();
     
-    if (e.key === "Enter") {
+//     if (e.key === "Enter") {
            
-        seFiltrert();
-    } else if (e.shiftKey && e.key === "Tab") {
-        console.log("Du trykker shift+tag");
-        riktigFokus(".filt-tag")
-    }else if (e.key === "Tab") {
-        riktigFokus(".bytt")
-    }      
+//         seFiltrert();
+//     } else if (e.shiftKey && e.key === "Tab") {
+//         console.log("Du trykker shift+tag");
+//         riktigFokus(".filt-tag")
+//     }else if (e.key === "Tab") {
+//         riktigFokus(".bytt")
+//     }      
 
-})
+// })
 //-----------------ENDRER RETT NÅR DU TRYKKER KNAPPEN-----------------------------------------------
 
 const endreRett = (e, arr) => {
@@ -524,19 +489,3 @@ ukesplan.addEventListener("click", (e) => {
     }
 })
 
-// ukesplan.addEventListener("keydown", (e) => {
-//     if (e.target.nodeName === "BUTTON") {
-//         if (e.key === 13) {
-
-//             console.log(e.target);
-//             debugger
-//             if (filteredArray.length > 0) {
-//                 endreRett(e, filteredArray);
-//             } else {
-//                 endreRett(e, middager);
-//             }
-//     }
-// }
-// } )
-
-//------------------------------------------------------------
