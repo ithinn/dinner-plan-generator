@@ -7,7 +7,7 @@ let sonFilt = [];
 
 console.log(sonFilt);
 
-//Lag fredagsmiddagsarray
+//Fyll fredagsmiddags/søndagsmiddag
 middager.forEach(el => {
     el.fredag === true ? fredagsmiddag.push(el) : console.log("not");
     el.søndag === true ? sondagsmiddag.push(el) : console.log("not");
@@ -61,7 +61,7 @@ const tegnUkesplan = (arr1, arr2, arr3 ) => {
 
     lagretBtn.style.display = "none";
 
-    //tilpassetSkrift();
+  
 }
 
 
@@ -149,40 +149,12 @@ const tilbake = () => {
 
 }
 
-// const fancyMat = (fArray, sArray, array) => {
 
-//     if (filteredArray.length > 0) {
-//         for (const key in filteredArray) {
-//             let f = array[key].fredag;
-//             let s = array[key].søndag;
-
-//             if (f === true) {
-//                 fArray.push(array[key]);
-//             } else if (s===true) {
-//                 sArray.push(array[key]);
-//             }
-//         }
-//     } else {
-//     for (const key in middager) {
-//         let f = array[key].fredag;
-//         let s = array[key].søndag;
-
-//         if (f === true) {
-//             fArray.push(array[key]);
-//         } else if (s===true) {
-//             sArray.push(array[key]);
-//         }
-//     }
-// }
-// }
 
 const plukkUtRett = (arr) => {
     let index = Math.floor(Math.random()*arr.length)
     return index;
 }
-
-//fancyMat(fredagsmiddag, sondagsmiddag, middager);
-
 
 const alertMail = () => {
     alert("Ukesplanen er sendt til din epostadresse");
@@ -236,14 +208,11 @@ const applyFilter = () => {
     filteredArray = [];
     sonFilt = [];
     freFilt = [];
-
+    console.log("applyErKallet");
     //mainFilter(middager);
     
     filterInn(middager);
     checkIfChecked();
-
-    console.log(sonFilt);
-    console.log(freFilt);
 
     fyllMiddagsliste(filteredArray, freFilt, sonFilt);
 
@@ -338,7 +307,7 @@ const inpFilList = document.querySelectorAll(".inpFilter")
 
 const checkIfChecked = () => {
     tagSek.innerHTML = "";
-    console.log("Denne har blitt kallet")
+    console.log("CIC har blitt kallet")
     for (let i = 0; i<inpFilList.length; i++) {
 
         if (inpFilList[i].checked) {

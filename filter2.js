@@ -13,7 +13,6 @@ const filterInn = (arr) => {
     let vegArraysun = [];
     let tempArray = [];
     let tag = document.querySelectorAll(".inpFilter");
-  
    
     //Går gjennom alle tagene og sjekker om de er checked eller ikke. Hvis de er det pushes tagen inn i tempArray.
     for (let i = 0; i < tag.length; i++) {
@@ -21,7 +20,6 @@ const filterInn = (arr) => {
             tempArray.push(tag[i]);
         }
     }
-
 
     //Lager betingelser for kjøtt, fisk og vegetar, og legger dem til i filterArray, fredagsfilter og søndagsfilter
     for (let i= 0; i < tempArray.length; i++) {
@@ -61,24 +59,17 @@ const filterInn = (arr) => {
             
             
         }  
-     
-
             filteredArray = [].concat(meatArray, fishArray, vegArray);
             freFilt = [].concat(meatArrayfre, fishArrayfre, vegArrayfre);
             sonFilt = [].concat(meatArraysun, fishArraysun, vegArraysun);
         } 
 
-   console.log(freFilt);
-   console.log(sonFilt);
-   console.log(filteredArray);
+}
 
+//filterInn(middager);
 filt.addEventListener("click", (e) => {
     if (e.target.nodeName === "INPUT") {
         applyFilter(e);
         console.log("klikka");
         }
     })
-    
-}
-
-//filterInn(middager);
