@@ -2,6 +2,19 @@ let middagsliste = [];
 let fredagsmiddag = [];
 let sondagsmiddag = [];
 let filteredArray = [];
+let freFilt = [];
+let sonFilt = [];
+
+console.log(sonFilt);
+
+//Lag fredagsmiddagsarray
+middager.forEach(el => {
+    el.fredag === true ? fredagsmiddag.push(el) : console.log("not");
+    el.søndag === true ? sondagsmiddag.push(el) : console.log("not");
+})
+console.log(fredagsmiddag);
+console.log(sondagsmiddag);
+
 
 const minUke = document.getElementById("ukesplan_h2");
 const mainBtn = document.getElementById("genererBtn")
@@ -13,10 +26,10 @@ const tagSek = document.getElementById("filterlabler");
 const videre = document.getElementById("videre");
 const lagretBtn = document.getElementById("lagretBtn");
 
-const tegnUkesplan = (arr2) => {
+const tegnUkesplan = (arr1, arr2, arr3 ) => {
     let html = "";
 
-    fyllMiddagsliste(arr2)
+    fyllMiddagsliste(arr1, arr2, arr3);
 
     for (let i = 0; i < middagsliste.length; i++) {
             html += `
@@ -48,8 +61,15 @@ const tegnUkesplan = (arr2) => {
 
     lagretBtn.style.display = "none";
 
-    tilpassetSkrift();
+    //tilpassetSkrift();
 }
+
+
+//Lytter - tegnUkesplan
+mainBtn.addEventListener("click", () => {
+    tegnUkesplan(middager, fredagsmiddag, sondagsmiddag);
+})
+
 
 
 //------------------------------------------------------
@@ -106,17 +126,9 @@ const finnLocal = () => {
 
 window.onload = finnLocal();
 
-//Lytter - tegnUkesplan
-mainBtn.addEventListener("click", () => {
-    tegnUkesplan(middager);
-})
-
-
 //-----------------------------------------------------
 //SMÅFUNKSJONER
 //--------------------------------------------------------
-
-
 
 //Generell filterfunksjon
 const filter = (condition, collection) => {
@@ -137,40 +149,39 @@ const tilbake = () => {
 
 }
 
-const fancyMat = (fArray, sArray, array) => {
+// const fancyMat = (fArray, sArray, array) => {
 
-    if (filteredArray.length > 0) {
-        for (const key in filteredArray) {
-            let f = array[key].fredag;
-            let s = array[key].søndag;
+//     if (filteredArray.length > 0) {
+//         for (const key in filteredArray) {
+//             let f = array[key].fredag;
+//             let s = array[key].søndag;
 
-            if (f === true) {
-                fArray.push(array[key]);
-            } else if (s===true) {
-                sArray.push(array[key]);
-            }
-        }
-    } else {
-    for (const key in middager) {
-        let f = array[key].fredag;
-        let s = array[key].søndag;
+//             if (f === true) {
+//                 fArray.push(array[key]);
+//             } else if (s===true) {
+//                 sArray.push(array[key]);
+//             }
+//         }
+//     } else {
+//     for (const key in middager) {
+//         let f = array[key].fredag;
+//         let s = array[key].søndag;
 
-        if (f === true) {
-            fArray.push(array[key]);
-        } else if (s===true) {
-            sArray.push(array[key]);
-        }
-    }
-}
-}
+//         if (f === true) {
+//             fArray.push(array[key]);
+//         } else if (s===true) {
+//             sArray.push(array[key]);
+//         }
+//     }
+// }
+// }
 
 const plukkUtRett = (arr) => {
     let index = Math.floor(Math.random()*arr.length)
-    //arr.splice(index, 1)
     return index;
 }
 
-fancyMat(fredagsmiddag, sondagsmiddag, middager);
+//fancyMat(fredagsmiddag, sondagsmiddag, middager);
 
 
 const alertMail = () => {
@@ -183,7 +194,7 @@ const alertMail = () => {
 //--------------------------------------------------------------
 
 
-const fyllMiddagsliste = (array) => {
+const fyllMiddagsliste = (array, arrayFre, arraySun) => {
     let tempArr = [];
     middagsliste = [];
 
@@ -205,12 +216,12 @@ const fyllMiddagsliste = (array) => {
         tempArr.splice(m, 1);
     }
 
-    let f = plukkUtRett(fredagsmiddag);
-    let fMiddag = fredagsmiddag[f];
+    let f = plukkUtRett(arrayFre);
+    let fMiddag = arrayFre[f];
     middagsliste.splice(4, 0, fMiddag);
 
-    let s = plukkUtRett(sondagsmiddag);
-    let sMiddag = sondagsmiddag[s];
+    let s = plukkUtRett(arraySun);
+    let sMiddag = arraySun[s];
     middagsliste.splice(6, 0, sMiddag);
 }
 
@@ -223,95 +234,101 @@ const applyFilter = () => {
     ukesplan.innerHTML = "";
     middagsliste = [];
     filteredArray = [];
+    sonFilt = [];
+    freFilt = [];
 
-    mainFilter(middager);
-
+    //mainFilter(middager);
+    
+    filterInn(middager);
     checkIfChecked();
 
-    fyllMiddagsliste(filteredArray);
+    console.log(sonFilt);
+    console.log(freFilt);
 
-    tegnUkesplan(middagsliste, filteredArray);
+    fyllMiddagsliste(filteredArray, freFilt, sonFilt);
+
+    tegnUkesplan(filteredArray, freFilt, sonFilt);
 }
 
 //---------------------------------------------------------------------------
 
-//SELVESTE FILTERFUNKSJONEN
-const mainFilter = (arr) => {
-    let tempArray = [];
+// //SELVESTE FILTERFUNKSJONEN
+// const mainFilter = (arr) => {
+//     let tempArray = [];
 
-    //Setter verdien til resultArray til middags-arrayet, slik at det slår inn når ingen andre filtre er i kraft
-    filteredArray = arr;
-    let meatArray = [];
-    let fishArray = [];
-    let vegArray = [];
-    let cheapArray = [];
-    let cheaperArray = [];
-    let exArray = [];
-    let glutArr = [];
-    let lakArr = [];
-    let tag = document.querySelectorAll(".inpFilter");
-
-
-    //Går gjennom alle tagene og sjekker om de er checked eller ikke. Hvis de er det pushes tagen inn i tempArray.
-    for (let i = 0; i < tag.length; i++) {
-        if (tag[i].checked) {
-            tempArray.push(tag[i]);
-        }
-    }
-
-    // //Går gjennom tempArray, og avgjør hva produktene skal filtreres på ut fra klassenavnet på tagen (som er element i tempArray)
-     for (let i = 0; i < tempArray.length; i++) {
-        tagSek.innerHTML = "";
-        //console.log(tempArray[i]);
-
-        //Lagrer resultatet av filtreringen i egne arrayer
-        if (tempArray[i].id === "kjott") {
-            const meat = item => item.kjottRodt === true;
-            meatArray = filter(meat, arr);
-
-        } else if (tempArray[i].id ==="fisk") {
-            const fish = item => item.fisk === true;
-            fishArray = filter(fish, arr);
-
-        } else if (tempArray[i].id === "vegetar") {
-            const veg = item => item.vegetar === true;
-            vegArray = filter(veg, arr);
-
-        } else if (tempArray[i].id === "gluten") {
-            const glu = item => item.glutenfri === true;
-            glutArr = filter(glu, arr);
-
-        } else if (tempArray[i].id === "laktose") {
-            const lak = item => item.laktosefri === true;
-            lakArr = filter(lak, arr);
-
-        } else if (tempArray[i].id === "billigst") {
-            const billigst = item => item.pris === 1;
-            cheapArray = filter(billigst, arr);
-
-        } else if (tempArray[i].id === "billig") {
-            const billig = item => item.pris === 2 || item.pris === 1;
-            cheaperArray = filter(billig, arr);
-
-        } else if (tempArray[i].id === "dyrt") {
-            const dyrt = item => item.pris === 3;
-            exArray = filter(dyrt, arr);
-        }
+//     //Setter verdien til resultArray til middags-arrayet, slik at det slår inn når ingen andre filtre er i kraft
+//     filteredArray = arr;
+//     let meatArray = [];
+//     let fishArray = [];
+//     let vegArray = [];
+//     let cheapArray = [];
+//     let cheaperArray = [];
+//     let exArray = [];
+//     let glutArr = [];
+//     let lakArr = [];
+//     let tag = document.querySelectorAll(".inpFilter");
 
 
-        //Slår sammen alle arrayene og lagrer dem i resultArray
-        filteredArray = [].concat(fishArray, meatArray, vegArray, cheapArray, cheaperArray, exArray, glutArr, lakArr);
-    }
-}
-        //Øverst OG, ikke eller
-        //Neste: Fjern ting fra første bolken
-        //Ny prosess: Fjern alle som har to og tre i tid
+//     //Går gjennom alle tagene og sjekker om de er checked eller ikke. Hvis de er det pushes tagen inn i tempArray.
+//     for (let i = 0; i < tag.length; i++) {
+//         if (tag[i].checked) {
+//             tempArray.push(tag[i]);
+//         }
+//     }
 
-filt.addEventListener("click", (e) => {
-    if (e.target.nodeName === "INPUT") {
-        applyFilter(e);
-        }
-    })
+//     // //Går gjennom tempArray, og avgjør hva produktene skal filtreres på ut fra klassenavnet på tagen (som er element i tempArray)
+//      for (let i = 0; i < tempArray.length; i++) {
+//         tagSek.innerHTML = "";
+//         //console.log(tempArray[i]);
+
+//         //Lagrer resultatet av filtreringen i egne arrayer
+//         if (tempArray[i].id === "kjott") {
+//             const meat = item => item.kjottRodt === true;
+//             meatArray = filter(meat, arr);
+
+//         } else if (tempArray[i].id ==="fisk") {
+//             const fish = item => item.fisk === true;
+//             fishArray = filter(fish, arr);
+
+//         } else if (tempArray[i].id === "vegetar") {
+//             const veg = item => item.vegetar === true;
+//             vegArray = filter(veg, arr);
+
+//         } else if (tempArray[i].id === "gluten") {
+//             const glu = item => item.glutenfri === true;
+//             glutArr = filter(glu, arr);
+
+//         } else if (tempArray[i].id === "laktose") {
+//             const lak = item => item.laktosefri === true;
+//             lakArr = filter(lak, arr);
+
+//         } else if (tempArray[i].id === "billigst") {
+//             const billigst = item => item.pris === 1;
+//             cheapArray = filter(billigst, arr);
+
+//         } else if (tempArray[i].id === "billig") {
+//             const billig = item => item.pris === 2 || item.pris === 1;
+//             cheaperArray = filter(billig, arr);
+
+//         } else if (tempArray[i].id === "dyrt") {
+//             const dyrt = item => item.pris === 3;
+//             exArray = filter(dyrt, arr);
+//         }
+
+
+//         //Slår sammen alle arrayene og lagrer dem i resultArray
+//         filteredArray = [].concat(fishArray, meatArray, vegArray, cheapArray, cheaperArray, exArray, glutArr, lakArr);
+//     }
+// }
+//         //Øverst OG, ikke eller
+//         //Neste: Fjern ting fra første bolken
+//         //Ny prosess: Fjern alle som har to og tre i tid
+
+// filt.addEventListener("click", (e) => {
+//     if (e.target.nodeName === "INPUT") {
+//         applyFilter(e);
+//         }
+//     })
 
 
 
@@ -424,12 +441,11 @@ const riktigFokus = (cName) => {
 //-----------------ENDRER RETT NÅR DU TRYKKER KNAPPEN-----------------------------------------------
 
 const endreRett = (e, arr) => {
-    //console.log(middagsliste);
-    //console.log(e.target);
+
     let html;
     let tempArr = arr;
     btnId = Number(e.target.id.slice(-1));
-    console.log(btnId);
+    
 
     //Velg mat som tar under 30 minutter å lage på hverdager
     const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
@@ -439,16 +455,33 @@ const endreRett = (e, arr) => {
     const ingenKoseMat = item => item.fredag === false || item.søndag === false;
     tempArr = filter(ingenKoseMat, tempArr);
 
-    console.log(tempArr);
-    let nyIndex = plukkUtRett(tempArr);
-    let nyRett = tempArr[nyIndex];
+    let nyRett = "";
+    let nyRettFre = "";
+    let nyRettSon = "";
 
-    let nyIndexFre = plukkUtRett(fredagsmiddag);
-    let nyRettFre = fredagsmiddag[nyIndexFre];
 
-    let nyIndexSon = plukkUtRett(sondagsmiddag);
-    let nyRettSon = sondagsmiddag[nyIndexSon];
-
+    if (filteredArray.length > 0) {
+        tempArr = filteredArray;
+        let nyIndex = plukkUtRett(tempArr);
+        nyRett = tempArr[nyIndex];
+    
+        let nyIndexFre = plukkUtRett(freFilt);
+        nyRettFre = freFilt[nyIndexFre];
+    
+        let nyIndexSon = plukkUtRett(sonFilt);
+        nyRettSon = sonFilt[nyIndexSon];
+    } else {
+        let nyIndex = plukkUtRett(tempArr);
+        nyRett = tempArr[nyIndex];
+    
+        let nyIndexFre = plukkUtRett(fredagsmiddag);
+        nyRettFre = fredagsmiddag[nyIndexFre];
+    
+        let nyIndexSon = plukkUtRett(sondagsmiddag);
+        nyRettSon = sondagsmiddag[nyIndexSon];
+    }
+   
+ 
     if (btnId <=3 || btnId === 5) {
         middagsliste.splice(btnId, 1, nyRett);
         console.log("hverdag");
