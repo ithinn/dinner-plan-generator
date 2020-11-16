@@ -4,21 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>Middagsgenerator</title>
-        <link rel="stylesheet" href="animasjon.css">
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="responsive.css">
-        <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style/animasjon.css">
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="stylesheet" href="style/responsive.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-        
-
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-        <script src="middager.js" defer></script>
-        <script src="nyJS.js" defer></script>
-        <script src="filter2.js" defer></script>
-        <script src="keydown.js" defer></script>
-        <!--<script src="endre-rett.js" defer></script>-->
+        <script src="script/middager.js" defer></script>
+        <script src="script/main.js" defer></script>
+        <script src="script/filter.js" defer></script>
+        <script src="script/keydown.js" defer></script>
     </head>
-
 
     <body>
         <header id="header">
@@ -32,7 +26,7 @@
             <!--GENERER-UKESPLAN-BUTTON-->
             <button id="genererBtn" class="mainBtn">Generer ukesplan</button>    
             
-            <section id="filterlabler" title="Her ser du hvilke filtre som er aktive"></section>
+            <section aria-label="filterseksjon" id="filterlabler" title="Her ser du hvilke filtre som er aktive"></section>
             
             <div id="lagret_ukesplan">
                 <button id="lagretBtn">Se lagret ukesplan</button>
@@ -40,126 +34,124 @@
             </div>
 
             
-            <!--Filterknappen-->
-            <div id="btn_wrap">
-                <input tabindex="-1" type="checkbox" unchecked id="cb" class="subBtn"></input>
-                <label tabindex="0" id="filterLabel" for="cb">Filter</label>
-            
-                    
-
-                <section id="overlay" title="Overlay"></section>
-
             <!--FILTER-->
-                <section tabindex="0" id="filter" title="filterseksjonen">
-                        
-                    
-                        <!--Filtervisningen-->
+            <section id="filt_wrap">
+
+                <!--FILTERKNAPPEN-->
+                <input tabindex="-1" type="checkbox" id="cb" class="subBtn">
+                <label tabindex="0" id="filterLabel" for="cb">Filter</label>
         
-                            <div id="velgType">    
-                                <h3>Jeg vil ha:</h3>
-                                
-                                <div class="labelWrap">
-                                    <div id="kjott_wrap" class="filter-item">
-                                        <input unchecked type="checkbox" id="kjott" class="inpFilter" title="Velg kjøtt" value="Kjøtt">
-                                        <label class="cbLabel type" for="kjott">Kjøtt</label>
-                                    </div>
-                                    
-                                    <div id="fisk_wrap" class="filter-item">
-                                        <input type="checkbox" unchecked id="fisk" class="inpFilter" title="Velg fisk">
-                                        <label class="cbLabel type" for="fisk">Fisk</label>
-                                    </div>
+                <article aria-label="Overlay" id="overlay" title="Overlay"></article>
 
-                                    <div id="veg_wrap" class="filter-item">
-                                        <input type="checkbox" unchecked id="vegetar" class="inpFilter" title="Velg vegetar">
-                                        <label class="cbLabel type" for="vegetar">Vegetar</label>
-                                    </div>
-
-                                    <div id="glut_wrap" class="filter-item">
-                                        <input type="checkbox" unchecked id="gluten" class="inpFilter" title="Velg glutenfritt">
-                                        <label class="cbLabel type" for="gluten">Glutenfritt</label>
-                                    </div>
-
-                                    <div id="lakt_wrap" class="filter-item">
-                                        <input type="checkbox" unchecked id="laktose" class="inpFilter" title="Velg laktosefritt">
-                                        <label class="cbLabel type" for="laktose">Laktosefritt</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div id="velgPris">
-                                <h3>Jeg vil betale:</h3>
-                                
-                                <div class="labelWrap">
-                                    
-                                    <div id="billigst_wrap" class="filter-item"> 
-                                        <input type="checkbox" unchecked id="billigst" class="inpFilter" title="Velg billigste alternativ">
-                                        <label class="cbLabel" for="billigst">Under 100,-</label>
-                                    </div>
-                                    
-                                    <div id="billig_wrap" class="filter-item">
-                                        <input type="checkbox" unchecked id="billig" class="inpFilter" title="Velg nest billigste alternativ">
-                                        <label class="cbLabel" for="billig">Under 150,-</label>
-                                    </div>    
-
-                                    <div id="dyrt_wrap" class="filter-item">
-                                        <input type="checkbox" unchecked id="dyrt" class="inpFilter" title="Velg dyreste alternativ">
-                                        <label class="cbLabel" for="dyrt">Under 200,-</label>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div id="velgTid">
-                                <h3>Jeg har det ekstra travelt:</h3>
-                                <div class="labelWrap">
-                                    <div id="man_wrap" class="filter-item">                                   
-                                        <input unchecked class="inpFilter" type="checkbox" id="mandag" title="Marker mandag som 'travel'">
-                                        <label class="cbLabel" for="mandag">Mandag</label>
-                                    </div>
-                                    
-                                    <div id="tir_wrap" class="filter-item">
-                                        <input unchecked class="inpFilter" type="checkbox" id="tirsdag" title="Marker tirsdag som 'travel'">
-                                        <label class="cbLabel" for="tirsdag">Tirsdag</label>
-                                    </div>
-
-                                    <div id="ons_wrap" class="filter-item">
-                                        <input unchecked class="inpFilter" type="checkbox" id="onsdag" title="Marker onsdag som 'travel'">
-                                        <label class="cbLabel" for="onsdag">Onsdag</label>
-                                    </div>
-
-                                    <div id="tors_wrap" class="filter-item">
-                                        <input unchecked class="inpFilter" type="checkbox" id="torsdag" title="Marker torsdag som 'travel'">
-                                        <label class="cbLabel" for="torsdag">Torsdag</label>
-                                    </div>
-
-                                    <div id="fre_wrap" class="filter-item">
-                                        <input unchecked class="inpFilter" type="checkbox" id="fredag" title="Marker fredag som 'travel'">
-                                        <label class="cbLabel" for="fredag">Fredag</label>
-                                    </div>
-
-                                    <div id="lo_wrap" class="filter-item">
-                                        <input unchecked class="inpFilter" type="checkbox" id="lørdag" title="Marker lørdag som 'travel'">
-                                        <label class="cbLabel" for="lørdag">Lørdag</label>
-                                    </div>
-
-                                    <div id="so_wrap" class="filter-item">
-                                        <input unchecked class="inpFilter" type="checkbox" id="søndag" title="Marker søndag som 'travel'">
-                                        <label class="cbLabel" for="søndag">Søndag</label>
-                                    </div>                    
-                               
-                                </div>
-                            </div> 
-
-                            <button id="lukk_filter_Btn">Se resultat</button>
+                <!--FILTERSEKSJONEN-->
+                <article tabindex="0" id="filter" title="filterseksjonen">
                         
-                </section>
-            </div>
+                    <!--FILTERVALG-->
+                    <article id="velgType">    
+                        <h3>Jeg vil ha:</h3>
+
+                        <div class="labelWrap">
+                            <div id="kjott_wrap" class="filter-item">
+                                <input type="checkbox" id="kjott" class="inpFilter" title="Velg kjøtt" value="Kjøtt">
+                                <label class="cbLabel type" for="kjott">Kjøtt</label>
+                            </div>
+                                    
+                            <div id="fisk_wrap" class="filter-item">
+                                <input type="checkbox"  id="fisk" class="inpFilter" title="Velg fisk">
+                                <label class="cbLabel type" for="fisk">Fisk</label>
+                            </div>
+
+                            <div id="veg_wrap" class="filter-item">
+                                <input type="checkbox"  id="vegetar" class="inpFilter" title="Velg vegetar">
+                                <label class="cbLabel type" for="vegetar">Vegetar</label>
+                            </div>
+
+                            <div id="glut_wrap" class="filter-item">
+                                <input type="checkbox" id="gluten" class="inpFilter" title="Velg glutenfritt">
+                                <label class="cbLabel type" for="gluten">Glutenfritt</label>
+                            </div>
+
+                            <div id="lakt_wrap" class="filter-item">
+                                <input type="checkbox" id="laktose" class="inpFilter" title="Velg laktosefritt">
+                                <label class="cbLabel type" for="laktose">Laktosefritt</label>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article id="velgPris">
+                        <h3>Jeg vil betale:</h3>  
+
+                        <div class="labelWrap">
+                                    
+                            <div id="billigst_wrap" class="filter-item"> 
+                                <input type="checkbox" id="billigst" class="inpFilter" title="Velg billigste alternativ">
+                                <label class="cbLabel" for="billigst">Under 100,-</label>
+                            </div>
+                                    
+                            <div id="billig_wrap" class="filter-item">
+                                <input type="checkbox" id="billig" class="inpFilter" title="Velg nest billigste alternativ">
+                                <label class="cbLabel" for="billig">Under 150,-</label>
+                            </div>    
+
+                            <div id="dyrt_wrap" class="filter-item">
+                                <input type="checkbox" id="dyrt" class="inpFilter" title="Velg dyreste alternativ">
+                                <label class="cbLabel" for="dyrt">Under 200,-</label>
+                            </div>
+                        </div>
+                    </article>
+
+
+                    <article id="velgTid">
+                        <h3>Jeg har det ekstra travelt:</h3>
+                        <div class="labelWrap">
+                            <div id="man_wrap" class="filter-item">                                   
+                                <input class="inpFilter" type="checkbox" id="mandag" title="Marker mandag som 'travel'">
+                                <label class="cbLabel" for="mandag">Mandag</label>
+                            </div>
+                                    
+                            <div id="tir_wrap" class="filter-item">
+                                <input class="inpFilter" type="checkbox" id="tirsdag" title="Marker tirsdag som 'travel'">
+                                <label class="cbLabel" for="tirsdag">Tirsdag</label>
+                            </div>
+
+                            <div id="ons_wrap" class="filter-item">
+                                <input class="inpFilter" type="checkbox" id="onsdag" title="Marker onsdag som 'travel'">
+                                <label class="cbLabel" for="onsdag">Onsdag</label>
+                            </div>
+
+                            <div id="tors_wrap" class="filter-item">
+                                <input class="inpFilter" type="checkbox" id="torsdag" title="Marker torsdag som 'travel'">
+                                <label class="cbLabel" for="torsdag">Torsdag</label>
+                            </div>
+
+                            <div id="fre_wrap" class="filter-item">
+                                <input class="inpFilter" type="checkbox" id="fredag" title="Marker fredag som 'travel'">
+                                <label class="cbLabel" for="fredag">Fredag</label>
+                            </div>
+
+                            <div id="lo_wrap" class="filter-item">
+                                <input class="inpFilter" type="checkbox" id="lørdag" title="Marker lørdag som 'travel'">
+                                <label class="cbLabel" for="lørdag">Lørdag</label>
+                            </div>
+
+                            <div id="so_wrap" class="filter-item">
+                                <input class="inpFilter" type="checkbox" id="søndag" title="Marker søndag som 'travel'">
+                                <label class="cbLabel" for="søndag">Søndag</label>
+                            </div>                    
+                               
+                        </div>
+                    </article> 
+
+                    <button id="lukk_filter_Btn">Se resultat</button>
+
+                </article>
+            </section>
             
             <!--UKESPLAN (Genereres med JS)-->
-            <section title="Her finner du ukesplanen" id="ukesplan"></section>
-            <section title="Her kan du velge om du vil lagre eller sende på epost" id="videre"></section>
+            <section aria-label="Ukesplan" title="Her finner du ukesplanen" id="ukesplan"></section>
+            
+            <!--VIDERE VALG-->
+            <section aria-label="Lagre eller send på mail" title="Her kan du velge om du vil lagre eller sende på epost" id="videre"></section>
         </main>    
     </body>
-
-    
 </html>
