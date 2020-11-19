@@ -255,6 +255,19 @@ const remFilt = () => {
     let tempArray = tagCheck();
     tempArray.forEach(el => console.log(el));
     let resultArray = middager;
+
+    console.log(resultArray);
+     //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
+     const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
+     resultArray = filter(t, resultArray);
+    
+     console.log(resultArray);
+     //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
+     const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+     resultArray = filter(ingenKoseMat, resultArray);
+
+    
+
     for (let i=0; i < tempArray.length; i++) {
 
         if (tempArray[i].id === "kjott" || tempArray[i].id === "fisk" || tempArray[i].id === "vegetar") {
@@ -277,11 +290,14 @@ const remFilt = () => {
 
         
     }
+
+    
     console.log(resultArray);
     return resultArray;
     
 }
 
+//console.log(remFilt());
 
 //middagsliste
 // const fredFilt = () => {
@@ -291,3 +307,6 @@ const remFilt = () => {
 //     return arrayet
 //     console.log(fredagsArray);
 // } 
+
+
+//Ok! remFilt kalles inni fyllMiddagsliste. Nå må jeg bare lage fredagsarrayet og søndagsarrayet og kalle det der også, så tror jeg at jeg har den. 

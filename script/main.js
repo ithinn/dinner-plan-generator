@@ -42,7 +42,10 @@ middager.forEach(el => {
 const tegnUkesplan = (arr1, arr2, arr3 ) => {
     let html = "";
 
-    fyllMiddagsliste(arr1, arr2, arr3);
+    fyllMiddagsliste(remFilt(), arr2, arr3);
+    
+    console.log(remFilt());
+    console.log(middagsliste);
 
     for (let i = 0; i < middagsliste.length; i++) {
 
@@ -93,16 +96,18 @@ mainBtn.addEventListener("click", () => {
 //FYLL MIDDAGSLISTE
 //--------------------------------------------------------------
 const fyllMiddagsliste = (array, arrayFre, arraySun) => {
-    let tempArr = [];
+    let tempArr = remFilt();
     middagsliste = [];
 
-    //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
-    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
-    tempArr = filter(t, array);
+    console.log(tempArr);
 
-    //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
-    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
-    tempArr = filter(ingenKoseMat, tempArr);
+    // //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
+    // const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
+    // tempArr = filter(t, array);
+
+    // //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
+    // const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+    // tempArr = filter(ingenKoseMat, tempArr);
 
     for (let i = 0; i <= 4; i++) {
         let m = plukkUtRett(tempArr);
