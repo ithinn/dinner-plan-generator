@@ -243,7 +243,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Pølser med rotmos og erter",
@@ -471,6 +472,21 @@ let middager = [
         laktosefri: false
     },
     {
+        navn: "Makaronigrateng med skinke",
+        område: "Norge",
+        kategori: "Grateng",
+        vegetar: false,
+        fisk: false,
+        kjøttHvitt: false,
+        kjottRodt: true,
+        tid: 3,
+        pris: 2,
+        fredag: true,
+        søndag: true,
+        glutenfri: false,
+        laktosefri: false
+    },
+    {
         navn: "Quesedilla med kylling og salat",
         område: "Norge",
         kategori: "Texmex",
@@ -561,6 +577,21 @@ let middager = [
         laktosefri: true
     },
     {
+        navn: "Fredagspizza",
+        område: "Italia",
+        kategori: "Pizza",
+        vegetar: false,
+        fisk: false,
+        kjøttHvitt: false,
+        kjottRodt: true,
+        tid: 2,
+        pris: 2,
+        fredag: true,
+        søndag: false,
+        glutenfri: false,
+        laktosefri: false
+    },
+    {
         navn: "Lapskaus",
         område: "Norge",
         kategori: "Tradisjon",
@@ -635,6 +666,21 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: true,
+        laktosefri: false
+    },
+    {
+        navn: "Fredagspizza vegetar",
+        område: "Italia",
+        kategori: "Pizza",
+        vegetar: true,
+        fisk: false,
+        kjøttHvitt: false,
+        kjottRodt: false,
+        tid: 2,
+        pris: 1,
+        fredag: true,
+        søndag: false,
+        glutenfri: false,
         laktosefri: false
     },
     {

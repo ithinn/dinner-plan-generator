@@ -18,18 +18,19 @@ const filter = (condition, collection) => {
 //------------------------------------------------------------------------------------------------------------------------
 //Sørger for at tager er unchecked i utgangspunktet, sjekker hvilke som er sjekket, og pusher dem inn i eget arr
 //------------------------------------------------------------------------------------------------------------------------
-const tagCheck = (destArr) => {
+const tagCheck = () => {
+    let array = [];
 
     tag.forEach(el => {
-        el.unchecked = true;
-        console.log(el.checked);
+        el.unchecked = true;  
     })
-    
+
     for (let i = 0; i < tag.length; i++) {
         if(tag[i].checked) {
-            destArr.push(tag[i]);
+            array.push(tag[i]);
         }
     }
+    return array;
 }
 
 
@@ -41,13 +42,26 @@ const tagCheck = (destArr) => {
 const applyFilter = () => {
     ukesplan.innerHTML = "";
     middagsliste = [];
-    filteredArray = []; 
-    filterInn(middager);
+    filteredArray = [];
+    //filterInn(middager);
+    remFilt();
+    fredFilt();
+    //filterUt();
     checkIfChecked();
     fyllMiddagsliste(filteredArray, freFilt, sonFilt);
     tegnUkesplan(filteredArray, freFilt, sonFilt);
 }
 
+
+let meatArray = [];
+let meatArrayfre = [];
+let meatArraysun = [];
+let fishArray = [];
+let fishArrayfre = [];
+let fishArraysun = [];
+let vegArray = [];
+let vegArrayfre = [];
+let vegArraysun = [];
 
 //-------------------------------------------------------------------------------------------
 //Filtrerer fisk, kjøtt og vegetar
@@ -67,53 +81,55 @@ const filterInn = (arr) => {
     let vegArrayfre = [];
     let vegArraysun = [];
     let tempArray = [];
-    
-    //Går gjennom alle tagene og sjekker om de er checked eller ikke. Hvis de er det pushes tagen inn i tempArray.
-    tagCheck(tempArray);
 
+    //Går gjennom alle tagene og sjekker om de er checked eller ikke. Hvis de er det pushes tagen inn i tempArray.
+    tempArray = tagCheck();
+
+    //filtAll(tempArray, "kjott", "kjottRodt", meatArray, meatArrayfre, meatArraysun);
+    //console.log(meatArray);
     //Lager betingelser for kjøtt, fisk og vegetar, og legger dem til i filterArray, fredagsfilter og søndagsfilter
     for (let i= 0; i < tempArray.length; i++) {
-        
+
         if (tempArray[i].id === "kjott") {
             const meat = item => item.kjottRodt === true && !item.fredag && !item.søndag;
-            meatArray = filter(meat, middager);    
-            
+            meatArray = filter(meat, middager);
+
             const meatFri = item => item.kjottRodt === true && item.fredag;
             meatArrayfre = filter(meatFri, middager)
-            
+
             const meatSun = item => item.kjottRodt === true && item.søndag;
             meatArraysun = filter(meatSun, middager);
-            
-            
+
+
         } else if (tempArray[i].id === "fisk") {
             const fish = item => item.fisk === true && !item.fredag && !item.søndag;
-            fishArray = filter(fish, middager);    
-            
+            fishArray = filter(fish, middager);
+
             const fishFri = item => item.fisk === true && item.fredag;
             fishArrayfre = filter(fishFri, middager)
-            
+
             const fishSun = item => item.fisk === true && item.søndag;
             fishArraysun = filter(fishSun, middager);
-            
+
 
         } else if (tempArray[i].id === "vegetar") {
-                
+
             const veg = item => item.vegetar === true && !item.fredag && !item.søndag;
-            vegArray = filter(veg, middager);    
-            
+            vegArray = filter(veg, middager);
+
             const vegFri = item => item.vegetar === true && item.fredag;
             vegArrayfre = filter(vegFri, middager)
-            
+
             const vegSun = item => item.vegetar === true && item.søndag;
             vegArraysun = filter(vegSun, middager);
-            
-            
-        }  
+
+
+       }
         //Slår sammen de filtrerte listene
             filteredArray = [].concat(meatArray, fishArray, vegArray);
             freFilt = [].concat(meatArrayfre, fishArrayfre, vegArrayfre);
             sonFilt = [].concat(meatArraysun, fishArraysun, vegArraysun);
-        } 
+       }
 
 }
 
@@ -132,13 +148,13 @@ filt.addEventListener("click", (e) => {
 
 const checkIfChecked = () => {
     tagSek.innerHTML = "";
-    
+
     for (let i = 0; i<tag.length; i++) {
 
         if (tag[i].checked) {
             tagSek.style.display = "flex";
             tagSek.innerHTML += `<label tabindex="0" id="filt-tab${i}" class="filt-tag">${tag[i].id}</label>`
-        } 
+        }
     }
 }
 
@@ -168,37 +184,96 @@ const removeFilter = (e) => {
 
 
 
-
+let filtOfFilt = [];
 
 //Virker ikke enda, men denne skal funke for filtrene som ikke er kjøtt/fisk/vegetar.
-// const filterUt = () => {
-//     let tempArray = [];
-//     let newArray = filteredArray;
+const filterUt = () => {
+    let tempArray = [];
+    tagCheck(tempArray);
 
-//     tagCheck(tempArray);
-//     console.log(newArray);
-//     console.log(tempArray);
-//     if (filteredArray.length > 0) {
+    filtOfFilt = filteredArray;
+    console.log(tempArray);
 
-//         for (let i=0; i<tempArray.length; i++) {
-//             //debugger
-//             if (tempArray[i].id === "gluten") {
-//                 console.log("gluten er sjekka");
-                
-//                 newArray.forEach(el => {
-//                     if (!el.glutenfri) {
-//                         newArray.splice(el)
-//                     }
-                    
-                  
-//                 })
-//             }
+//    tempArray.forEach(el => {
+//         if(filtOfFilt.length > 0 && el.id === "gluten") {
+//             console.log("Den er lengre enn 0")
+//             filtOfFilt = filtOfFilt.filter(el => el.glutenfri);
 //         }
-//         console.log(filteredArray);
-//     }
-// }
+
+        testFilt(tempArray, "gluten", "glutenfri");
+        testFilt(tempArray, "laktose", "laktosefri")
+        
+         //console.log(filtOfFilt);
+//     })
+    //filterInn(filtOfFilt);
+}
 
 //filterUt();
 
 
+const testFilt = (arr1, id, attribute, num) => {
 
+   arr1.forEach(el => {
+   
+    if (filtOfFilt.length > 0 && el.id === id) {
+        console.log("Den er lengre enn 0")
+        filtOfFilt = filtOfFilt.filter(el => el[attribute]);
+        console.log(filtOfFilt);
+        console.log(filteredArray);
+    }
+
+   })
+
+
+}
+
+//Jeg prøver å lage en mer generell filterfunksjon jeg kan kalle inni de andre
+
+const filtAll = (arr, id, attribute, arr2, freArr, sonArr) => {
+    
+    arr.forEach(el => {
+        debugger
+        if (el.id === id) {
+            let test = item => !item.fredag && !item.søndag;
+            arr2 = filter(test, middager)
+
+            let test2 = item => item[attribute] &&item.fredag;
+            freArr = filter(test2, middager);
+
+            let test3 = item => item[attribute] && item.søndag;
+            sonArr = filter(test3, middager);
+        }
+    })
+}
+
+
+
+//NY START
+
+const remFilt = () => {
+
+    let tempArray = tagCheck();
+    tempArray.forEach(el => console.log(el.id));
+    let resultArray = middager;
+    for (let i=0; i < tempArray.length; i++) {
+
+        if (tempArray[i].id === "kjott" || tempArray[i].id === "fisk" || tempArray[i].id === "vegetar") {
+            resultArray = resultArray.filter(middag => middag.type === tempArray[i].id);   
+        } else if (tempArray[i].id === "gluten") {
+            resultArray = resultArray.filter(middag => middag.glutenfri === true);
+        } else if (tempArray[i].id === "laktose") {
+            resultArray = resultArray.filter(middag => middag.laktosefri === true);
+        } 
+
+        
+    }
+    console.log(resultArray);
+    return resultArray;
+    
+}
+
+const fredFilt = () => {
+    let fredagsArray = remFilt(); 
+
+    console.log(fredagsArray);
+} 
