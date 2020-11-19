@@ -45,11 +45,11 @@ const applyFilter = () => {
     filteredArray = [];
     //filterInn(middager);
     remFilt();
-    fredFilt();
+    //fredFilt();
     //filterUt();
     checkIfChecked();
-    fyllMiddagsliste(filteredArray, freFilt, sonFilt);
-    tegnUkesplan(filteredArray, freFilt, sonFilt);
+    fyllMiddagsliste(remFilt(), freFilt, sonFilt);
+    tegnUkesplan(remFilt(), freFilt, sonFilt);
 }
 
 
@@ -253,7 +253,7 @@ const filtAll = (arr, id, attribute, arr2, freArr, sonArr) => {
 const remFilt = () => {
 
     let tempArray = tagCheck();
-    tempArray.forEach(el => console.log(el.id));
+    tempArray.forEach(el => console.log(el));
     let resultArray = middager;
     for (let i=0; i < tempArray.length; i++) {
 
@@ -263,7 +263,17 @@ const remFilt = () => {
             resultArray = resultArray.filter(middag => middag.glutenfri === true);
         } else if (tempArray[i].id === "laktose") {
             resultArray = resultArray.filter(middag => middag.laktosefri === true);
-        } 
+        } else if (tempArray[i].id === "billigst") {
+            resultArray = resultArray.filter(middag => middag.pris === 1);
+        } else if (tempArray[i].id === "billig") {
+            resultArray = resultArray.filter(middag => middag.pris === 2);
+        } else if (tempArray[i].id === "dyrt") {
+            resultArray = resultArray.filter(middag => middag.pris === 3);
+
+            //Her blir det kødd
+        } else if (tempArray[i].className === "inpFilter travel") {
+            resultArray = resultArray.filter(middag => middag.tid === 1);
+        }
 
         
     }
@@ -272,8 +282,12 @@ const remFilt = () => {
     
 }
 
-const fredFilt = () => {
-    let fredagsArray = remFilt(); 
 
-    console.log(fredagsArray);
-} 
+//middagsliste
+// const fredFilt = () => {
+//     let fredagsArray = remFilt(); 
+//     //arr[4] = Math.floor(Math.random()*arr.length);
+
+//     return arrayet
+//     console.log(fredagsArray);
+// } 
