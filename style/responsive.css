@@ -22,12 +22,9 @@
         position: relative;
         top: -.2em;
     }
+
     #kursiv{
         display: none;
-        font-size: 4rem;
-        position: relative;
-        top: 2.4em;
-        left: 3.5em;
     }
 
     #lagretBtn, #lagre {
@@ -85,14 +82,8 @@
         
     }
     header {
-        background-position: bottom;
         height: 55vh;
-        border: 1px solid red;
         margin-bottom: 1em;
-    }
-
-    #kursiv {
-        top: 2em;
     }
 
     #ukesplan {
@@ -103,8 +94,6 @@
        
         width: 30vw;
     }
-
-    
     
     .labelWrap {
         margin-top: 2em;

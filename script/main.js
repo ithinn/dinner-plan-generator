@@ -1,8 +1,5 @@
 //Tomme arrayer som brukes av flere funksjoner
 let middagsliste = [];
-//let fredagsmiddag = [];
-let sondagsmiddag = [];
-let filteredArray = [];
 let freFilt = [];
 let sonFilt = [];
 
@@ -23,7 +20,7 @@ let tag = document.querySelectorAll(".inpFilter");
 
 
 //---------------------------------------------------------------------
-//OPPRETT HTML
+//OPPRETT HTML basert på middagsliste-arrayet
 //---------------------------------------------------------------------
 
 const tegnUkesplan = () => {
@@ -222,7 +219,6 @@ const endreRett = (e) => {
     ukesplan.innerHTML = html;
     document.getElementById(e.target.id).focus();
 }
-
 
 //Lytter til endre rett
 ukesplan.addEventListener("click", (e) => {

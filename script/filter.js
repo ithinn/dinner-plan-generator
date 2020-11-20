@@ -1,6 +1,6 @@
 
 //------------------------------------------------------------
-//Generell filterfunksjon
+//Generell filterfunksjon - brukes i andre funksjoner
 //------------------------------------------------------------
 
 const filter = (condition, collection) => {
@@ -57,6 +57,7 @@ filt.addEventListener("click", (e) => {
 
 //---------------------------------------------------------------------------------------------
 //OPPRETTER EN FILTRERT LISTE (HVIS FILTRE ER VALGT. HVIS IKKE RETURNERES HELE MIDDAGSARRAYET)
+//(Jeg får ikke valgt både fisk og vegetar og kjøtt - kun en av dem. Det må jeg løse til neste gang)
 //---------------------------------------------------------------------------------------------
 
 const filterListe = () => {
@@ -65,13 +66,8 @@ const filterListe = () => {
     
     let resultArray = middager;
 
-    console.log(tempArray);
-    
-    
     for (let i=0; i < tempArray.length; i++) {
-        
-        // if (tempArray[i].id === "kjott" || tempArray[i].id === "fisk" || tempArray[i].id === "vegetar") {
-        //     resultArray = resultArray.filter(middag => middag.type === tempArray[i].id);   
+         
         if (tempArray[i].id === "fisk") {
             resultArray = resultArray.filter(middag => middag.type === "fisk");
             console.log(resultArray);
@@ -93,7 +89,6 @@ const filterListe = () => {
         } 
     }
     
-    //console.log(resultArray);
     return resultArray;
 }
 
