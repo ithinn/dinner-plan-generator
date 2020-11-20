@@ -259,7 +259,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Kyllingshawarma med pitabrød",
@@ -274,7 +275,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Kyllingsalat med pasta",
@@ -289,7 +291,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Kjøttboller med potetmos, grønnsaksblanding og tyttebærsyltetøy",
@@ -304,7 +307,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Pasta Bolognaise",
@@ -319,7 +323,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Pasta Carbonara",
@@ -334,7 +339,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Omelett med ost og skinke",
@@ -349,7 +355,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Taco",
@@ -364,7 +371,8 @@ let middager = [
         fredag: true,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Pasta med kjøttboller i tomatsaus",
@@ -379,7 +387,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Kylling tikka masala",
@@ -394,7 +403,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Pad thai med kylling",
@@ -409,7 +419,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Minestronesuppe med kylling",
@@ -424,7 +435,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Kylling Satay med ris og mango",
@@ -439,7 +451,8 @@ let middager = [
         fredag: true,
         søndag: true,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Lasagne med salat",
@@ -454,7 +467,8 @@ let middager = [
         fredag: true,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Pølse- og pastagrateng med blomkål og brokkoli",
@@ -469,7 +483,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Makaronigrateng med skinke",
@@ -484,7 +499,8 @@ let middager = [
         fredag: true,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Quesedilla med kylling og salat",
@@ -499,7 +515,8 @@ let middager = [
         fredag: true,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Pitapizza med ost, skinke og salat",
@@ -514,7 +531,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Chilli con carne",
@@ -529,7 +547,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: true,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Kyllingkjøttboller og pasta med tomatsaus, ruccola og parmesan",
@@ -544,7 +563,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Wok med nudler og svinekjøtt",
@@ -559,7 +579,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Pasta penne med rød pesto, blomkål og chorizo",
@@ -574,7 +595,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Fredagspizza",
@@ -589,7 +611,8 @@ let middager = [
         fredag: true,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Lapskaus",
@@ -604,7 +627,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Koteletter med surkål, gulrøtter og poteter",
@@ -619,7 +643,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: true
+        laktosefri: true,
+        type: "kjott"
     },
     {
         navn: "Viltgryte",
@@ -634,7 +659,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
     {
         navn: "Kyllingform med spinat, paprika og parmesan",
@@ -649,7 +675,8 @@ let middager = [
         fredag: true,
         søndag: true,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false,
+        type: "kjott"
     },
 
     //Vegetar---------------------------------------------------------------
@@ -666,7 +693,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Fredagspizza vegetar",
@@ -681,7 +709,8 @@ let middager = [
         fredag: true,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Pai med soltørket tomat, feta og spinat",
@@ -696,7 +725,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Blomkålsuppe",
@@ -711,7 +741,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Soppsuppe",
@@ -726,7 +757,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Spinatsuppe med ingefær, kokosmelk og egg",
@@ -741,7 +773,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
   
     {
@@ -757,7 +790,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: true
+        laktosefri: true, 
+        type: "vegetar"
     },
     {
         navn: "Vegetarlasagne med røde linser og salat",
@@ -772,7 +806,8 @@ let middager = [
         fredag: true,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Risengrynsgrøt",
@@ -787,7 +822,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Sopprisotto",
@@ -802,7 +838,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Brokkoli og blomkålsuppe",
@@ -817,7 +854,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Linsesuppe",
@@ -832,7 +870,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Tomatsuppe med egg og makaroni",
@@ -847,7 +886,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Gulrotsuppe",
@@ -862,7 +902,8 @@ let middager = [
         fredag: false,
         søndag: false,
         glutenfri: true,
-        laktosefri: true
+        laktosefri: true, 
+        type: "vegetar"
     },
     {
         navn: "Kikertgryte med kokosmelk og røde linser",
@@ -877,7 +918,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
     {
         navn: "Pannekaker",
@@ -892,7 +934,8 @@ let middager = [
         fredag: false,
         søndag: true,
         glutenfri: false,
-        laktosefri: false
+        laktosefri: false, 
+        type: "vegetar"
     },
   
 

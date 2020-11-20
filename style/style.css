@@ -98,6 +98,10 @@ h3 {
     text-align: center;   
 }
 
+.litenSkrift {
+    font-size: 2rem;
+}
+
 #valg, #filtWrapper, #lagret_ukesplan {
     display: flex;
     flex-direction: column;

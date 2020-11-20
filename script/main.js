@@ -1,6 +1,6 @@
 //Tomme arrayer som brukes av flere funksjoner
 let middagsliste = [];
-let fredagsmiddag = [];
+//let fredagsmiddag = [];
 let sondagsmiddag = [];
 let filteredArray = [];
 let freFilt = [];
@@ -18,35 +18,20 @@ const tagSek = document.getElementById("filterlabler");
 const videre = document.getElementById("videre");
 const lagretBtn = document.getElementById("lagretBtn");
 const dagWrap = document.getElementsByClassName("dagWrap");
-const rettH3 = document.querySelectorAll(".rett"); 
 let tag = document.querySelectorAll(".inpFilter");
 
 
 
+//---------------------------------------------------------------------
+//OPPRETT HTML
+//---------------------------------------------------------------------
 
-//------------------------------------------------------
-//TEGN UT UKESPLANEN
-//------------------------------------------------------
-
-//Fyll fredagsmiddags/søndagsmiddag-arrayet
-middager.forEach(el => {
-    if (el.fredag) {
-        fredagsmiddag.push(el);
-    } else if (el.søndag) {
-        sondagsmiddag.push(el);
-    }
-})
-
-
-//Opprett HTML
-const tegnUkesplan = (arr1, arr2, arr3 ) => {
+const tegnUkesplan = () => {
     let html = "";
-
-    fyllMiddagsliste(remFilt(), arr2, arr3);
     
-    console.log(remFilt());
-    console.log(middagsliste);
-
+    //Returnerer et ferdig filtrert middagsarray (middagsliste)
+    fyllMiddagsliste(filterListe(), fredagsMiddag(), sondagsMiddag());
+    
     for (let i = 0; i < middagsliste.length; i++) {
 
         let tid = visTid(middagsliste[i].tid)
@@ -60,7 +45,7 @@ const tegnUkesplan = (arr1, arr2, arr3 ) => {
             </div>
             <button tabindex=0 id="btn${i}" class="bytt">Bytt rett</button>
             </article>
-            `
+            ` 
     }
 
     let html_videre = `
@@ -71,7 +56,7 @@ const tegnUkesplan = (arr1, arr2, arr3 ) => {
 
     ukesplan.innerHTML = html;
     videre.innerHTML = html_videre;
-
+    
     mainBtn.style.display = "none";
     filtLab.style.display = "block";
     lagretBtn.style.display = "none";
@@ -87,28 +72,29 @@ const tegnUkesplan = (arr1, arr2, arr3 ) => {
 
 //Lytter - tegnUkesplan
 mainBtn.addEventListener("click", () => {
-    tegnUkesplan(middager, fredagsmiddag, sondagsmiddag);
+    tegnUkesplan();
 })
 
 
 
-//--------------------------------------------------------------
-//FYLL MIDDAGSLISTE
-//--------------------------------------------------------------
+//----------------------------------------------------------------------------------------------
+//FYLL MIDDAGSLISTE - Fyller et middagsarray med en rett per dag.
+//----------------------------------------------------------------------------------------------
+
 const fyllMiddagsliste = (array, arrayFre, arraySun) => {
-    let tempArr = remFilt();
+    let tempArr = array;
     middagsliste = [];
 
-    console.log(tempArr);
 
-    // //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
-    // const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
-    // tempArr = filter(t, array);
+    //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
+    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
+    tempArr = filter(t, array);
 
-    // //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat
-    // const ingenKoseMat = item => item.fredag === false || item.søndag === false;
-    // tempArr = filter(ingenKoseMat, tempArr);
+    //Utelukker oppskrifter som er fredags eller søndagsmat
+    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+    tempArr = filter(ingenKoseMat, tempArr);
 
+    //Pusher inn hverdagsretter
     for (let i = 0; i <= 4; i++) {
         let m = plukkUtRett(tempArr);
 
@@ -119,73 +105,106 @@ const fyllMiddagsliste = (array, arrayFre, arraySun) => {
         tempArr.splice(m, 1);
     }
 
+    //Pusher inn fredagsmiddag
     let f = plukkUtRett(arrayFre);
     let fMiddag = arrayFre[f];
     middagsliste.splice(4, 0, fMiddag);
+    arrayFre.splice(f, 1);
 
+    //Pusher inn søndagsmiddag
     let s = plukkUtRett(arraySun);
     let sMiddag = arraySun[s];
     middagsliste.splice(6, 0, sMiddag);
+    arraySun.splice(s, 1);
+
+    //Sjekker om bruker har ekstra dårlig tid noen dager, og bytter i såfall ut de aktuelle middagene. 
+    liteTidRiktigDag();
+
+    return middagsliste;
 }
 
 
-
 //---------------------------------------------------------------
-//ENDRER RETT NÅR DU TRYKKER KNAPPEN
+//ENDRER RETT NÅR DU TRYKKER "BYTT-RETT"-KNAPPEN
 //---------------------------------------------------------------
-const endreRett = (e, arr) => {
-
+const endreRett = (e) => {
     let html;
-    let tempArr = arr;
-    btnId = Number(e.target.id.slice(-1));
-    
-
-    //Velg mat som tar under 30 minutter å lage på hverdager
-    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
-    tempArr = filter(t, arr);
-
-    //Jeg vil heller ikke at den henter ut oppskrifter som er fredags eller søndagsmat på hverdager
-    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
-    tempArr = filter(ingenKoseMat, tempArr);
-
+    let middagsArr = filterListe();
+    console.log(middagsArr);
+    let freArr = fredagsMiddag();
+    let sonArr = sondagsMiddag();
+    let sjekketInp = tagCheck();
+    let liteTidArr = liteTid();
+    let btnId = Number(e.target.id.slice(-1));
     let nyRett = "";
     let nyRettFre = "";
-    let nyRettSon = "";
-
-
-    if (filteredArray.length > 0) {
-        tempArr = filteredArray;
-        let nyIndex = plukkUtRett(tempArr);
-        nyRett = tempArr[nyIndex];
+    let nyRettSon = ""
     
-        let nyIndexFre = plukkUtRett(freFilt);
-        nyRettFre = freFilt[nyIndexFre];
+    //Velger mat som tar under 30 minutter å lage på hverdager
+    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
+    middagsArr = filter(t, middagsArr);
+
+    //Utelukker oppskrifter som er fredags eller søndagsmat på hverdager
+    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
+    middagsArr = filter(ingenKoseMat, middagsArr);
+
+    //Plukker ut nye indexer fra diverse arrayer
+    let index = plukkUtRett(liteTidArr);
+    let nyIndex = plukkUtRett(middagsArr);
+    let nyIndexFre = plukkUtRett(freArr);
+    let nyIndexSon = plukkUtRett(sonArr);
     
-        let nyIndexSon = plukkUtRett(sonFilt);
-        nyRettSon = sonFilt[nyIndexSon];
+    //Sjekker om det noen filter er sjekket av, og om de i såfall er dager med dårlig tid.
+    //Definerer nyRett, nyRettFre og nyRettSon. 
+    if (sjekketInp.length > 0) {
+        
+        sjekketInp.forEach(el=> {
+            if(el.id === "mandag" || el.id === "tirsdag" || el.id === "onsdag" || el.id === "torsdag" || el.id === "fredag" || el.id === "lørdag" || el.id === "søndag") {
+                
+                nyRett = liteTidArr[index];
+                liteTidArr.splice(nyRett, 1);
+                
+                nyRettFre = liteTidArr[index];
+                liteTidArr.splice(nyRettFre, 1);
+
+                nyRettSon = liteTidArr[index];
+                liteTidArr.splice(nyRettSon, 1);
+
+            } else {
+
+                nyRett = middagsArr[nyIndex];
+                middagsArr.splice(nyRett, 1);
+
+                nyRettFre = freArr[nyIndexFre];
+                freArr.splice(nyRettFre);
+
+                nyRettSon = sonArr[nyIndexSon];
+                sonArr.splice(nyRettSon);
+
+            }
+        })
+
     } else {
-        let nyIndex = plukkUtRett(tempArr);
-        nyRett = tempArr[nyIndex];
-    
-        let nyIndexFre = plukkUtRett(fredagsmiddag);
-        nyRettFre = fredagsmiddag[nyIndexFre];
-    
-        let nyIndexSon = plukkUtRett(sondagsmiddag);
-        nyRettSon = sondagsmiddag[nyIndexSon];
+            nyRett = middagsArr[nyIndex];
+            middagsArr.splice(nyRett, 1);
+
+            nyRettFre = freArr[nyIndexFre];
+            freArr.splice(nyRettFre);
+
+            nyRettSon = sonArr[nyIndexSon];
+            sonArr.splice(nyRettSon);   
     }
-   
- 
+    
+    //Sjekker at riktig button skifter riktig rett. 
     if (btnId <=3 || btnId === 5) {
         middagsliste.splice(btnId, 1, nyRett);
-        console.log("hverdag");
     } else if (btnId === 4) {
-        middagsliste.splice(btnId, 1, nyRettFre);
-        console.log("fredag");
+        middagsliste.splice(btnId, 1, nyRettFre);  
     } else {
         middagsliste.splice(btnId, 1, nyRettSon);
-        console.log("Søndag");
     }
 
+    //Oppretter HTML
     for (let i = 0; i < middagsliste.length; i++) {
         let tid = visTid(middagsliste[i].tid)
         
@@ -207,14 +226,8 @@ const endreRett = (e, arr) => {
 
 //Lytter til endre rett
 ukesplan.addEventListener("click", (e) => {
-    if(e.target.nodeName === "BUTTON") {
-        console.log(e.target.id);
-
-        if (filteredArray.length > 0) {
-            endreRett(e, filteredArray);
-        } else {
-            endreRett(e, middager);
-        }
+    if(e.target.nodeName === "BUTTON") {   
+        endreRett(e)
     }
 })
 
@@ -274,7 +287,6 @@ const finnLocal = () => {
 window.onload = finnLocal();
 
 
-
 //--------------------------------------------------------
 //SMÅFUNKSJONER
 //--------------------------------------------------------
@@ -323,5 +335,29 @@ const visTid = (alt1) => {
     }  
 }
 
+//Sjekker om bruker har dårlig tid noen dager, og sørger for at den dagen får en rett det tar kort tid å lage
+const liteTidRiktigDag = () => {
+    let sjekketInp = tagCheck();
+    let liteTidArr = liteTid();
 
-
+    let index = plukkUtRett(liteTidArr);
+    let travelMiddag = liteTidArr[index];
+ 
+    sjekketInp.forEach(el => {
+        if (el.id === "mandag") {
+            middagsliste.splice(0, 1, travelMiddag);
+        } else if (el.id === "tirsdag") {
+            middagsliste.splice(1, 1, travelMiddag);
+        } else if (el.id === "onsdag") {
+            middagsliste.splice(2, 1, travelMiddag);
+        } else if (el.id === "torsdag") {
+            middagsliste.splice(3, 1, travelMiddag);
+        } else if (el.id === "fredag") {
+            middagsliste.splice(4, 1, travelMiddag);
+        } else if (el.id === "lørdag") {
+            middagsliste.splice(5, 1, travelMiddag);
+        } else if (el.id === "søndag") {
+            middagsliste.splice(6, 1, travelMiddag);
+        } 
+    })
+}

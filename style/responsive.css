@@ -23,14 +23,19 @@
         top: -.2em;
     }
     #kursiv{
+        display: none;
         font-size: 4rem;
         position: relative;
         top: 2.4em;
         left: 3.5em;
     }
 
-    #lagretBtn, #lagre, #sendmail, #mail {
+    #lagretBtn, #lagre {
         font-size: 3rem;
+        width: 60vw;
+    }
+
+    #sendmail, #mail {
         width: 60vw;
     }
 
@@ -63,6 +68,7 @@
 
     #ukesplan {
         margin-top: 6em;
+        width: 80%;
     }
 
     header {
@@ -76,7 +82,13 @@
 
     h1 {
         top: -.4em;
-        left: -1em;
+        
+    }
+    header {
+        background-position: bottom;
+        height: 55vh;
+        border: 1px solid red;
+        margin-bottom: 1em;
     }
 
     #kursiv {
@@ -87,13 +99,23 @@
         margin-bottom: 10em;
     }
     
-    #lukk_filter_Btn, #lagretBtn, #lagre, #sendmail, #mail{
-        font-size: 3rem;
+    #lukk_filter_Btn, #lagretBtn, #lagre, #sendmail, #mail {
+       
         width: 30vw;
     }
+
+    
     
     .labelWrap {
         margin-top: 2em;
         width: 60%;
+    }
+
+    .mainBtn {
+        width: 40vw;
+    }
+
+    #lagretBtn {
+        margin-top: 2em;
     }
 }
