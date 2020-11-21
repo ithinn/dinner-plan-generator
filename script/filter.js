@@ -43,6 +43,7 @@ const applyFilter = () => {
     ukesplan.innerHTML = "";
     middagsliste = [];
     checkIfChecked();
+    kjottFiskVegetar();
     fyllMiddagsliste(filterListe(), fredagsMiddag(), sondagsMiddag());
     tegnUkesplan();
 }
@@ -63,20 +64,12 @@ filt.addEventListener("click", (e) => {
 const filterListe = () => {
 
     let tempArray = tagCheck();
-    
-    let resultArray = middager;
+    let resultArray = kjottFiskVegetar();
+
 
     for (let i=0; i < tempArray.length; i++) {
          
-        if (tempArray[i].id === "fisk") {
-            resultArray = resultArray.filter(middag => middag.type === "fisk");
-            console.log(resultArray);
-        } else if (tempArray[i].id === "vegetar") {
-            resultArray = resultArray.filter(middag => middag.type === "vegetar")
-            console.log(resultArray);
-        } else if (tempArray[i].id === "kjott") {
-            resultArray = resultArray.filter(middag => middag.type === "kjott");
-        } else if (tempArray[i].id === "gluten") {
+        if (tempArray[i].id === "gluten") {
             resultArray = resultArray.filter(middag => middag.glutenfri === true);
         } else if (tempArray[i].id === "laktose") {
             resultArray = resultArray.filter(middag => middag.laktosefri === true);
@@ -88,10 +81,45 @@ const filterListe = () => {
             resultArray = resultArray.filter(middag => middag.pris === 3);
         } 
     }
-    
+    console.log(resultArray);
     return resultArray;
 }
 
+
+const kjottFiskVegetar = () => {
+    let tempArray = tagCheck();
+    let startArray = middager;
+    let meatArray = [];
+    let fishArray = [];
+    let vegArray = [];
+
+    for (let i = 0; i < tempArray.length; i++) {
+        if (tempArray[i].id === "fisk") {
+            let fish = item => item.type === "fisk";
+            fishArray = filter(fish, startArray);
+       
+        } else if (tempArray[i].id === "vegetar") {
+            let veg = item => item.type === "vegetar";
+            vegArray = filter(veg, startArray);
+    
+        } else if (tempArray[i].id === "kjott") {
+            let meat = item => item.type === "kjott";
+            meatArray = filter(meat, startArray);
+        }
+    }
+
+   
+    if (fishArray.length > 0 || vegArray.length > 0 || meatArray > 0) {
+        startArray = [...fishArray, ...vegArray, ...meatArray];
+    }
+    
+
+
+    console.log(startArray)
+
+    return startArray
+
+}
 
 //------------------------------------------------------
 //Returnerer liste med fredagsmiddager

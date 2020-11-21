@@ -201,6 +201,7 @@ const endreRett = (e) => {
         middagsliste.splice(btnId, 1, nyRettSon);
     }
 
+    
     //Oppretter HTML
     for (let i = 0; i < middagsliste.length; i++) {
         let tid = visTid(middagsliste[i].tid)
