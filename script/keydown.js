@@ -48,12 +48,12 @@ tagSek.addEventListener("keydown", (e) => {
 
 
 //Legger lytter på lukk-filter-knappen
-//Kaller seFiltrert, som unchecker #cb, og dermed fjerner filterseksjonen
-//Setter fokus til filterLabel
+//Kaller toggleFiltBtn, som unchecker #cb, og dermed fjerner filterseksjonen
+//Setter fokus til filter_label
 
-lukk_filter_btn.addEventListener("click", (e) => {
-    seFiltrert();
-    riktigFokus("#filterLabel");
+exitFilterBtn.addEventListener("click", (e) => {
+    toggleFiltBtn();
+    rightFocus("#filter_label");
     }
     );
 
@@ -65,12 +65,12 @@ filtLab.addEventListener("keydown", (e) => {
     
     if (e.key === "Enter") {
            
-        seFiltrert();
+        toggleFiltBtn();
     } else if (e.shiftKey && e.key === "Tab") {
         console.log("Du trykker shift+tag");
-        riktigFokus(".filt-tag")
+        rightFocus(".filt-tag")
     }else if (e.key === "Tab") {
-        riktigFokus(".bytt")
+        rightFocus(".change-btn")
     }      
 
 })

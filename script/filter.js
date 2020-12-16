@@ -21,10 +21,6 @@ const filter = (condition, collection) => {
 const tagCheck = () => {
     let array = [];
 
-    tag.forEach(el => {
-        el.unchecked = true;  
-    })
-
     for (let i = 0; i < tag.length; i++) {
         if(tag[i].checked) {
             array.push(tag[i]);
@@ -40,12 +36,12 @@ const tagCheck = () => {
 
 
 const applyFilter = () => {
-    ukesplan.innerHTML = "";
-    middagsliste = [];
+    dinnerPlan.innerHTML = "";
+    dinnerList = [];
     checkIfChecked();
-    kjottFiskVegetar();
-    fyllMiddagsliste(filterListe(), fredagsMiddag(), sondagsMiddag());
-    tegnUkesplan();
+    meatFishVeg();
+    fillDinnerList(filterList(), friDinner(), sunDinner());
+    drawPlan();
 }
 
 //Lytter til applyFilter
@@ -58,118 +54,111 @@ filt.addEventListener("click", (e) => {
 
 //---------------------------------------------------------------------------------------------
 //OPPRETTER EN FILTRERT LISTE (HVIS FILTRE ER VALGT. HVIS IKKE RETURNERES HELE MIDDAGSARRAYET)
-//(Jeg får ikke valgt både fisk og vegetar og kjøtt - kun en av dem. Det må jeg løse til neste gang)
 //---------------------------------------------------------------------------------------------
 
-const filterListe = () => {
+const filterList = () => {
 
     let tempArray = tagCheck();
-    let resultArray = kjottFiskVegetar();
+    let resultArray = meatFishVeg();
 
 
     for (let i=0; i < tempArray.length; i++) {
          
         if (tempArray[i].id === "gluten") {
-            resultArray = resultArray.filter(middag => middag.glutenfri === true);
+            resultArray = resultArray.filter(dinner => dinner.glutenFree === true);
         } else if (tempArray[i].id === "laktose") {
-            resultArray = resultArray.filter(middag => middag.laktosefri === true);
+            resultArray = resultArray.filter(dinner => dinner.lactoseFree === true);
         } else if (tempArray[i].id === "billigst") {
-            resultArray = resultArray.filter(middag => middag.pris === 1);
+            resultArray = resultArray.filter(dinner => dinner.price === 1);
         } else if (tempArray[i].id === "billig") {
-            resultArray = resultArray.filter(middag => middag.pris === 2);
+            resultArray = resultArray.filter(dinner => dinner.price === 2);
         } else if (tempArray[i].id === "dyrt") {
-            resultArray = resultArray.filter(middag => middag.pris === 3);
+            resultArray = resultArray.filter(dinner => dinner.price === 3);
         } 
     }
-    console.log(resultArray);
+    
     return resultArray;
 }
 
 
-const kjottFiskVegetar = () => {
-    let tempArray = tagCheck();
-    let startArray = middager;
-    let meatArray = [];
-    let fishArray = [];
-    let vegArray = [];
+const meatFishVeg = () => {
+    let tempArr = tagCheck();
+    let resultArr = courses;
+    let meatArr = [];
+    let fishArr = [];
+    let vegArr = [];
 
-    for (let i = 0; i < tempArray.length; i++) {
-        if (tempArray[i].id === "fisk") {
-            let fish = item => item.type === "fisk";
-            fishArray = filter(fish, startArray);
+    for (let i = 0; i < tempArr.length; i++) {
+        if (tempArr[i].id === "fisk") {
+            let fish = item => item.type === "fish";
+            fishArr = filter(fish, resultArr);
        
-        } else if (tempArray[i].id === "vegetar") {
-            let veg = item => item.type === "vegetar";
-            vegArray = filter(veg, startArray);
+        } else if (tempArr[i].id === "vegetar") {
+            let veg = item => item.type === "veg";
+            vegArr = filter(veg, resultArr);
     
-        } else if (tempArray[i].id === "kjott") {
-            let meat = item => item.type === "kjott";
-            meatArray = filter(meat, startArray);
+        } else if (tempArr[i].id === "kjott") {
+            let meat = item => item.type === "meat";
+            meatArr = filter(meat, resultArr);
         }
     }
-
    
-    if (fishArray.length > 0 || vegArray.length > 0 || meatArray > 0) {
-        startArray = [...fishArray, ...vegArray, ...meatArray];
+    if (fishArr.length > 0 || vegArr.length > 0 || meatArr.length > 0) {
+        resultArr = [...fishArr, ...vegArr, ...meatArr];
     }
-    
 
-
-    console.log(startArray)
-
-    return startArray
-
+    return resultArr
 }
 
 //------------------------------------------------------
 //Returnerer liste med fredagsmiddager
 //------------------------------------------------------
 
-const fredagsMiddag = () => {
+const friDinner = () => {
 
-    let fredagsmiddag = [];
-    let tempArray = filterListe(); 
+    let fridayDinners = [];
+    let tempArray = filterList(); 
     
     tempArray.forEach(el => {
        
-        if(el.fredag) {
-            fredagsmiddag.push(el);
+        if(el.friday) {
+            fridayDinners.push(el);
         }
     })
-    return fredagsmiddag; 
+    return fridayDinners; 
 } 
 
 //---------------------------------------------------------
 //Returnerer liste med søndagsmiddager
 //---------------------------------------------------------
 
-const sondagsMiddag = () => {
-    let sondagsmiddag = [];
-    let tempArray = filterListe();
+const sunDinner = () => {
+    let sundayDinners = [];
+    let tempArray = filterList();
 
     tempArray.forEach(el => {
-        if (el.søndag) {
-            sondagsmiddag.push(el);
+        if (el.sunday) {
+            sundayDinners.push(el);
         }
     })
 
-    return sondagsmiddag;
+    return sundayDinners;
 }
 
 //-----------------------------------------------------------
 //Returnerer liste med retter som tar kort tid å lage
 //-----------------------------------------------------------
-const liteTid = () => {
-    let tempArray = filterListe();
-    let liteTidArr = [];
+const fastFood = () => {
+    let tempArray = filterList();
+    let fastFoodArr = [];
 
     tempArray.forEach(el => {
-        if (el.tid === 1) {
-            liteTidArr.push(el);
+        if (el.time === 1) {
+            fastFoodArr.push(el);
         }
     })
      
-    return liteTidArr;
+    return fastFoodArr;
 }
 
 
@@ -199,14 +188,14 @@ const removeFilter = (e) => {
 
     //Finner html-elementet som har samme id som teksten i tagen vi har klikka på.
     let text = e.target.innerText;
-    const d = document.getElementById(text);
+    const input = document.getElementById(text);
 
     //Hvis det elementet er sjekka, blir det satt til ikke-sjekka, og tagen forsvinner.
-    if (d.checked) {
-        d.checked = false;
+    if (input.checked) {
+        input.checked = false;
         tagSek.innerHTML = "";
 
-    } else if ( !d.checked) {
+    } else if ( !input.checked) {
         tagSek.style.display = "none";
     }
 

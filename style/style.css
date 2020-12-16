@@ -84,7 +84,7 @@ h2 {
     color: #355c7d;
 }
 
-#ukesplan_h2 {
+#dinner_plan_h2 {
     color: white;
     display: none;
     margin-top: 2em;
@@ -113,7 +113,7 @@ h3 {
     margin: 2em auto;
 }
 
-#ukesplan {
+#dinner_plan {
     height: auto;
     display: flex;
     flex-direction: row;
@@ -145,7 +145,7 @@ h3 {
     background: rgba(255, 255, 255, 0.2);
 }
 
-#lagretBtn {
+#viewSavedBtn {
     display: none;
     border: none;
     background: none;
@@ -186,7 +186,7 @@ h3 {
 }
 
 /*"Filter-knappen"*/
-#filterLabel  {
+#filter_label  {
     color: white;
     border: 2px solid white;
     display: none;
@@ -196,7 +196,7 @@ h3 {
 }
 
 /*Se-resultat-knappen*/
-#lukk_filter_Btn {
+#exit_filter_btn {
     color: white;
     width: 100%;
     border: 2px solid #355c7d;
@@ -205,7 +205,7 @@ h3 {
 }
 
 /*Se resultat-knappen og filter-knappen*/
-#lukk_filter_Btn, #filterLabel {
+#exit_filter_btn, #filter_label {
     font-size: 1.7em;
     text-transform: uppercase;
     letter-spacing: 5px;
@@ -213,12 +213,12 @@ h3 {
     font-weight: 700;   
 }
 
-#filterLabel:hover  {
+#filter_label:hover  {
     background-color: rgba(255, 255, 255, 0.2);
     color: #355c7d;
 }
 
-#lukk_filter_Btn:hover {
+#exit_filter_btn:hover {
     border: 4px solid black; 
     color: black;
 }
@@ -311,17 +311,17 @@ h3 {
 
 
 /*-------------------------MIDDAGER--------------------------*/
-.dag {
+.day {
     text-transform: uppercase;
     color:#c06c84;
 }
 
-.rett {
+.course-h2 {
     text-align: center;
     margin-bottom: 1em;
 }
 
-.dagWrap {
+.day-wrap {
     width: 30em;
     margin: 3em 2em;
     height: 30em;
@@ -336,7 +336,7 @@ h3 {
     border: 2px solid white;
 }
 
-.bytt {
+.change-btn {
     font-size: 2rem;
     padding: .5em;
     border: none;
@@ -354,7 +354,7 @@ h3 {
     text-transform: uppercase;
 }
 
-.bytt:hover {
+.change-btn:hover {
     background-color: #c06c84;
 }
 
@@ -364,7 +364,7 @@ h3 {
     font-style: italic;
 }
 
-.icon_wrap {
+.icon-wrap {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -374,7 +374,7 @@ h3 {
 
 /*-----------------------VEIEN VIDERE-----------------------*/
 
-#videre {
+#action {
     width: 80%;
     height: 50vh;
     display: flex;
@@ -392,7 +392,7 @@ h3 {
     text-align: center;
 }
 
- #lagre {
+ #save_btn {
     border: 4px solid white;
     font-size: 2rem;
     padding: 1em;
@@ -412,7 +412,7 @@ h3 {
     width: 100%;
 }
 
-#sendmail:hover, #lagre:hover {
+#sendmail:hover, #save_btn:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -422,11 +422,11 @@ button:focus, input:focus {
     outline: 4px solid #333333;          
 }   
 
-.bytt:focus {
+.change-btn:focus {
     background: #c06c84;
 }
   
-#filterLabel:focus {
+#filter_label:focus {
     outline: 4px solid #333333;
 }
 

@@ -1,7 +1,7 @@
 
 @media (min-width: 414px) {
 
-    #kursiv, #lagre, #sendmail, #mail, #filterLabel, #lukk_filter_Btn {
+    #kursiv, #save_btn, #sendmail, #mail, #filter_label, #exit_filter_btn {
         font-size: 2.4rem;
     }
 
@@ -9,7 +9,7 @@
         position: relative;
         top: -5vh; 
      }
-    .rett {
+    .course-h2 {
         font-size: 2.1rem;
     } 
 }
@@ -27,7 +27,7 @@
         display: none;
     }
 
-    #lagretBtn, #lagre {
+    #viewSavedBtn, #save_btn {
         font-size: 3rem;
         width: 60vw;
     }
@@ -51,7 +51,7 @@
         font-size: 3rem;
     }
 
-    h3, .rett {
+    h3, .course-h2 {
         font-size: 2.5rem;
     }
 
@@ -59,11 +59,11 @@
         font-size: 4.5rem;
     }
 
-    .dag {
+    .day {
         font-size: 2rem;
     }
 
-    #ukesplan {
+    #dinner_plan {
         margin-top: 6em;
         width: 80%;
     }
@@ -86,11 +86,11 @@
         margin-bottom: 1em;
     }
 
-    #ukesplan {
+    #dinner_plan {
         margin-bottom: 10em;
     }
     
-    #lukk_filter_Btn, #lagretBtn, #lagre, #sendmail, #mail {
+    #exit_filter_btn, #viewSavedBtn, #save_btn, #sendmail, #mail {
        
         width: 30vw;
     }
@@ -104,7 +104,7 @@
         width: 40vw;
     }
 
-    #lagretBtn {
+    #viewSavedBtn {
         margin-top: 2em;
     }
 }

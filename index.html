@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="style/style.css">
         <link rel="stylesheet" href="style/responsive.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-        <script src="script/middager.js" defer></script>
+        <script src="script/courses.js" defer></script>
         <script src="script/main.js" defer></script>
         <script src="script/filter.js" defer></script>
         <script src="script/keydown.js" defer></script>
@@ -24,13 +24,13 @@
 
         <main>
             <!--GENERER-UKESPLAN-BUTTON-->
-            <button id="genererBtn" class="mainBtn">Generer ukesplan</button>    
+            <button id="main_btn" class="mainBtn">Generer ukesplan</button>    
             
             <section aria-label="filterseksjon" id="filterlabler" title="Her ser du hvilke filtre som er aktive"></section>
             
             <div id="lagret_ukesplan">
-                <button id="lagretBtn">Se lagret ukesplan</button>
-                <h2 id="ukesplan_h2">Min ukesplan:</h2>
+                <button id="viewSavedBtn">Se lagret ukesplan</button>
+                <h2 id="dinner_plan_h2">Min ukesplan:</h2>
             </div>
 
             
@@ -39,7 +39,7 @@
 
                 <!--FILTERKNAPPEN-->
                 <input tabindex="-1" type="checkbox" id="cb" class="subBtn">
-                <label tabindex="0" id="filterLabel" for="cb">Filter</label>
+                <label tabindex="0" id="filter_label" for="cb">Filter</label>
         
                 <article aria-label="Overlay" id="overlay" title="Overlay"></article>
 
@@ -142,16 +142,16 @@
                         </div>
                     </article> 
 
-                    <button id="lukk_filter_Btn">Se resultat</button>
+                    <button id="exit_filter_btn">Se resultat</button>
 
                 </article>
             </section>
             
             <!--UKESPLAN (Genereres med JS)-->
-            <section aria-label="Ukesplan" title="Her finner du ukesplanen" id="ukesplan"></section>
+            <section aria-label="Ukesplan" title="Her finner du ukesplanen" id="dinner_plan"></section>
             
             <!--VIDERE VALG-->
-            <section aria-label="Lagre eller send på mail" title="Her kan du velge om du vil lagre eller sende på epost" id="videre"></section>
+            <section aria-label="Lagre eller send på mail" title="Her kan du velge om du vil lagre eller sende på epost" id="action"></section>
         </main>    
     </body>
 </html>

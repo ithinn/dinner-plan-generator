@@ -1,20 +1,18 @@
 //Tomme arrayer som brukes av flere funksjoner
-let middagsliste = [];
-let freFilt = [];
-let sonFilt = [];
+let dinnerList = [];
 
 //HTML-elementer
-const lukk_filter_btn = document.getElementById("lukk_filter_Btn");
-const minUke = document.getElementById("ukesplan_h2");
-const mainBtn = document.getElementById("genererBtn")
-const ukesplan = document.getElementById("ukesplan");
-const filtLab = document.getElementById("filterLabel");
+const exitFilterBtn = document.getElementById("exit_filter_btn");
+const myWeekH2 = document.getElementById("dinner_plan_h2");
+const mainBtn = document.getElementById("main_btn")
+const dinnerPlan = document.getElementById("dinner_plan");
+const filtLab = document.getElementById("filter_label");
 const filt = document.getElementById("filter");
 const cb = document.getElementById("cb");
 const tagSek = document.getElementById("filterlabler");
-const videre = document.getElementById("videre");
-const lagretBtn = document.getElementById("lagretBtn");
-const dagWrap = document.getElementsByClassName("dagWrap");
+const action = document.getElementById("action");
+const viewSavedBtn = document.getElementById("viewSavedBtn");
+const dayWrap = document.getElementsByClassName("day-wrap");
 let tag = document.querySelectorAll(".inpFilter");
 
 
@@ -23,53 +21,53 @@ let tag = document.querySelectorAll(".inpFilter");
 //OPPRETT HTML basert på middagsliste-arrayet
 //---------------------------------------------------------------------
 
-const tegnUkesplan = () => {
+const drawPlan = () => {
     let html = "";
     
     //Returnerer et ferdig filtrert middagsarray (middagsliste)
-    fyllMiddagsliste(filterListe(), fredagsMiddag(), sondagsMiddag());
+    fillDinnerList(filterList(), friDinner(), sunDinner());
     
-    for (let i = 0; i < middagsliste.length; i++) {
+    for (let i = 0; i < dinnerList.length; i++) {
 
-        let tid = visTid(middagsliste[i].tid)
+        let time = showTime(dinnerList[i].time)
         
         html += `
-            <article id=${i} class="dagWrap">
-            <h3 class="dag">${dager[i].dag}</h3>
-            <h2 id="rett${i}" class="rett">${middagsliste[i].navn}</h2>
-            <div id="i_wrap${i}" class="icon_wrap">
-                <div class="clock">${tid}</div>
+            <article id=${i} class="day-wrap">
+            <h3 class="day">${days[i].day}</h3>
+            <h2 id="course_h2_${i}" class="course-h2">${dinnerList[i].course}</h2>
+            <div id="i_wrap${i}" class="icon-wrap">
+                <div class="clock">${time}</div>
             </div>
-            <button tabindex=0 id="btn${i}" class="bytt">Bytt rett</button>
+            <button tabindex=0 id="btn${i}" class="change-btn">Bytt rett</button>
             </article>
             ` 
     }
 
-    let html_videre = `
-        <button id="lagre">Lagre</button>
+    let html_action = `
+        <button id="save_btn">Lagre</button>
         <input aria-label="Email-adress" type="email" id="mail" placeholder="Skriv din epost-adresse">
         <button type="submit" id="sendmail">Send ukesplan</button>
         `
 
-    ukesplan.innerHTML = html;
-    videre.innerHTML = html_videre;
+    dinnerPlan.innerHTML = html;
+    action.innerHTML = html_action;
     
     mainBtn.style.display = "none";
     filtLab.style.display = "block";
-    lagretBtn.style.display = "none";
+    viewSavedBtn.style.display = "none";
     
     //Lyttere til "Lagre" og "Send ukesplan"-button
     const send = document.getElementById("sendmail");
     send.addEventListener("click", alertMail);
 
-    const lagre = document.getElementById("lagre");
-    lagre.addEventListener("click", lagreLocal);
+    const save = document.getElementById("save_btn");
+    save.addEventListener("click", saveLocal);
 }
 
 
-//Lytter - tegnUkesplan
+//Lytter - drawPlan
 mainBtn.addEventListener("click", () => {
-    tegnUkesplan();
+    drawPlan();
 })
 
 
@@ -78,153 +76,144 @@ mainBtn.addEventListener("click", () => {
 //FYLL MIDDAGSLISTE - Fyller et middagsarray med en rett per dag.
 //----------------------------------------------------------------------------------------------
 
-const fyllMiddagsliste = (array, arrayFre, arraySun) => {
+const fillDinnerList = (array, arrayFre, arraySun) => {
     let tempArr = array;
-    middagsliste = [];
+    dinnerList = [];
+
+    //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime, og som ikke er fredags/søndagsmat.
+    const course = item => item.time === 1 || item.time === 2 && item.friday===false && item.sunday === false;
+    tempArr = filter(course, array);
 
 
-    //Jeg vil at den i utgangspunktet bare skal hente ut oppskrifter som tar under en halvtime.
-    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
-    tempArr = filter(t, array);
-
-    //Utelukker oppskrifter som er fredags eller søndagsmat
-    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
-    tempArr = filter(ingenKoseMat, tempArr);
-
-    //Pusher inn hverdagsretter
+    //Push inn hverdagsretter
     for (let i = 0; i <= 4; i++) {
-        let m = plukkUtRett(tempArr);
-
-        let middag = tempArr[m];
-
-        middagsliste.push(middag)
-
-        tempArr.splice(m, 1);
+        let index = randomIndex(tempArr);
+        let dinner = tempArr[index];
+        dinnerList.push(dinner)
+        tempArr.splice(index, 1);
     }
 
-    //Pusher inn fredagsmiddag
-    let f = plukkUtRett(arrayFre);
-    let fMiddag = arrayFre[f];
-    middagsliste.splice(4, 0, fMiddag);
-    arrayFre.splice(f, 1);
+    //Push inn fredagsmiddag
+    let i = randomIndex(arrayFre);
+    let fDinner = arrayFre[i];
+    dinnerList.splice(4, 0, fDinner);
+    arrayFre.splice(i, 1);
 
-    //Pusher inn søndagsmiddag
-    let s = plukkUtRett(arraySun);
-    let sMiddag = arraySun[s];
-    middagsliste.splice(6, 0, sMiddag);
+    //Push inn søndagsmiddag
+    let s = randomIndex(arraySun);
+    let sDinner = arraySun[s];
+    dinnerList.splice(6, 0, sDinner);
     arraySun.splice(s, 1);
 
     //Sjekker om bruker har ekstra dårlig tid noen dager, og bytter i såfall ut de aktuelle middagene. 
-    liteTidRiktigDag();
+    fastFoodFilter();
 
-    return middagsliste;
+    return dinnerList;
 }
 
 
 //---------------------------------------------------------------
 //ENDRER RETT NÅR DU TRYKKER "BYTT-RETT"-KNAPPEN
 //---------------------------------------------------------------
-const endreRett = (e) => {
+const changeCourse = e => {
     let html;
-    let middagsArr = filterListe();
-    console.log(middagsArr);
-    let freArr = fredagsMiddag();
-    let sonArr = sondagsMiddag();
-    let sjekketInp = tagCheck();
-    let liteTidArr = liteTid();
+    let weekdayArr = filterList();
+    let friArr = friDinner();
+    let sunArr = sunDinner();
+    let checkedInputs = tagCheck();
+    let fastFoodArr = fastFood();
     let btnId = Number(e.target.id.slice(-1));
-    let nyRett = "";
-    let nyRettFre = "";
-    let nyRettSon = ""
+    let newCourse = "";
+    let newCourseFri = "";
+    let newCourseSun = ""
     
     //Velger mat som tar under 30 minutter å lage på hverdager
-    const t = item => item.tid === 1 || item.tid === 2 && item.fredag===false && item.søndag === false;
-    middagsArr = filter(t, middagsArr);
-
     //Utelukker oppskrifter som er fredags eller søndagsmat på hverdager
-    const ingenKoseMat = item => item.fredag === false || item.søndag === false;
-    middagsArr = filter(ingenKoseMat, middagsArr);
+    const course = item => item.time === 1 || item.time === 2 && item.friday===false && item.sunday === false;
+    weekdayArr = filter(course, weekdayArr);
+
 
     //Plukker ut nye indexer fra diverse arrayer
-    let index = plukkUtRett(liteTidArr);
-    let nyIndex = plukkUtRett(middagsArr);
-    let nyIndexFre = plukkUtRett(freArr);
-    let nyIndexSon = plukkUtRett(sonArr);
+    let index = randomIndex(fastFoodArr);
+    let newWeekIndex = randomIndex(weekdayArr);
+    let newFriIndex = randomIndex(friArr);
+    let newSonIndex = randomIndex(sunArr);
     
     //Sjekker om det noen filter er sjekket av, og om de i såfall er dager med dårlig tid.
-    //Definerer nyRett, nyRettFre og nyRettSon. 
-    if (sjekketInp.length > 0) {
+    //Definerer newCourse, newCourseFri og newCourseSun. 
+    if (checkedInputs.length > 0) {
         
-        sjekketInp.forEach(el=> {
+        checkedInputs.forEach(el=> {
             if(el.id === "mandag" || el.id === "tirsdag" || el.id === "onsdag" || el.id === "torsdag" || el.id === "fredag" || el.id === "lørdag" || el.id === "søndag") {
                 
-                nyRett = liteTidArr[index];
-                liteTidArr.splice(nyRett, 1);
+                newCourse = fastFoodArr[index];
+                fastFoodArr.splice(newCourse, 1);
                 
-                nyRettFre = liteTidArr[index];
-                liteTidArr.splice(nyRettFre, 1);
+                newCourseFri = fastFoodArr[index];
+                fastFoodArr.splice(newCourseFri, 1);
 
-                nyRettSon = liteTidArr[index];
-                liteTidArr.splice(nyRettSon, 1);
+                newCourseSun = fastFoodArr[index];
+                fastFoodArr.splice(newCourseSun, 1);
 
             } else {
 
-                nyRett = middagsArr[nyIndex];
-                middagsArr.splice(nyRett, 1);
+                newCourse = weekdayArr[newWeekIndex];
+                weekdayArr.splice(newCourse, 1);
 
-                nyRettFre = freArr[nyIndexFre];
-                freArr.splice(nyRettFre);
+                newCourseFri = friArr[newFriIndex];
+                friArr.splice(newCourseFri);
 
-                nyRettSon = sonArr[nyIndexSon];
-                sonArr.splice(nyRettSon);
+                newCourseSun = sunArr[newSonIndex];
+                sunArr.splice(newCourseSun);
 
             }
         })
 
     } else {
-            nyRett = middagsArr[nyIndex];
-            middagsArr.splice(nyRett, 1);
+            newCourse = weekdayArr[newWeekIndex];
+            weekdayArr.splice(newCourse, 1);
 
-            nyRettFre = freArr[nyIndexFre];
-            freArr.splice(nyRettFre);
+            newCourseFri = friArr[newFriIndex];
+            friArr.splice(newCourseFri);
 
-            nyRettSon = sonArr[nyIndexSon];
-            sonArr.splice(nyRettSon);   
+            newCourseSun = sunArr[newSonIndex];
+            sunArr.splice(newCourseSun);   
     }
     
     //Sjekker at riktig button skifter riktig rett. 
     if (btnId <=3 || btnId === 5) {
-        middagsliste.splice(btnId, 1, nyRett);
+        dinnerList.splice(btnId, 1, newCourse);
     } else if (btnId === 4) {
-        middagsliste.splice(btnId, 1, nyRettFre);  
+        dinnerList.splice(btnId, 1, newCourseFri);  
     } else {
-        middagsliste.splice(btnId, 1, nyRettSon);
+        dinnerList.splice(btnId, 1, newCourseSun);
     }
 
     
     //Oppretter HTML
-    for (let i = 0; i < middagsliste.length; i++) {
-        let tid = visTid(middagsliste[i].tid)
+    html = "";
+    for (let i = 0; i < dinnerList.length; i++) {
+        let time = showTime(dinnerList[i].time)
         
         html += `
-        <article id=${i} class="dagWrap">
-        <h3 class="dag">${dager[i].dag}</h3>
-        <h2 id="rett${i}" class="rett">${middagsliste[i].navn}</h2>
-        <div id="i_wrap${i}" class="icon_wrap">
-            <div class="clock">${tid}</div>
+        <article id=${i} class="day-wrap">
+        <h3 class="day">${days[i].day}</h3>
+        <h2 id="course_h2_${i}" class="course-h2">${dinnerList[i].course}</h2>
+        <div id="i_wrap${i}" class="icon-wrap">
+            <div class="clock">${time}</div>
         </div>
-        <button tabindex="0" id="btn${i}" class="bytt">Bytt rett</button>
+        <button tabindex="0" id="btn${i}" class="change-btn">Bytt rett</button>
         </article>
         `
 }
-    ukesplan.innerHTML = html;
+    dinnerPlan.innerHTML = html;
     document.getElementById(e.target.id).focus();
 }
 
 //Lytter til endre rett
-ukesplan.addEventListener("click", (e) => {
+dinnerPlan.addEventListener("click", (e) => {
     if(e.target.nodeName === "BUTTON") {   
-        endreRett(e)
+        changeCourse(e)
     }
 })
 
@@ -234,54 +223,56 @@ ukesplan.addEventListener("click", (e) => {
 //LOCAL STORAGE
 //------------------------------------------------------
 
-const lagreLocal = () => {
-    const arrStrMiddager = JSON.stringify(middagsliste);
-    localStorage.setItem("Ukeplan", arrStrMiddager);
+const saveLocal = () => {
+    const arrStrDinners = JSON.stringify(dinnerList);
+    localStorage.setItem("Weekplan", arrStrDinners);
     alert("Din ukesplan er lagret, og vil være tilgjengelig neste gang du laster inn siden.")
 }
 
-const finnLocal = () => {
+const findLocal = () => {
 
-    if (localStorage.getItem("Ukeplan") === null) {
+    if (localStorage.getItem("Weekplan") === null) {
         console.log("Det er tomt i local");
 
     } else {
 
-        let returnertString = localStorage.getItem("Ukeplan");
-        let arrayFraString = JSON.parse(returnertString);
+        let returnedStr = localStorage.getItem("Weekplan");
+        let arrFromString = JSON.parse(returnedStr);
 
-        lagretBtn.style.display = "block";
+        viewSavedBtn.style.display = "block";
 
-        lagretBtn.addEventListener("click", () => {
+        viewSavedBtn.addEventListener("click", () => {
             let html = "";
-            for (let i = 0; i < arrayFraString.length; i++) {
+            for (let i = 0; i < arrFromString.length; i++) {
+                
+                let time = showTime(arrFromString[i].time)
+
                 html += `
-                <article id=${i} class="dagWrap">
-                <h3 class="dag">${dager[i].dag}</h3>
-                <h2 id="rett${i}" class="rett">${arrayFraString[i].navn}</h2>
-                <div id="i_wrap${i}" class="icon_wrap">
-                    <div class="clock">${arrayFraString[i].tid}</div>
-                    <div class="price">${arrayFraString[i].pris}</div>
+                <article id=${i} class="day-wrap">
+                <h3 class="day">${days[i].day}</h3>
+                <h2 id="course_h2_${i}" class="course-h2">${arrFromString[i].course}</h2>
+                <div id="i_wrap${i}" class="icon-wrap">
+                    <div class="clock">${time}</div>
+                    
                 </div>
-                <button id="btn${i}" class="bytt">Bytt rett</button>
+                <button id="btn${i}" class="change-btn">Bytt rett</button>
                 </article>
                 `
         }
-        minUke.style.display = "block";
-        ukesplan.innerHTML = html;
+        myWeekH2.style.display = "block";
+        dinnerPlan.innerHTML = html;
         mainBtn.style.display = "none";
-        lagretBtn.innerText = "Lag en ny ukesplan";
-        lagretBtn.style.border = "4px solid white";
-        lagretBtn.style.padding = "1em";
-        lagretBtn.style.background = "#355c7d";
-        lagretBtn.style.borderRadius = "10em";
-        lagretBtn.addEventListener("click", tilbake);
-
+        viewSavedBtn.innerText = "Lag en ny ukesplan";
+        viewSavedBtn.style.border = "4px solid white";
+        viewSavedBtn.style.padding = "1em";
+        viewSavedBtn.style.background = "#355c7d";
+        viewSavedBtn.style.borderRadius = "10em";
+        viewSavedBtn.addEventListener("click", reload);
         })
     }
 }
 
-window.onload = finnLocal();
+window.onload = findLocal();
 
 
 //--------------------------------------------------------
@@ -289,29 +280,29 @@ window.onload = finnLocal();
 //--------------------------------------------------------
 
 //setter tab-fokus
-const riktigFokus = (cName) => {
+const rightFocus = (cName) => {
     document.querySelector(cName).focus();
 } 
 
 //Refresher til forsiden når du trykker "Lag ny ukesplan"-button
-const tilbake = () => {
+const reload = () => {
     window.scrollTo(0, 0);
     location.reload()
 }
 
 //Skifter status for "Filter"-sjekkboksen
-const seFiltrert = () => {
+const toggleFiltBtn = () => {
     if (cb.checked) {
         cb.checked = false;
         window.scrollTo(0, 0);
     } else if (!cb.checked) {
         cb.checked = true;
-        riktigFokus(".cbLabel");
+        rightFocus(".cbLabel");
     }
 }
 
 //Plukker ut random index fra et array
-const plukkUtRett = (arr) => {
+const randomIndex = (arr) => {
     let index = Math.floor(Math.random()*arr.length)
     return index;
 }
@@ -322,7 +313,7 @@ const alertMail = () => {
 }
 
 //Viser hvor mye tid matretten tar å lage
-const visTid = (alt1) => {
+const showTime = (alt1) => {
     if (alt1 === 1) {
         return "20 minutter";
     } else if (alt1 === 2) {
@@ -333,28 +324,28 @@ const visTid = (alt1) => {
 }
 
 //Sjekker om bruker har dårlig tid noen dager, og sørger for at den dagen får en rett det tar kort tid å lage
-const liteTidRiktigDag = () => {
-    let sjekketInp = tagCheck();
-    let liteTidArr = liteTid();
+const fastFoodFilter = () => {
+    let checkedInputs = tagCheck();
+    let fastFoodArr = fastFood();
 
-    let index = plukkUtRett(liteTidArr);
-    let travelMiddag = liteTidArr[index];
+    let index = randomIndex(fastFoodArr);
+    let fastCourse = fastFoodArr[index];
  
-    sjekketInp.forEach(el => {
+    checkedInputs.forEach(el => {
         if (el.id === "mandag") {
-            middagsliste.splice(0, 1, travelMiddag);
+            dinnerList.splice(0, 1, fastCourse);
         } else if (el.id === "tirsdag") {
-            middagsliste.splice(1, 1, travelMiddag);
+            dinnerList.splice(1, 1, fastCourse);
         } else if (el.id === "onsdag") {
-            middagsliste.splice(2, 1, travelMiddag);
+            dinnerList.splice(2, 1, fastCourse);
         } else if (el.id === "torsdag") {
-            middagsliste.splice(3, 1, travelMiddag);
+            dinnerList.splice(3, 1, fastCourse);
         } else if (el.id === "fredag") {
-            middagsliste.splice(4, 1, travelMiddag);
+            dinnerList.splice(4, 1, fastCourse);
         } else if (el.id === "lørdag") {
-            middagsliste.splice(5, 1, travelMiddag);
+            dinnerList.splice(5, 1, fastCourse);
         } else if (el.id === "søndag") {
-            middagsliste.splice(6, 1, travelMiddag);
+            dinnerList.splice(6, 1, fastCourse);
         } 
     })
 }
