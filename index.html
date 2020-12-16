@@ -18,18 +18,18 @@
         <header id="header">
             <div id="head_wrap">
                 <h1 id="head">Middag</h1>
-                <h2 id="kursiv">Ikke tenk - bare trykk</h2>      
+                <h2 id="sub_title">Ikke tenk - bare trykk</h2>      
             </div>
         </header>
 
         <main>
             <!--GENERER-UKESPLAN-BUTTON-->
-            <button id="main_btn" class="mainBtn">Generer ukesplan</button>    
+            <button id="main_btn" class="main-btn">Generer ukesplan</button>    
             
             <section aria-label="filterseksjon" id="filterlabler" title="Her ser du hvilke filtre som er aktive"></section>
             
-            <div id="lagret_ukesplan">
-                <button id="viewSavedBtn">Se lagret ukesplan</button>
+            <div id="saved_plan">
+                <button id="view_saved_btn">Se lagret ukesplan</button>
                 <h2 id="dinner_plan_h2">Min ukesplan:</h2>
             </div>
 
@@ -47,96 +47,96 @@
                 <article tabindex="0" id="filter" title="filterseksjonen">
                         
                     <!--FILTERVALG-->
-                    <article id="velgType">    
+                    <article id="choose_type">    
                         <h3>Jeg vil ha:</h3>
 
-                        <div class="labelWrap">
+                        <div class="label-wrap">
                             <div id="kjott_wrap" class="filter-item">
-                                <input type="checkbox" id="kjott" class="inpFilter" title="Velg kjøtt" value="Kjøtt">
-                                <label class="cbLabel type" for="kjott">Kjøtt</label>
+                                <input type="checkbox" id="kjott" class="inp-filter" title="Velg kjøtt" value="Kjøtt">
+                                <label class="cb-label type" for="kjott">Kjøtt</label>
                             </div>
                                     
                             <div id="fisk_wrap" class="filter-item">
-                                <input type="checkbox"  id="fisk" class="inpFilter" title="Velg fisk">
-                                <label class="cbLabel type" for="fisk">Fisk</label>
+                                <input type="checkbox"  id="fisk" class="inp-filter" title="Velg fisk">
+                                <label class="cb-label type" for="fisk">Fisk</label>
                             </div>
 
                             <div id="veg_wrap" class="filter-item">
-                                <input type="checkbox"  id="vegetar" class="inpFilter" title="Velg vegetar">
-                                <label class="cbLabel type" for="vegetar">Vegetar</label>
+                                <input type="checkbox"  id="vegetar" class="inp-filter" title="Velg vegetar">
+                                <label class="cb-label type" for="vegetar">Vegetar</label>
                             </div>
 
                             <div id="glut_wrap" class="filter-item">
-                                <input type="checkbox" id="gluten" class="inpFilter" title="Velg glutenfritt">
-                                <label class="cbLabel type" for="gluten">Glutenfritt</label>
+                                <input type="checkbox" id="gluten" class="inp-filter" title="Velg glutenfritt">
+                                <label class="cb-label type" for="gluten">Glutenfritt</label>
                             </div>
 
                             <div id="lakt_wrap" class="filter-item">
-                                <input type="checkbox" id="laktose" class="inpFilter" title="Velg laktosefritt">
-                                <label class="cbLabel type" for="laktose">Laktosefritt</label>
+                                <input type="checkbox" id="laktose" class="inp-filter" title="Velg laktosefritt">
+                                <label class="cb-label type" for="laktose">Laktosefritt</label>
                             </div>
                         </div>
                     </article>
 
-                    <article id="velgPris">
+                    <article id="choose_price">
                         <h3>Jeg vil betale:</h3>  
 
-                        <div class="labelWrap">
+                        <div class="label-wrap">
                                     
                             <div id="billigst_wrap" class="filter-item"> 
-                                <input type="checkbox" id="billigst" class="inpFilter" title="Velg billigste alternativ">
-                                <label class="cbLabel" for="billigst">maks 100,-</label>
+                                <input type="checkbox" id="billigst" class="inp-filter" title="Velg billigste alternativ">
+                                <label class="cb-label" for="billigst">maks 100,-</label>
                             </div>
                                     
                             <div id="billig_wrap" class="filter-item">
-                                <input type="checkbox" id="billig" class="inpFilter" title="Velg nest billigste alternativ">
-                                <label class="cbLabel" for="billig">maks 150,-</label>
+                                <input type="checkbox" id="billig" class="inp-filter" title="Velg nest billigste alternativ">
+                                <label class="cb-label" for="billig">maks 150,-</label>
                             </div>    
 
                             <div id="dyrt_wrap" class="filter-item">
-                                <input type="checkbox" id="dyrt" class="inpFilter" title="Velg dyreste alternativ">
-                                <label class="cbLabel" for="dyrt">maks 200,-</label>
+                                <input type="checkbox" id="dyrt" class="inp-filter" title="Velg dyreste alternativ">
+                                <label class="cb-label" for="dyrt">maks 200,-</label>
                             </div>
                         </div>
                     </article>
 
 
-                    <article id="velgTid">
+                    <article id="choose_time">
                         <h3>Jeg har det ekstra travelt:</h3>
-                        <div class="labelWrap">
+                        <div class="label-wrap">
                             <div id="man_wrap" class="filter-item">                                   
-                                <input class="inpFilter travel" type="checkbox" id="mandag" title="Marker mandag som 'travel'">
-                                <label class="cbLabel" for="mandag">Mandag</label>
+                                <input class="inp-filter travel" type="checkbox" id="mandag" title="Marker mandag som 'travel'">
+                                <label class="cb-label" for="mandag">Mandag</label>
                             </div>
                                     
                             <div id="tir_wrap" class="filter-item">
-                                <input class="inpFilter travel" type="checkbox" id="tirsdag" title="Marker tirsdag som 'travel'">
-                                <label class="cbLabel" for="tirsdag">Tirsdag</label>
+                                <input class="inp-filter travel" type="checkbox" id="tirsdag" title="Marker tirsdag som 'travel'">
+                                <label class="cb-label" for="tirsdag">Tirsdag</label>
                             </div>
 
                             <div id="ons_wrap" class="filter-item">
-                                <input class="inpFilter travel" type="checkbox" id="onsdag" title="Marker onsdag som 'travel'">
-                                <label class="cbLabel" for="onsdag">Onsdag</label>
+                                <input class="inp-filter travel" type="checkbox" id="onsdag" title="Marker onsdag som 'travel'">
+                                <label class="cb-label" for="onsdag">Onsdag</label>
                             </div>
 
                             <div id="tors_wrap" class="filter-item">
-                                <input class="inpFilter travel" type="checkbox" id="torsdag" title="Marker torsdag som 'travel'">
-                                <label class="cbLabel" for="torsdag">Torsdag</label>
+                                <input class="inp-filter travel" type="checkbox" id="torsdag" title="Marker torsdag som 'travel'">
+                                <label class="cb-label" for="torsdag">Torsdag</label>
                             </div>
 
                             <div id="fre_wrap" class="filter-item">
-                                <input class="inpFilter travel" type="checkbox" id="fredag" title="Marker fredag som 'travel'">
-                                <label class="cbLabel" for="fredag">Fredag</label>
+                                <input class="inp-filter travel" type="checkbox" id="fredag" title="Marker fredag som 'travel'">
+                                <label class="cb-label" for="fredag">Fredag</label>
                             </div>
 
                             <div id="lo_wrap" class="filter-item">
-                                <input class="inpFilter travel" type="checkbox" id="lørdag" title="Marker lørdag som 'travel'">
-                                <label class="cbLabel" for="lørdag">Lørdag</label>
+                                <input class="inp-filter travel" type="checkbox" id="lørdag" title="Marker lørdag som 'travel'">
+                                <label class="cb-label" for="lørdag">Lørdag</label>
                             </div>
 
                             <div id="so_wrap" class="filter-item">
-                                <input class="inpFilter travel" type="checkbox" id="søndag" title="Marker søndag som 'travel'">
-                                <label class="cbLabel" for="søndag">Søndag</label>
+                                <input class="inp-filter travel" type="checkbox" id="søndag" title="Marker søndag som 'travel'">
+                                <label class="cb-label" for="søndag">Søndag</label>
                             </div>                    
                                
                         </div>

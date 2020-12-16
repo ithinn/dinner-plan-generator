@@ -1,4 +1,4 @@
-.mainBtn {
+.main-btn {
     animation: shake;
     animation-duration:  0.52s;
     animation-delay: 1.2s;
@@ -6,7 +6,7 @@
     animation-timing-function: linear; 
 }
 
-.mainBtn:focus {
+.main-btn:focus {
     animation-play-state: paused;
 }
 

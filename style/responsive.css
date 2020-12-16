@@ -1,7 +1,7 @@
 
 @media (min-width: 414px) {
 
-    #kursiv, #save_btn, #sendmail, #mail, #filter_label, #exit_filter_btn {
+    #sub_title, #save_btn, #send_mail, #mail, #filter_label, #exit_filter_btn {
         font-size: 2.4rem;
     }
 
@@ -23,16 +23,16 @@
         top: -.2em;
     }
 
-    #kursiv{
+    #sub_title{
         display: none;
     }
 
-    #viewSavedBtn, #save_btn {
+    #view_saved_btn, #save_btn {
         font-size: 3rem;
         width: 60vw;
     }
 
-    #sendmail, #mail {
+    #send_mail, #mail {
         width: 60vw;
     }
 
@@ -41,13 +41,13 @@
        top: -5vh; 
     }
 
-    .mainBtn {
+    .main-btn {
         font-size: 3rem;
         padding: 1em .1em;
         width: 60vw;
     }
 
-    .filt-tag, .cbLabel {
+    .filt-tag, .cb-label {
         font-size: 3rem;
     }
 
@@ -90,21 +90,21 @@
         margin-bottom: 10em;
     }
     
-    #exit_filter_btn, #viewSavedBtn, #save_btn, #sendmail, #mail {
+    #exit_filter_btn, #view_saved_btn, #save_btn, #send_mail, #mail {
        
         width: 30vw;
     }
     
-    .labelWrap {
+    .label-wrap {
         margin-top: 2em;
         width: 60%;
     }
 
-    .mainBtn {
+    .main-btn {
         width: 40vw;
     }
 
-    #viewSavedBtn {
+    #view_saved_btn {
         margin-top: 2em;
     }
 }

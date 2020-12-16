@@ -7,27 +7,30 @@ filt.addEventListener("keydown", (e) => {
     
     if (e.target.nodeName = "INPUT") {
         
+        if (e.key === "Escape") {
+            toggleFiltBtn();
+        }
+
         if (e.key === "Enter") {
             e.preventDefault();
-            console.log(e.target.checked);
+
             if (e.target.checked) {
-                console.log(e.target.checked);
                 e.target.checked = false;
                 
-
             } else if (!e.target.checked) {
                 e.target.checked = true;
                 checkIfChecked();
                 applyFilter();          
             }
-            console.log(e.target.checked);
-            //console.log("noe skjer")
+        } 
+    } 
+    
+    if (e.target.nodeName = "DIV") {
+        if (e.key === "Escape") {
+            toggleFiltBtn();
         }
-}
+    }
 })
-
-
-
 
 
 //Legger lytter på alle labler i tagSek
@@ -57,20 +60,16 @@ exitFilterBtn.addEventListener("click", (e) => {
     }
     );
 
-
-
-
 filtLab.addEventListener("keydown", (e) => {
     e.preventDefault();
     
     if (e.key === "Enter") {
-           
         toggleFiltBtn();
+
     } else if (e.shiftKey && e.key === "Tab") {
-        console.log("Du trykker shift+tag");
-        rightFocus(".filt-tag")
+        rightFocus(".filt-tag");
+
     }else if (e.key === "Tab") {
         rightFocus(".change-btn")
     }      
-
 })

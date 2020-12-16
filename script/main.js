@@ -11,9 +11,9 @@ const filt = document.getElementById("filter");
 const cb = document.getElementById("cb");
 const tagSek = document.getElementById("filterlabler");
 const action = document.getElementById("action");
-const viewSavedBtn = document.getElementById("viewSavedBtn");
+const viewSavedBtn = document.getElementById("view_saved_btn");
 const dayWrap = document.getElementsByClassName("day-wrap");
-let tag = document.querySelectorAll(".inpFilter");
+let tag = document.querySelectorAll(".inp-filter");
 
 
 
@@ -46,7 +46,7 @@ const drawPlan = () => {
     let html_action = `
         <button id="save_btn">Lagre</button>
         <input aria-label="Email-adress" type="email" id="mail" placeholder="Skriv din epost-adresse">
-        <button type="submit" id="sendmail">Send ukesplan</button>
+        <button type="submit" id="send_mail">Send ukesplan</button>
         `
 
     dinnerPlan.innerHTML = html;
@@ -57,7 +57,7 @@ const drawPlan = () => {
     viewSavedBtn.style.display = "none";
     
     //Lyttere til "Lagre" og "Send ukesplan"-button
-    const send = document.getElementById("sendmail");
+    const send = document.getElementById("send_mail");
     send.addEventListener("click", alertMail);
 
     const save = document.getElementById("save_btn");
@@ -297,7 +297,7 @@ const toggleFiltBtn = () => {
         window.scrollTo(0, 0);
     } else if (!cb.checked) {
         cb.checked = true;
-        rightFocus(".cbLabel");
+        rightFocus(".cb-label");
     }
 }
 
